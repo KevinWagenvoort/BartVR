@@ -15,12 +15,14 @@ public class ArrestHandler : MonoBehaviour {
 
     //When player enters within the radius of the suspect stop time and display game over
     void OnCollisionEnter(Collision collision) {
-        Time.timeScale = 0;
 
-        gameOverText.SetActive(true);
-        gameOverScreen.SetActive(true);
-
-        this.GetComponent<SphereCollider>().enabled = false;
+        if (collision.gameObject.tag == "Officer")
+        {
+            Time.timeScale = 0;
+            gameOverText.SetActive(true);
+            gameOverScreen.SetActive(true);
+            this.GetComponent<SphereCollider>().enabled = false;
+        }
     }
 
     public static void ActivateGameOverScreen() {
