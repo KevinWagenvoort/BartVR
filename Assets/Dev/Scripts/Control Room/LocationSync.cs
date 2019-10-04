@@ -90,7 +90,9 @@ public class LocationSync : MonoBehaviour
                                                                                  -1 * (NpcOption.npc.transform.position.z * yScale));
         if (NpcOption.npc.tag == "CameraRig")
         {
-            NpcOption.minimapImage.GetComponent<RectTransform>().transform.rotation = Quaternion.Euler((NpcOption.npc.transform.rotation.x + 180), 0, 0);
+            Transform eye = NpcOption.npc.transform.Find("Camera (head)").Find("Camera (eye)");
+            Debug.Log(eye.eulerAngles.y);
+            NpcOption.minimapImage.GetComponent<RectTransform>().transform.rotation = Quaternion.Euler(0, 0, eye.eulerAngles.x + 180);
         }
     }
 }
