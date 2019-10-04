@@ -22,7 +22,6 @@ public class NotificationControl : MonoBehaviour
     }
 
     public void CreatePostableMessagePanel(DoublyLinkedList notification) {
-        if (GameManager.currentMode == PlayingMode.MultiplayerAM || GameManager.currentMode == PlayingMode.MultiplayerBM)
             notificationPostReactions.AddNewPostableNotification(notification);
     }
 

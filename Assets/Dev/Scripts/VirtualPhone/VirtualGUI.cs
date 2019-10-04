@@ -153,11 +153,8 @@ public class VirtualGUI : MonoBehaviour {
 
     private void RunMap() {
 
-        if (GameManager.currentMode == PlayingMode.MultiplayerAM || GameManager.currentMode == PlayingMode.MultiplayerBM) { 
-            SnapTo(icon);
-            cursor.gameObject.SetActive(false);
-        } else
-            SnapTo(cursor);
+        SnapTo(icon);
+        cursor.gameObject.SetActive(false);
 
         Vector2 finger = iHandler.FingerPositionOnTouchpad(device);
         
