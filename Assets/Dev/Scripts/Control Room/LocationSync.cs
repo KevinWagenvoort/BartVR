@@ -88,5 +88,9 @@ public class LocationSync : MonoBehaviour
     private void ScaleNpcOnMap(NpcImageOption NpcOption) {
         NpcOption.minimapImage.GetComponent<RectTransform>().transform.localPosition = new Vector2(-1 * (NpcOption.npc.transform.position.x * xScale),
                                                                                  -1 * (NpcOption.npc.transform.position.z * yScale));
+        if (NpcOption.npc.tag == "CameraRig")
+        {
+            NpcOption.minimapImage.GetComponent<RectTransform>().transform.rotation = Quaternion.Euler((NpcOption.npc.transform.rotation.x + 180), 0, 0);
+        }
     }
 }

@@ -154,23 +154,23 @@ public class VirtualGUI : MonoBehaviour {
     private void RunMap() {
 
         SnapTo(icon);
-        cursor.gameObject.SetActive(false);
+        //cursor.gameObject.SetActive(false);
 
-        Vector2 finger = iHandler.FingerPositionOnTouchpad(device);
+        //Vector2 finger = iHandler.FingerPositionOnTouchpad(device);
         
 
-        if(!IsBetween(finger.x, -cursorMargin, cursorMargin) || !IsBetween(finger.y, -cursorMargin, cursorMargin)) {
-            // Temp is used because C# does not allow for changing a member of a struct returned from a property (localPostion.x or .y)
-            Vector3 temp = cursor.transform.localPosition;
+        //if(!IsBetween(finger.x, -cursorMargin, cursorMargin) || !IsBetween(finger.y, -cursorMargin, cursorMargin)) {
+        //    // Temp is used because C# does not allow for changing a member of a struct returned from a property (localPostion.x or .y)
+        //    Vector3 temp = cursor.transform.localPosition;
 
-            // finger.x is multiplied by 2 since the width is twice as large as the height.
-            temp += new Vector3(finger.x * 2f, finger.y, 0) * Time.deltaTime * cursorSpeed;
+        //    // finger.x is multiplied by 2 since the width is twice as large as the height.
+        //    temp += new Vector3(finger.x * 2f, finger.y, 0) * Time.deltaTime * cursorSpeed;
 
-            temp.x = Mathf.Clamp(temp.x, -1 * contentPanel.rect.width / 2, contentPanel.rect.width / 2);
-            temp.y = Mathf.Clamp(temp.y, -1 * contentPanel.rect.height / 2, contentPanel.rect.height / 2);
+        //    temp.x = Mathf.Clamp(temp.x, -1 * contentPanel.rect.width / 2, contentPanel.rect.width / 2);
+        //    temp.y = Mathf.Clamp(temp.y, -1 * contentPanel.rect.height / 2, contentPanel.rect.height / 2);
 
-            cursor.transform.localPosition = temp;
-        }
+        //    cursor.transform.localPosition = temp;
+        //}
     }
 
     void SnapTo(RectTransform target) {
