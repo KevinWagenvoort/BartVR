@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!65 &5216906801331588461
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210520860906896973}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.422317, y: 6.0923862, z: 5.9332104}
+  m_Center: {x: 0.083041996, y: 2.5461931, z: -7.980445}
+--- !u!1001 &210520860906993903
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_Name
+      value: pizza place final M Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 157.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0036621094
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -91.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6347067
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7727532
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -78.796005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46713d6fafb5bb44e914224804cdd45c, type: 2}
+    - target: {fileID: 2300004, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fd520115a7f0ae42a819ff75dcad1d3, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1821976f7827c1944adfe621b7b3802b, type: 3}
+--- !u!1 &210520860906896973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 1821976f7827c1944adfe621b7b3802b,
+    type: 3}
+  m_PrefabInstance: {fileID: 210520860906993903}
+  m_PrefabAsset: {fileID: 0}
