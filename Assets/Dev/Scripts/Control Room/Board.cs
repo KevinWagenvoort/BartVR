@@ -13,12 +13,7 @@ public class Board : MonoBehaviour {
     private LinkedList<DoublyLinkedList> notificationlist;
 
     void Start() {
-        if (GameManager.currentMode == PlayingMode.MultiplayerAM) 
-            LoadItems(m_Path + string.Format("Multiplayer/Scenario{0}", GameManager.currentScenario));
-        else if (GameManager.currentMode == PlayingMode.MultiplayerBM)
-            LoadItems(m_Path + string.Format("Multiplayer/Scenario{0}", GameManager.currentScenario));
-        else
-            LoadItems(m_Path + string.Format("Singleplayer/Scenario{0}", GameManager.currentScenario));
+        LoadItems(m_Path + string.Format("Multiplayer/Scenario{0}", GameManager.currentScenario));
 
         FillAndConnectNotificationsList();
 
@@ -82,7 +77,7 @@ public class Board : MonoBehaviour {
 
     // Needed for singplayer. If map app is not active means we can't post markers
     private bool AbleToPostMessage() {
-        if ((GameManager.currentMode == PlayingMode.MultiplayerAM || GameManager.currentMode == PlayingMode.MultiplayerBM) || mapAppOnVirualPhone.activeInHierarchy)
+        if (mapAppOnVirualPhone.activeInHierarchy)
             return true;
 
         return false;
