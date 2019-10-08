@@ -1,5 +1,5 @@
 
-=== Thu Oct  3 12:18:09 2019
+=== Mon Oct  7 14:15:43 2019
 
 Packages were changed.
 Update Mode: updateDependencies
@@ -11,7 +11,7 @@ The following packages were added:
   com.unity.test-framework@1.0.13
   com.unity.timeline@1.1.0
   com.unity.2d.sprite@1.0.0
-  com.unity.ide.vscode@1.1.0
+  com.unity.ide.vscode@1.1.2
   com.unity.ide.rider@1.1.0
   com.unity.ugui@1.0.0
   com.unity.modules.androidjni@1.0.0
@@ -22,11 +22,3 @@ The following packages were updated:
   com.unity.package-manager-ui from version 1.9.11 to 2.2.0
   com.unity.purchasing from version 2.0.3 to 2.0.6
   com.unity.textmeshpro from version 1.2.4 to 2.0.1
-
-=== Fri Oct  4 11:47:15 2019
-
-Packages were changed.
-Update Mode: updateDependencies
-
-The following packages were updated:
-  com.unity.ide.vscode from version 1.1.0 to 1.1.2
