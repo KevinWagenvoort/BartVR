@@ -21,7 +21,6 @@ public class MinimapSync : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Arrow.GetComponent<RectTransform>().transform.localRotation = Quaternion.Euler(90, 0, Eye.localEulerAngles.y -45);
-        Debug.Log(Eye.eulerAngles.y);
+        Arrow.GetComponent<RectTransform>().transform.localRotation = Quaternion.Euler(90, 0, -Eye.localEulerAngles.y);
     }
 }
