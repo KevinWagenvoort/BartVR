@@ -2,14 +2,16 @@
 // Thanks SomeVVhIteGuy!
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ZoomOnMap : MonoBehaviour
+public class ZoomOnMap : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] float startSize = 1;
     [SerializeField] float minSize = 0.75f;
     [SerializeField] float maxSize = 1;
 
     [SerializeField] private float zoomRate = 5;
+    private bool isOver = false;
 
     Vector3 difference;
     Vector3 mousePos;
@@ -17,11 +19,20 @@ public class ZoomOnMap : MonoBehaviour
     private void Update()
     {
         float scrollWheel = -Input.GetAxis("Mouse ScrollWheel");
-
-        if (scrollWheel != 0)
+        if (scrollWheel != 0 && isOver)
         {
             ChangeZoom(scrollWheel);
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        isOver = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isOver = false;
     }
 
     private void ChangeZoom(float scrollWheel)
