@@ -5366,8 +5366,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8551723590769291379}
   - component: {fileID: 1578230936188096428}
+  - component: {fileID: 1212934144183191903}
   m_Layer: 13
-  m_Name: GameObject
+  m_Name: OfficerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5436,3 +5437,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1212934144183191903
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4604751310283298504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.843685, y: 6.537229, z: 0.20000005}
+  m_Center: {x: 0.12992287, y: 0.3953972, z: -0.00000023841858}
