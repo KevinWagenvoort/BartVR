@@ -35,7 +35,7 @@ public class VirtualGUI : MonoBehaviour {
     private enum App {
         test = 0,
         camera = 1,
-        app3 = 2,
+        chat = 2,
         map = 3,
         menu = 4,
         none = 5
@@ -99,9 +99,9 @@ public class VirtualGUI : MonoBehaviour {
                 //TODO third panel;
                 ReturnToMenu(App.test);
                 break;
-            case App.app3:
+            case App.chat:
                 //TODO fourth panel
-                ReturnToMenu(App.app3);
+                RunChat();
                 break;
             case App.none:
                 ReturnToMenu(App.menu);
@@ -139,6 +139,11 @@ public class VirtualGUI : MonoBehaviour {
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && iHandler.TouchpadDirection(device) != Direction.standby) {
             LaunchApp((int)iHandler.TouchpadDirection(device));
         }
+    }
+
+    private void RunChat()
+    {
+
     }
 
     private void LaunchApp(int app) {
