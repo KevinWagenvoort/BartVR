@@ -9,6 +9,7 @@ public class RenderTextureClick : MonoBehaviour
     public Camera mapCamera;
     public Camera canvasCamera;
     public Canvas canvas;
+    public GameObject pizzaLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,7 @@ public class RenderTextureClick : MonoBehaviour
                         if (hit.collider.gameObject.name == "OfficerIcon")
                         {
                             Debug.Log("Officer selected");
+                            hit.transform.gameObject.GetComponent<NPCBehaviour>().MoveToTarget(pizzaLocation);
                         }
                     }
                 }
