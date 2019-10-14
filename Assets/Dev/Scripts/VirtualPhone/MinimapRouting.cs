@@ -24,8 +24,6 @@ public class MinimapRouting : MonoBehaviour
             elapsed -= 1.0f;
             NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, path);
         }
-        for (int i = 0; i < path.corners.Length - 1; i++)
-            Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
         lineRenderer.positionCount = path.corners.Length;
         lineRenderer.SetPositions(path.corners);
     }
