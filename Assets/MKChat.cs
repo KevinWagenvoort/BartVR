@@ -8,22 +8,21 @@ public class MKChat : MonoBehaviour
     public Button MKSendButton;
     public Dropdown MKDropDown;
 
+    public GameObject NeighbourhoodApp;
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
+
     // Start is called before the first frame update
     void Start()
     {
         Button btn = MKSendButton.GetComponent<Button>();
         btn.onClick.AddListener(OnClickHandler);
-    }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
     }
 
     void OnClickHandler()
     {
-        ChatApp.StartingConversation();
+        Debug.Log(MKDropDown.options[MKDropDown.value].text);
+        NeighbourhoodAppScript.TemplateConversation();
     }
 }
