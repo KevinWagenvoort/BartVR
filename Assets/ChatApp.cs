@@ -28,6 +28,12 @@ public class ChatApp
         List<string> answers = MessageList.FindLast(M => M.type == Message.Type.Question).possibleAnswers;
         return answers;
     }
+
+    public Message GetLastMessage()
+    {
+        Message LastMessage = MessageList[MessageList.Count-1];
+        return LastMessage;
+    }
 }
 
 public class Message

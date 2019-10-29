@@ -98,11 +98,9 @@ public class ButtonProperties
         {
             Disable();
         }
-
-        Debug.Log(this.Selected);
+        
         if (this.Selected)
         {
-            Debug.Log("Selected: " + ButtonObject.name);
             ButtonObject.transform.GetComponent<Outline>().enabled = true;
         }
         else
