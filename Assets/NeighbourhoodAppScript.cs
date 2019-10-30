@@ -24,7 +24,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 possibleAnswers.Add("Is goed. Ik haal wel pizza. Zie je dan.");
                 possibleAnswers.Add("Is goed. Ik haal wel patat. Zie je dan.");
                 possibleAnswers.Add("Is goed. Ik haal wel chinees. Zie je dan.");
-                ChatApp.Send("Yo zin om vanavond samen te eten? Vanaf 7 uur ben ik thuis. Dan kan je wel komen.", Vriend, Message.Type.Question, possibleAnswers);
+                ChatApp.Send("Yo zin om vanavond samen te eten?", Vriend, Message.Type.Question, possibleAnswers);
                 break;
             case 1:
                 ChatApp.Send("Vanaf 7 uur ben ik thuis. Dan kan je wel komen.", Vriend, Message.Type.Other);
