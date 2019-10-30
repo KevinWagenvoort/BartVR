@@ -10,61 +10,93 @@ public class ChoiceNavigation : MonoBehaviour
     public List<ButtonProperties> Buttons;
 
     //private
-    public CurrentlySelected CurrentlySelected = new CurrentlySelected(0, 2);
-    
+    private CurrentlySelected Selected;
+    private int PrevSelected = 0;
+
+    private SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)trackedObj.index); } }
+    private SteamVR_TrackedObject trackedObj;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
+        Selected = new CurrentlySelected(0, ButtonActiveCount() - 1);
+        DisableButtons();
     }
 
     // Update is called once per frame
     void Update()
     {
-        var activeCount = 0;
-        foreach (ButtonProperties bp in Buttons)
-        {
-            if (bp.Active)
-            {
-                activeCount++;
-            }
-        }
-        CurrentlySelected = new CurrentlySelected(0, activeCount - 1);
-
         Navigation();
-        UpdateAllButtons();
+        ButtonOutline();
     }
 
     void Navigation()
     {
+        //VR
+        try
+        {
+            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+            {
+                if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y > 0.5f)
+                {
+                    PrevSelected = Selected.selected;
+                    Selected.Previous();
+                } else if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y < -0.5f)
+                {
+                    PrevSelected = Selected.selected;
+                    Selected.Next();
+                } else
+                {
+                    Debug.Log(Buttons[Selected.selected].GetText());
+                }
+            }
+        } catch
+        {
+
+        }
+
+        //PC
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            DeselectAllButtons();
-            CurrentlySelected.Previous();
-            Buttons[CurrentlySelected.selected].Selected = true;
+            PrevSelected = Selected.selected;
+            Selected.Previous();
         }
         else if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            DeselectAllButtons();
-            CurrentlySelected.Next();
-            Buttons[CurrentlySelected.selected].Selected = true;
+            PrevSelected = Selected.selected;
+            Selected.Next();
+        } else if (Input.GetKeyUp(KeyCode.Return))
+        {
+            Debug.Log(Buttons[Selected.selected].GetText());
         }
     }
 
-    void DeselectAllButtons()
+    int ButtonActiveCount()
     {
+        int ac = 0;
         foreach (ButtonProperties bp in Buttons)
         {
-            bp.Selected = false;
+            if (bp.Active)
+            {
+                ac++;
+            }
         }
+        return ac;
     }
 
-    void UpdateAllButtons()
+    void ButtonOutline()
     {
-        Buttons[CurrentlySelected.selected].Selected = true;
+        Buttons[PrevSelected].ButtonObject.transform.GetComponent<Outline>().enabled = false;
+        Buttons[Selected.selected].ButtonObject.transform.GetComponent<Outline>().enabled = true;
+    }
+
+    void DisableButtons()
+    {
         foreach (ButtonProperties bp in Buttons)
         {
-            bp.Update();
+            bp.ButtonObject.SetActive(bp.Active);
         }
     }
 }
@@ -89,45 +121,15 @@ public class ButtonProperties
         this.Active = Active;
     }
 
-    public void Update()
+    public string GetText()
     {
-        if (this.Active)
-        {
-            Enable();
-        } else
-        {
-            Disable();
-        }
-        
-        if (this.Selected)
-        {
-            ButtonObject.transform.GetComponent<Outline>().enabled = true;
-        }
-        else
-        {
-            ButtonObject.transform.GetComponent<Outline>().enabled = false;
-        }
-    }
-
-    public void Disable()
-    {
-        this.ButtonObject.SetActive(false);
-    }
-
-    public void Enable()
-    {
-        this.ButtonObject.SetActive(true);
-    }
-
-    public string Print()
-    {
-        return ButtonObject.transform.Find("Text").transform.GetComponent<Text>().text;
+        return ButtonObject.transform.Find("Text").GetComponent<Text>().text;
     }
 }
 
 public class CurrentlySelected
 {
-    public int selected;
+    public int selected = 0;
     public int max;
     public int min = 0;
 
