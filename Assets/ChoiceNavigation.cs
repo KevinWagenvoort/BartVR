@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,14 +14,14 @@ public class ChoiceNavigation : MonoBehaviour
     private CurrentlySelected Selected;
     private int PrevSelected = 0;
 
-    private SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)trackedObj.index); } }
-    private SteamVR_TrackedObject trackedObj;
+    // SteamVR
+    private SteamVR_TrackedObject trackedObject;
+    private SteamVR_Controller.Device controller;
 
     // Start is called before the first frame update
     void Start()
     {
-
-        trackedObj = GetComponent<SteamVR_TrackedObject>();
+        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
         Selected = new CurrentlySelected(0, ButtonActiveCount() - 1);
         DisableButtons();
     }
@@ -37,6 +38,7 @@ public class ChoiceNavigation : MonoBehaviour
         //VR
         try
         {
+            controller = SteamVR_Controller.Input((int)trackedObject.index);
             if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
                 if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y > 0.5f)
@@ -52,9 +54,9 @@ public class ChoiceNavigation : MonoBehaviour
                     Debug.Log(Buttons[Selected.selected].GetText());
                 }
             }
-        } catch
+        } catch (Exception e)
         {
-
+            Debug.LogError(e);
         }
 
         //PC

@@ -45,7 +45,7 @@ public class MobileChatScript : MonoBehaviour
     {
         Message LastMessage = NeighbourhoodAppScript.ChatApp.GetLastMessage();
 
-        if (!RenderedMessages.Contains(LastMessage))
+        if (!RenderedMessages.Contains(LastMessage) && LastMessage != null)
         {
             MoveAllMessages();
             RenderedMessages.Add(LastMessage);

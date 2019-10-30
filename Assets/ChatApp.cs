@@ -31,7 +31,14 @@ public class ChatApp
 
     public Message GetLastMessage()
     {
-        Message LastMessage = MessageList[MessageList.Count-1];
+        Message LastMessage = null;
+        try
+        {
+            LastMessage = MessageList[MessageList.Count - 1];
+        } catch
+        {
+
+        }
         return LastMessage;
     }
 }
