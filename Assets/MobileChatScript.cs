@@ -57,7 +57,7 @@ public class MobileChatScript : MonoBehaviour
             {
                 newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
             }
-            newMessage.transform.Find("MessageText").gameObject.GetComponent<TextMeshProUGUI>().text = LastMessage.message;
+            newMessage.transform.Find("BubbleImage").gameObject.transform.Find("MessageText").gameObject.GetComponent<Text>().text = LastMessage.message;
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
         }
