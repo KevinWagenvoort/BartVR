@@ -22,7 +22,7 @@ public class MobileChatScript : MonoBehaviour
     void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
-        PrivateAppScript = PrivateAppScript.GetComponent<PrivateAppScript>();
+        PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
     }
 
     // Update is called once per frame
