@@ -21,6 +21,7 @@ public class PrivateAppScript : MonoBehaviour
         possibleAnswers.Add("Is goed. Ik haal wel pizza. Zie je dan.");
         possibleAnswers.Add("Is goed. Ik haal wel patat. Zie je dan.");
         possibleAnswers.Add("Is goed. Ik haal wel chinees. Zie je dan.");
+        Invoke("Tutorial", 5);
     }
 
     private int passCount = 0;
@@ -47,7 +48,11 @@ public class PrivateAppScript : MonoBehaviour
                 Invoke("Tutorial", 2);
                 break;
             case 3:
-                ChatApp.Send("Ik ga het nu halen.", Jij, Message.Type.Other);
+                ChatApp.Send("Ik ga het nu halen maar ik weet niet waar het is.", Jij, Message.Type.Other);
+                Invoke("Tutorial", 2);
+                break;
+            case 4:
+                ChatApp.Send("Hier is het.", Vriend, Message.Type.Location);
                 break;
         }
         passCount++;

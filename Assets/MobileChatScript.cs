@@ -10,8 +10,10 @@ public class MobileChatScript : MonoBehaviour
     public GameObject PrivateApp;
 
     public GameObject ReceivedBubble;
+    public GameObject ReceivedLocationBubble;
     public GameObject SendBubble;
     public GameObject ChoiceBubbles;
+    public GameObject MapOpenBubble;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
     private PrivateAppScript PrivateAppScript;
@@ -25,7 +27,6 @@ public class MobileChatScript : MonoBehaviour
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
         PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
-        PrivateAppScript.Tutorial();
         foreach (Transform child in ChoiceBubbles.transform)
         {
             ChoiceBubbleTextList.Add(child.Find("Text").gameObject);
@@ -60,9 +61,19 @@ public class MobileChatScript : MonoBehaviour
             if (LastMessage.sender.role == Sender.Role.Burger)
             {
                 newMessage = Instantiate(SendBubble, SendBubble.transform.parent);
+                MapOpenBubble.SetActive(false);
             } else
             {
-                newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
+                if (LastMessage.type == Message.Type.Location)
+                {
+                    newMessage = Instantiate(ReceivedLocationBubble, ReceivedLocationBubble.transform.parent);
+                    MapOpenBubble.SetActive(true);
+                }
+                else
+                {
+                    newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
+                    MapOpenBubble.SetActive(false);
+                }
             }
             Transform bubbleImage = newMessage.transform.Find("BubbleImage");
             bubbleImage.Find("MessageText").gameObject.GetComponent<Text>().text = LastMessage.message;

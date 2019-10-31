@@ -68,7 +68,8 @@ public class Message
         Question,
         QuestionFollowup,
         Answer,
-        Other
+        Other,
+        Location
     }
 }
 
