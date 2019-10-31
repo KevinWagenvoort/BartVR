@@ -43,7 +43,7 @@ public class MobileChatScript : MonoBehaviour
         foreach (GameObject message in CloneMessages)
         {
             Vector3 oldPos = message.transform.localPosition;
-            oldPos.y += 30;
+            oldPos.y += 40;
             message.transform.localPosition = oldPos;
         }
     }
