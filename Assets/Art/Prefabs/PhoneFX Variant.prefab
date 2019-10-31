@@ -2282,6 +2282,7 @@ MonoBehaviour:
   PrivateApp: {fileID: 0}
   ReceivedBubble: {fileID: 2195803104624239027}
   SendBubble: {fileID: 4913970896985632482}
+  ChoiceBubbles: {fileID: 0}
 --- !u!1 &1736095428829251
 GameObject:
   m_ObjectHideFlags: 0
@@ -3706,7 +3707,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ik haal wel chinees op bij de chinees
+  m_Text: Keuze 3
 --- !u!1 &1781366012963660181
 GameObject:
   m_ObjectHideFlags: 0
@@ -4412,7 +4413,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ik haal wel patat op bij de snackbar
+  m_Text: Keuze 2
 --- !u!1 &5642703672566751270
 GameObject:
   m_ObjectHideFlags: 0
@@ -5418,7 +5419,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ik haal wel pizza op bij de pizzeria
+  m_Text: Keuze 1
 --- !u!1 &8694737517906803954
 GameObject:
   m_ObjectHideFlags: 0

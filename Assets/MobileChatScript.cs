@@ -11,18 +11,24 @@ public class MobileChatScript : MonoBehaviour
 
     public GameObject ReceivedBubble;
     public GameObject SendBubble;
+    public GameObject ChoiceBubbles;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
     private PrivateAppScript PrivateAppScript;
 
     private List<Message> RenderedMessages = new List<Message>();
     private List<GameObject> CloneMessages = new List<GameObject>();
+    private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
         PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
+        foreach (Transform child in ChoiceBubbles.transform)
+        {
+            ChoiceBubbleTextList.Add(child.Find("Text").gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -65,6 +71,21 @@ public class MobileChatScript : MonoBehaviour
             }
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
+
+            if (LastMessage.type == Message.Type.Question && LastMessage.sender.role != Sender.Role.Burger)
+            {
+                int choiceBubbleNumber = 0;
+                foreach (string choice in LastMessage.possibleAnswers)
+                {
+                    ChoiceBubbleTextList[choiceBubbleNumber].GetComponent<Text>().text = choice;
+                    choiceBubbleNumber++;
+                }
+                ChoiceBubbles.SetActive(true);
+            }
+            else
+            {
+                ChoiceBubbles.SetActive(false);
+            }
         }
     }
 }
