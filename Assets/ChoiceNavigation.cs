@@ -9,10 +9,14 @@ public class ChoiceNavigation : MonoBehaviour
     //public
     [SerializeField]
     public List<ButtonProperties> Buttons;
+    public GameObject NeighbourhoodApp;
+    public GameObject PrivateApp;
 
     //private
     private CurrentlySelected Selected;
     private int PrevSelected = 0;
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
+    private PrivateAppScript PrivateAppScript;
 
     // SteamVR
     private SteamVR_TrackedObject trackedObject;
@@ -24,6 +28,8 @@ public class ChoiceNavigation : MonoBehaviour
         trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
         Selected = new CurrentlySelected(0, ButtonActiveCount() - 1);
         DisableButtons();
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+        PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
     }
 
     // Update is called once per frame
@@ -52,6 +58,7 @@ public class ChoiceNavigation : MonoBehaviour
                 } else
                 {
                     Debug.Log(Buttons[Selected.selected].GetText());
+                    PrivateAppScript.SendChoice(Selected.selected);
                 }
             }
         } catch (Exception e)
@@ -72,6 +79,7 @@ public class ChoiceNavigation : MonoBehaviour
         } else if (Input.GetKeyUp(KeyCode.Return))
         {
             Debug.Log(Buttons[Selected.selected].GetText());
+            PrivateAppScript.SendChoice(Selected.selected);
         }
     }
 

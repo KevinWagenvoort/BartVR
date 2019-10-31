@@ -66,8 +66,10 @@ public class Message
     public enum Type
     {
         Question,
+        QuestionFollowup,
         Answer,
-        Other
+        Other,
+        Location
     }
 }
 

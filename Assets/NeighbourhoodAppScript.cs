@@ -5,18 +5,21 @@ using UnityEngine;
 public class NeighbourhoodAppScript : MonoBehaviour
 {
     public ChatApp ChatApp;
+
+    private Sender Vriend;
+    private Sender Jij;
+
     // Start is called before the first frame update
     void Start()
     {
         ChatApp = new ChatApp();
+        Vriend = new Sender("Vriend", Sender.Role.Npc);
+        Jij = new Sender("Jij", Sender.Role.Burger);
     }
 
     private int passCount = 0;
     public void TemplateConversation()
     {
-        Sender Vriend = new Sender("Vriend", Sender.Role.Npc);
-        Sender Jij = new Sender("Jij", Sender.Role.Burger);
-
         switch (passCount)
         {
             case 0:
@@ -37,5 +40,10 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
         }
         passCount++;
+    }
+
+    public void SendChoice(string message)
+    {
+        ChatApp.Send(message, Jij, Message.Type.Answer);
     }
 }
