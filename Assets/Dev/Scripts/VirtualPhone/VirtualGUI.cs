@@ -67,6 +67,8 @@ public class VirtualGUI : MonoBehaviour {
     private float cursorSpeed = 35f;
     private float cursorMargin = 0.15f;
 
+    [SerializeField]
+    private GameObject MessageIcon;
 
     // Use this for initialization
     void Start() {
@@ -100,8 +102,8 @@ public class VirtualGUI : MonoBehaviour {
                 ReturnToMenu(App.test);
                 break;
             case App.chat:
-                //TODO fourth panel
                 RunChat();
+                MessageIcon.SetActive(false);
                 break;
             case App.none:
                 ReturnToMenu(App.menu);

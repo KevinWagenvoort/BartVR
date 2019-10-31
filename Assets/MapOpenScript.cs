@@ -7,6 +7,8 @@ public class MapOpenScript : MonoBehaviour
 {
     public GameObject ChatAppPanel;
     public GameObject MinimapPanel;
+    public GameObject TeleportTutorial;
+    public GameObject MapPath;
 
     // SteamVR
     private SteamVR_TrackedObject trackedObject;
@@ -54,5 +56,7 @@ public class MapOpenScript : MonoBehaviour
     {
         ChatAppPanel.SetActive(false);
         MinimapPanel.SetActive(true);
+        TeleportTutorial.SetActive(true);
+        MapPath.SetActive(true);
     }
 }

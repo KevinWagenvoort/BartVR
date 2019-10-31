@@ -31,6 +31,7 @@ public class MobileChatScript : MonoBehaviour
         {
             ChoiceBubbleTextList.Add(child.Find("Text").gameObject);
         }
+        PrivateAppScript.Tutorial();
     }
 
     // Update is called once per frame
