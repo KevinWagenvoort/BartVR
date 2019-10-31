@@ -57,7 +57,12 @@ public class MobileChatScript : MonoBehaviour
             {
                 newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
             }
-            newMessage.transform.Find("BubbleImage").gameObject.transform.Find("MessageText").gameObject.GetComponent<Text>().text = LastMessage.message;
+            Transform bubbleImage = newMessage.transform.Find("BubbleImage");
+            bubbleImage.Find("MessageText").gameObject.GetComponent<Text>().text = LastMessage.message;
+            if (LastMessage.sender.role != Sender.Role.Burger)
+            {
+                bubbleImage.Find("MessageSenderName").gameObject.GetComponent<Text>().text = LastMessage.sender.name;
+            }
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
         }
