@@ -25,7 +25,7 @@ public class Board : MonoBehaviour {
     }
 
     public void ShowNotification() {
-        if(notificationlist.Count != 0 && AbleToPostMessage()) {
+        if(notificationlist.Count != 0) {
             DoublyLinkedList notificationItem = notificationlist.First();
 
             foreach (DoublyLinkedList item in notificationlist) {
@@ -73,14 +73,6 @@ public class Board : MonoBehaviour {
                         break;
             }
         }
-    }
-
-    // Needed for singplayer. If map app is not active means we can't post markers
-    private bool AbleToPostMessage() {
-        if (mapAppOnVirualPhone.activeInHierarchy)
-            return true;
-
-        return false;
     }
 
     public void SetNotificationWaitingForPost(bool value, int id) {
