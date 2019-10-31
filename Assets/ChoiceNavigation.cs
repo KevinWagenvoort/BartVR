@@ -58,7 +58,7 @@ public class ChoiceNavigation : MonoBehaviour
                 } else
                 {
                     Debug.Log(Buttons[Selected.selected].GetText());
-                    PrivateAppScript.SendChoice(Buttons[Selected.selected].GetText());
+                    PrivateAppScript.SendChoice(Selected.selected);
                 }
             }
         } catch (Exception e)
@@ -79,7 +79,7 @@ public class ChoiceNavigation : MonoBehaviour
         } else if (Input.GetKeyUp(KeyCode.Return))
         {
             Debug.Log(Buttons[Selected.selected].GetText());
-            PrivateAppScript.SendChoice(Buttons[Selected.selected].GetText());
+            PrivateAppScript.SendChoice(Selected.selected);
         }
     }
 

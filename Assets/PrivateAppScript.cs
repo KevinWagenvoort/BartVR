@@ -8,6 +8,8 @@ public class PrivateAppScript : MonoBehaviour
 
     private Sender Vriend;
     private Sender Jij;
+    private List<string> possibleAnswers;
+    private int chosenAnswer;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,10 @@ public class PrivateAppScript : MonoBehaviour
         ChatApp = new ChatApp();
         Vriend = new Sender("Vriend", Sender.Role.Npc);
         Jij = new Sender("Jij", Sender.Role.Burger);
+        possibleAnswers = new List<string>();
+        possibleAnswers.Add("Is goed. Ik haal wel pizza. Zie je dan.");
+        possibleAnswers.Add("Is goed. Ik haal wel patat. Zie je dan.");
+        possibleAnswers.Add("Is goed. Ik haal wel chinees. Zie je dan.");
     }
 
     private int passCount = 0;
@@ -23,10 +29,6 @@ public class PrivateAppScript : MonoBehaviour
         switch (passCount)
         {
             case 0:
-                List<string> possibleAnswers = new List<string>();
-                possibleAnswers.Add("Is goed. Ik haal wel pizza. Zie je dan.");
-                possibleAnswers.Add("Is goed. Ik haal wel patat. Zie je dan.");
-                possibleAnswers.Add("Is goed. Ik haal wel chinees. Zie je dan.");
                 ChatApp.Send("Yo zin om vanavond samen te eten?", Vriend, Message.Type.Question, possibleAnswers);
                 Invoke("Tutorial", 2);
                 break;
@@ -34,17 +36,27 @@ public class PrivateAppScript : MonoBehaviour
                 ChatApp.Send("Vanaf 7 uur ben ik thuis. Dan kan je wel komen.", Vriend, Message.Type.QuestionFollowup);
                 break;
             case 2:
-                ChatApp.Send(ChatApp.GetAnswers()[0], Jij, Message.Type.Answer);
+                if (chosenAnswer == 0)
+                {
+                    ChatApp.Send("Top, zin in.", Vriend, Message.Type.Other);
+                }
+                else
+                {
+                    ChatApp.Send("Ik heb liever pizza.", Vriend, Message.Type.Other);
+                }
+                Invoke("Tutorial", 2);
                 break;
             case 3:
-                ChatApp.Send("Top, zin in.", Jij, Message.Type.Other);
+                ChatApp.Send("Ik ga het nu halen.", Jij, Message.Type.Other);
                 break;
         }
         passCount++;
     }
 
-    public void SendChoice(string message)
+    public void SendChoice(int messageNumber)
     {
-        ChatApp.Send(message, Jij, Message.Type.Answer);
+        ChatApp.Send(possibleAnswers[messageNumber], Jij, Message.Type.Answer);
+        chosenAnswer = messageNumber;
+        Invoke("Tutorial", 2);
     }
 }
