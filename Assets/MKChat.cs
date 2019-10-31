@@ -13,7 +13,7 @@ public class MKChat : MonoBehaviour
     private MKChatAppScript mKChatAppScript;
 
     public GameObject MKChatBoxSend, sendTextBubblesObject; //leftside chatbox + bubbles
-    public GameObject MKChatBoxReceive, receiveTextBubblesObject; //rightside chatbox + bubbles
+    public GameObject receiveTextBubblesObject; //rightside bubbles
     public GameObject receiveText, sendText; //ui text
 
     [SerializeField]
@@ -50,8 +50,8 @@ public class MKChat : MonoBehaviour
         MessageTest newMessage = new MessageTest();
         newMessage.text = text;
 
-        GameObject newText = Instantiate(receiveText, MKChatBoxReceive.transform);
-        GameObject textBubble = Instantiate(receiveTextBubblesObject, MKChatBoxReceive.transform);
+        GameObject newText = Instantiate(receiveText, receiveTextBubblesObject.transform);
+        GameObject textBubble = Instantiate(receiveTextBubblesObject, MKChatBoxSend.transform);
         newMessage.textObject = newText.GetComponent<Text>();
         newMessage.textObject.text = newMessage.text;
         messageList.Add(newMessage);
