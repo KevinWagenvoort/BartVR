@@ -5,29 +5,33 @@ using UnityEngine;
 public class PrivateAppScript : MonoBehaviour
 {
     public ChatApp ChatApp;
+
+    private Sender Vriend;
+    private Sender Jij;
+
     // Start is called before the first frame update
     void Start()
     {
         ChatApp = new ChatApp();
+        Vriend = new Sender("Vriend", Sender.Role.Npc);
+        Jij = new Sender("Jij", Sender.Role.Burger);
     }
 
-    private int statusCode = 0;
+    private int passCount = 0;
     public void Tutorial()
     {
-        Sender Vriend = new Sender("Vriend", Sender.Role.Npc);
-        Sender Jij = new Sender("Jij", Sender.Role.Burger);
-
-        switch (statusCode)
+        switch (passCount)
         {
             case 0:
                 List<string> possibleAnswers = new List<string>();
                 possibleAnswers.Add("Is goed. Ik haal wel pizza. Zie je dan.");
                 possibleAnswers.Add("Is goed. Ik haal wel patat. Zie je dan.");
                 possibleAnswers.Add("Is goed. Ik haal wel chinees. Zie je dan.");
-                ChatApp.Send("Yo zin om vanavond samen te eten? Vanaf 7 uur ben ik thuis. Dan kan je wel komen.", Vriend, Message.Type.Question, possibleAnswers);
+                ChatApp.Send("Yo zin om vanavond samen te eten?", Vriend, Message.Type.Question, possibleAnswers);
+                Invoke("Tutorial", 2);
                 break;
             case 1:
-                ChatApp.Send("Vanaf 7 uur ben ik thuis. Dan kan je wel komen.", Vriend, Message.Type.Other);
+                ChatApp.Send("Vanaf 7 uur ben ik thuis. Dan kan je wel komen.", Vriend, Message.Type.QuestionFollowup);
                 break;
             case 2:
                 ChatApp.Send(ChatApp.GetAnswers()[0], Jij, Message.Type.Answer);
@@ -36,6 +40,11 @@ public class PrivateAppScript : MonoBehaviour
                 ChatApp.Send("Top, zin in.", Jij, Message.Type.Other);
                 break;
         }
-        statusCode++;
+        passCount++;
+    }
+
+    public void SendChoice(string message)
+    {
+        ChatApp.Send(message, Jij, Message.Type.Answer);
     }
 }

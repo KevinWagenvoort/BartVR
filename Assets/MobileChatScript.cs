@@ -25,6 +25,7 @@ public class MobileChatScript : MonoBehaviour
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
         PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
+        PrivateAppScript.Tutorial();
         foreach (Transform child in ChoiceBubbles.transform)
         {
             ChoiceBubbleTextList.Add(child.Find("Text").gameObject);
@@ -49,7 +50,7 @@ public class MobileChatScript : MonoBehaviour
 
     void CheckNewMessage()
     {
-        Message LastMessage = NeighbourhoodAppScript.ChatApp.GetLastMessage();
+        Message LastMessage = PrivateAppScript.ChatApp.GetLastMessage();
 
         if (!RenderedMessages.Contains(LastMessage) && LastMessage != null)
         {
@@ -82,7 +83,7 @@ public class MobileChatScript : MonoBehaviour
                 }
                 ChoiceBubbles.SetActive(true);
             }
-            else
+            else if (LastMessage.type != Message.Type.QuestionFollowup)
             {
                 ChoiceBubbles.SetActive(false);
             }
