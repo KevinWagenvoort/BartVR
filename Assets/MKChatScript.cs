@@ -27,15 +27,7 @@ public class MKChatScript : MonoBehaviour
         CheckNewMessage();
     }
 
-    void MoveAllMessages()
-    {
-        foreach (GameObject message in CloneMessages)
-        {
-            Vector3 oldPos = message.transform.localPosition;
-            oldPos.y += 30;
-            message.transform.localPosition = oldPos;
-        }
-    }
+    
 
     void CheckNewMessage()
     {
@@ -43,7 +35,6 @@ public class MKChatScript : MonoBehaviour
 
         if (!RenderedMessages.Contains(LastMessage))
         {
-            MoveAllMessages();
             RenderedMessages.Add(LastMessage);
             GameObject newMessage;
             if (LastMessage.sender.role == Sender.Role.Meldkamer)
