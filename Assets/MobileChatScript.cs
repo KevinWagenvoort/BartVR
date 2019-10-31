@@ -14,7 +14,6 @@ public class MobileChatScript : MonoBehaviour
     public GameObject SendBubble;
     public GameObject ChoiceBubbles;
     public GameObject MapOpenBubble;
-    public GameObject TeleportTutorial;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
     private PrivateAppScript PrivateAppScript;
@@ -69,7 +68,6 @@ public class MobileChatScript : MonoBehaviour
                 {
                     newMessage = Instantiate(ReceivedLocationBubble, ReceivedLocationBubble.transform.parent);
                     MapOpenBubble.SetActive(true);
-                    TeleportTutorial.SetActive(true);
                 }
                 else
                 {
