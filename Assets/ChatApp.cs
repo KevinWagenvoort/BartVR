@@ -16,7 +16,6 @@ public class ChatApp
     public void Send(string message, Sender sender, Message.Type type, List<string> possibleAnswers = null)
     {
         MessageList.Add(new Message(message, sender, type, possibleAnswers));
-        Debug.Log(sender.name + ": " + message);
     }
 
     /// <summary>
