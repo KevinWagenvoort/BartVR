@@ -36,8 +36,7 @@ public class MKChat : MonoBehaviour
     void OnClickHandler()
     {
         Debug.Log(MKDropDown.options[MKDropDown.value].text);
-        NeighbourhoodAppScript.TemplateConversation();
-
+        NeighbourhoodAppScript.Tutorial();
         GameObject newText = Instantiate(sendText, sendTextBubblesObject.transform);
         GameObject textBubble = Instantiate(sendTextBubblesObject, MKChatBoxSend.transform);
         mKChatAppScript.TemplateConversation();
