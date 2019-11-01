@@ -56,15 +56,18 @@ public class ChoiceNavigation : MonoBehaviour
                 {
                     PrevSelected = Selected.selected;
                     Selected.Next();
-                } else if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+                }
+            }
+
+            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+            {
+                if (IsPrivate)
                 {
-                    if (IsPrivate)
-                    {
-                        PrivateAppScript.SendChoice(Selected.selected);
-                    } else
-                    {
-                        NeighbourhoodAppScript.SendChoice(Selected.selected);
-                    }
+                    PrivateAppScript.SendChoice(Selected.selected);
+                }
+                else
+                {
+                    NeighbourhoodAppScript.SendChoice(Selected.selected);
                 }
             }
         } catch (Exception e)
