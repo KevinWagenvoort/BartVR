@@ -8,6 +8,7 @@ public class ChoiceNavigation : MonoBehaviour
 {
     //public
     [SerializeField]
+    public bool IsPrivate;
     public List<ButtonProperties> Buttons;
     public GameObject NeighbourhoodApp;
     public GameObject PrivateApp;
@@ -57,8 +58,13 @@ public class ChoiceNavigation : MonoBehaviour
                     Selected.Next();
                 } else
                 {
-                    Debug.Log(Buttons[Selected.selected].GetText());
-                    PrivateAppScript.SendChoice(Selected.selected);
+                    if (IsPrivate)
+                    {
+                        PrivateAppScript.SendChoice(Selected.selected);
+                    } else
+                    {
+                        NeighbourhoodAppScript.SendChoice(Selected.selected);
+                    }
                 }
             }
         } catch (Exception e)
@@ -78,8 +84,14 @@ public class ChoiceNavigation : MonoBehaviour
             Selected.Next();
         } else if (Input.GetKeyUp(KeyCode.Return))
         {
-            Debug.Log(Buttons[Selected.selected].GetText());
-            PrivateAppScript.SendChoice(Selected.selected);
+            if (IsPrivate)
+            {
+                PrivateAppScript.SendChoice(Selected.selected);
+            }
+            else
+            {
+                NeighbourhoodAppScript.SendChoice(Selected.selected);
+            }
         }
     }
 

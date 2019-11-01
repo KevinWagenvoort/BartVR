@@ -79,14 +79,22 @@ public class VirtualGUI : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-        device = SteamVR_Controller.Input((int)trackedObject.index);
+    void Update()
+    {
+        PCNavigation();
+        try
+        {
+            device = SteamVR_Controller.Input((int)trackedObject.index);
 
-        if (iHandler.GetTriggerDown(device))
-            if (confirmPanel.activeInHierarchy)
-                confirmPanel.SetActive(false);
-            else 
-                ReturnToMenu(CurrentApp());
+            if (iHandler.GetTriggerDown(device))
+                if (confirmPanel.activeInHierarchy)
+                    confirmPanel.SetActive(false);
+                else
+                    ReturnToMenu(CurrentApp());
+        } catch
+        {
+
+        }
 
         switch (CurrentApp()) {
             case App.camera:
@@ -104,7 +112,6 @@ public class VirtualGUI : MonoBehaviour {
                 break;
             case App.chat:
                 RunChat();
-                MessageIcon.SetActive(false);
                 break;
             case App.none:
                 ReturnToMenu(App.menu);
@@ -118,6 +125,26 @@ public class VirtualGUI : MonoBehaviour {
 
     // MAIN MENU ----
 
+    void PCNavigation()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            LaunchApp(1);
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            LaunchApp(2);
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            LaunchApp(3);
+        }
+        else if (Input.GetKeyUp(KeyCode.Backspace))
+        {
+            Debug.Log("Backspace");
+            ReturnToMenu(CurrentApp());
+        }
+    }
 
     private App CurrentApp() {
         for (int i = 0; i <= apps.Count; i++) {
@@ -146,7 +173,7 @@ public class VirtualGUI : MonoBehaviour {
 
     private void RunChat()
     {
-
+        MessageIcon.SetActive(false);
     }
 
     private void LaunchApp(int app) {
