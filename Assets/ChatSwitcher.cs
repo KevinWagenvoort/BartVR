@@ -33,11 +33,11 @@ public class ChatSwitcher : MonoBehaviour
             controller = SteamVR_Controller.Input((int)trackedObject.index);
             if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x > 0.2f)
+                if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x > 0.5f)
                 {
                     SwitchApps();
                 }
-                else if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x < -0.2f)
+                else if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x < -0.5f)
                 {
                     SwitchApps();
                 }
