@@ -16,7 +16,6 @@ public class ChatApp
     public void Send(string message, Sender sender, Message.Type type, List<string> possibleAnswers = null)
     {
         MessageList.Add(new Message(message, sender, type, possibleAnswers));
-        Debug.Log(sender.name + ": " + message);
     }
 
     /// <summary>
@@ -31,7 +30,14 @@ public class ChatApp
 
     public Message GetLastMessage()
     {
-        Message LastMessage = MessageList[MessageList.Count-1];
+        Message LastMessage = null;
+        try
+        {
+            LastMessage = MessageList[MessageList.Count - 1];
+        } catch
+        {
+
+        }
         return LastMessage;
     }
 }
@@ -59,8 +65,10 @@ public class Message
     public enum Type
     {
         Question,
+        QuestionFollowup,
         Answer,
-        Other
+        Other,
+        Location
     }
 }
 

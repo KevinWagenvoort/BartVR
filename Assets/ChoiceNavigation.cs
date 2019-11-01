@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,64 +8,117 @@ public class ChoiceNavigation : MonoBehaviour
 {
     //public
     [SerializeField]
+    public bool IsPrivate;
     public List<ButtonProperties> Buttons;
+    public GameObject NeighbourhoodApp;
+    public GameObject PrivateApp;
 
     //private
-    public CurrentlySelected CurrentlySelected = new CurrentlySelected(0, 2);
-    
+    private CurrentlySelected Selected;
+    private int PrevSelected = 0;
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
+    private PrivateAppScript PrivateAppScript;
+
+    // SteamVR
+    private SteamVR_TrackedObject trackedObject;
+    private SteamVR_Controller.Device controller;
 
     // Start is called before the first frame update
     void Start()
     {
+        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
+        Selected = new CurrentlySelected(0, ButtonActiveCount() - 1);
+        DisableButtons();
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+        PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        var activeCount = 0;
-        foreach (ButtonProperties bp in Buttons)
-        {
-            if (bp.Active)
-            {
-                activeCount++;
-            }
-        }
-        CurrentlySelected = new CurrentlySelected(0, activeCount - 1);
-
         Navigation();
-        UpdateAllButtons();
+        ButtonOutline();
     }
 
     void Navigation()
     {
+        //VR
+        try
+        {
+            controller = SteamVR_Controller.Input((int)trackedObject.index);
+            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+            {
+                if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y > 0.2f)
+                {
+                    PrevSelected = Selected.selected;
+                    Selected.Previous();
+                } else if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y < -0.2f)
+                {
+                    PrevSelected = Selected.selected;
+                    Selected.Next();
+                } else
+                {
+                    if (IsPrivate)
+                    {
+                        PrivateAppScript.SendChoice(Selected.selected);
+                    } else
+                    {
+                        NeighbourhoodAppScript.SendChoice(Selected.selected);
+                    }
+                }
+            }
+        } catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+
+        //PC
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            DeselectAllButtons();
-            CurrentlySelected.Previous();
-            Buttons[CurrentlySelected.selected].Selected = true;
+            PrevSelected = Selected.selected;
+            Selected.Previous();
         }
         else if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            DeselectAllButtons();
-            CurrentlySelected.Next();
-            Buttons[CurrentlySelected.selected].Selected = true;
+            PrevSelected = Selected.selected;
+            Selected.Next();
+        } else if (Input.GetKeyUp(KeyCode.Return))
+        {
+            if (IsPrivate)
+            {
+                PrivateAppScript.SendChoice(Selected.selected);
+            }
+            else
+            {
+                NeighbourhoodAppScript.SendChoice(Selected.selected);
+            }
         }
     }
 
-    void DeselectAllButtons()
+    int ButtonActiveCount()
     {
+        int ac = 0;
         foreach (ButtonProperties bp in Buttons)
         {
-            bp.Selected = false;
+            if (bp.Active)
+            {
+                ac++;
+            }
         }
+        return ac;
     }
 
-    void UpdateAllButtons()
+    void ButtonOutline()
     {
-        Buttons[CurrentlySelected.selected].Selected = true;
+        Buttons[PrevSelected].ButtonObject.transform.GetComponent<Outline>().enabled = false;
+        Buttons[Selected.selected].ButtonObject.transform.GetComponent<Outline>().enabled = true;
+    }
+
+    void DisableButtons()
+    {
         foreach (ButtonProperties bp in Buttons)
         {
-            bp.Update();
+            bp.ButtonObject.SetActive(bp.Active);
         }
     }
 }
@@ -89,45 +143,15 @@ public class ButtonProperties
         this.Active = Active;
     }
 
-    public void Update()
+    public string GetText()
     {
-        if (this.Active)
-        {
-            Enable();
-        } else
-        {
-            Disable();
-        }
-        
-        if (this.Selected)
-        {
-            ButtonObject.transform.GetComponent<Outline>().enabled = true;
-        }
-        else
-        {
-            ButtonObject.transform.GetComponent<Outline>().enabled = false;
-        }
-    }
-
-    public void Disable()
-    {
-        this.ButtonObject.SetActive(false);
-    }
-
-    public void Enable()
-    {
-        this.ButtonObject.SetActive(true);
-    }
-
-    public string Print()
-    {
-        return ButtonObject.transform.Find("Text").transform.GetComponent<Text>().text;
+        return ButtonObject.transform.Find("Text").GetComponent<Text>().text;
     }
 }
 
 public class CurrentlySelected
 {
-    public int selected;
+    public int selected = 0;
     public int max;
     public int min = 0;
 

@@ -1,12 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MKChat : MonoBehaviour
 {
     public Button MKSendButton;
-    public Dropdown MKDropDown;
+    public TMP_Dropdown MKDropDown;
 
     public GameObject NeighbourhoodApp;
     private NeighbourhoodAppScript NeighbourhoodAppScript;
