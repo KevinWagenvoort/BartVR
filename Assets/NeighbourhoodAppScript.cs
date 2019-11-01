@@ -49,7 +49,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Tutorial", 2);
                 break;
             case 5:
-                ChatApp.Send("*Beantwoord vraag*", Jij, Message.Type.Answer);
+                ChatApp.Send("*Beantwoord vraag*", Appel, Message.Type.Answer);
                 Invoke("Tutorial", 2);
                 break;
             case 6:
@@ -57,7 +57,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Tutorial", 2);
                 break;
             case 7:
-                ChatApp.Send("*Beantwoord vraag*", Jij, Message.Type.Answer);
+                ChatApp.Send("*Beantwoord vraag*", Appel, Message.Type.Answer);
                 Invoke("Tutorial", 2);
                 break;
             case 8:
