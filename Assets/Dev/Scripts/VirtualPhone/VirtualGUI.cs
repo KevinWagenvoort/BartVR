@@ -139,7 +139,7 @@ public class VirtualGUI : MonoBehaviour {
         //HighlightSelectedApp();
         iHandler.Highlight(new List<Direction> { Direction.left, Direction.up, Direction.right, Direction.down, Direction.standby }, menuApps, device);
         //App was selected
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && iHandler.TouchpadDirection(device) != Direction.standby) {
+        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && iHandler.TouchpadDirection(device) != Direction.standby) {
             LaunchApp((int)iHandler.TouchpadDirection(device));
         }
     }
