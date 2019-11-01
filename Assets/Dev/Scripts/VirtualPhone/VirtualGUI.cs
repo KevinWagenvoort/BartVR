@@ -69,6 +69,7 @@ public class VirtualGUI : MonoBehaviour {
 
     [SerializeField]
     private GameObject MessageIcon;
+    public GameObject MenuTutorial;
 
     // Use this for initialization
     void Start() {
@@ -153,6 +154,7 @@ public class VirtualGUI : MonoBehaviour {
         apps[(int)CurrentApp()].SetActive(false);
         // show new app
         apps[app].SetActive(true);
+        MenuTutorial.SetActive(false);
     }
 
     // MAP APP ----
