@@ -22,6 +22,11 @@ public class NeighbourhoodAppScript : MonoBehaviour
         Jong = new Sender("Marc de Jong", Sender.Role.Npc);
         Meldkamer = new Sender("Meldkamer", Sender.Role.Meldkamer);
 
+        possibleAnswers = new List<string>();
+        possibleAnswers.Add("Wat is het adres?");
+        possibleAnswers.Add("Waar is het gebeurd?");
+        possibleAnswers.Add("Waar woont het huis?");
+
         Tutorial();
     }
 
@@ -43,46 +48,41 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Tutorial", 2);
                 break;
             case 3:
-                ChatApp.Send("Er is iets niet pluis.", Jong, Message.Type.Other);
-                Invoke("Tutorial", 2);
+                ChatApp.Send("Er is iets niet pluis.", Jong, Message.Type.QuestionTrigger, possibleAnswers);
                 break;
             case 4:
-                ChatApp.Send("*Stelt vraag*", Meldkamer, Message.Type.Other);
+                ChatApp.Send("Huissteeg 1234567890", Appel, Message.Type.Answer);
                 Invoke("Tutorial", 2);
                 break;
             case 5:
-                ChatApp.Send("*Beantwoord vraag*", Appel, Message.Type.Answer);
-                Invoke("Tutorial", 2);
-                break;
-            case 6:
                 ChatApp.Send("*Stelt vraag*", Meldkamer, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
-            case 7:
+            case 6:
                 ChatApp.Send("*Beantwoord vraag*", Appel, Message.Type.Answer);
                 Invoke("Tutorial", 2);
                 break;
-            case 8:
+            case 7:
                 ChatApp.Send("We sturen er direct een agent naartoe.", Meldkamer, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
-            case 9:
+            case 8:
                 ChatApp.Send("Er was inderdaad sprake van een inbraak.", Meldkamer, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
-            case 10:
+            case 9:
                 ChatApp.Send("De Inbreker is opgepakt.", Meldkamer, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
-            case 11:
+            case 10:
                 ChatApp.Send("Bedankt voor jullie medewerking.", Meldkamer, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
-            case 12:
+            case 11:
                 ChatApp.Send("Jullie bedankt voor het oppakken van de inbreker.", Appel, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
-            case 13:
+            case 12:
                 ChatApp.Send("Gelukkig waren we er op tijd bij.", Jong, Message.Type.Other);
                 break;
         }
@@ -91,7 +91,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
 
     public void SendChoice(int messageNumber)
     {
-        ChatApp.Send(possibleAnswers[messageNumber], Jij, Message.Type.Answer);
+        ChatApp.Send(possibleAnswers[messageNumber], Meldkamer, Message.Type.Other);
         chosenAnswer = messageNumber;
         Invoke("Tutorial", 2);
     }

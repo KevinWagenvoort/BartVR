@@ -66,6 +66,7 @@ public class Message
     {
         Question,
         QuestionFollowup,
+        QuestionTrigger,
         Answer,
         Other,
         Location

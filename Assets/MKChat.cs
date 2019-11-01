@@ -7,7 +7,7 @@ using TMPro;
 public class MKChat : MonoBehaviour
 {
     public GameObject NeighbourhoodApp;
-
+    public Button SendButton;
     public GameObject ReceivedBubble;
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
@@ -22,12 +22,19 @@ public class MKChat : MonoBehaviour
     void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+        SendButton.onClick.AddListener(OnClickHandler);
+        Dropdown.ClearOptions();
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckNewMessage();
+    }
+
+    void OnClickHandler()
+    {
+        NeighbourhoodAppScript.SendChoice(Dropdown.value);
     }
 
     void MoveAllMessages()
@@ -62,6 +69,17 @@ public class MKChat : MonoBehaviour
             if (LastMessage.sender.role != Sender.Role.Meldkamer)
             {
                 bubbleImage.Find("MessageSenderName").gameObject.GetComponent<TMP_Text>().text = LastMessage.sender.name;
+            }
+            if (LastMessage.type == Message.Type.QuestionTrigger)
+            {
+                Dropdown.ClearOptions();
+                Dropdown.AddOptions(LastMessage.possibleAnswers);
+                Dropdown.interactable = true;
+                SendButton.interactable = true;
+            } else
+            {
+                Dropdown.interactable = false;
+                SendButton.interactable = false;
             }
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
