@@ -29,7 +29,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
             ChoiceBubbleTextList.Add(child.Find("Text").gameObject);
         }
         SubjectText.text = "Pizzalanden";
-        NeighbourhoodAppScript.TemplateConversation();
+        NeighbourhoodAppScript.Tutorial();
     }
 
     // Update is called once per frame
