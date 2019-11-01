@@ -6,77 +6,65 @@ using TMPro;
 
 public class MKChat : MonoBehaviour
 {
-    public Button MKSendButton;
-    public TMP_Dropdown MKDropDown;
-
     public GameObject NeighbourhoodApp;
+
+    public GameObject ReceivedBubble;
+    public GameObject SendBubble;
+    public TMP_Dropdown Dropdown;
+
     private NeighbourhoodAppScript NeighbourhoodAppScript;
-    private MKChatAppScript mKChatAppScript;
 
-    public GameObject MKChatBoxSend, sendTextBubblesObject; //leftside chatbox + bubbles
-    public GameObject receiveTextBubblesObject; //rightside bubbles
-    public GameObject receiveText, sendText; //ui text
-
-    [SerializeField]
-    List<MessageTest> messageList = new List<MessageTest>();
-
+    private List<Message> RenderedMessages = new List<Message>();
+    private List<GameObject> CloneMessages = new List<GameObject>();
+    private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        Button btn = MKSendButton.GetComponent<Button>();
-        btn.onClick.AddListener(OnClickHandler);
-
-        ReceiveMessageChat("Hoi");
-
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
-        mKChatAppScript = mKChatAppScript.GetComponent<MKChatAppScript>();
     }
 
-    void OnClickHandler()
+    // Update is called once per frame
+    void Update()
     {
-        Debug.Log(MKDropDown.options[MKDropDown.value].text);
-        NeighbourhoodAppScript.Tutorial();
-        GameObject newText = Instantiate(sendText, sendTextBubblesObject.transform);
-        GameObject textBubble = Instantiate(sendTextBubblesObject, MKChatBoxSend.transform);
-        mKChatAppScript.TemplateConversation();
-        SendMessageToChat(MKDropDown.options[MKDropDown.value].text);
-
-
+        CheckNewMessage();
     }
 
-    public void ReceiveMessageChat(string text)
+    void MoveAllMessages()
     {
-        MessageTest newMessage = new MessageTest();
-        newMessage.text = text;
-
-        GameObject newText = Instantiate(receiveText, receiveTextBubblesObject.transform);
-        GameObject textBubble = Instantiate(receiveTextBubblesObject, MKChatBoxSend.transform);
-        newMessage.textObject = newText.GetComponent<Text>();
-        newMessage.textObject.text = newMessage.text;
-        messageList.Add(newMessage);
+        foreach (GameObject message in CloneMessages)
+        {
+            Vector3 oldPos = message.transform.localPosition;
+            oldPos.y += 200;
+            message.transform.localPosition = oldPos;
+        }
     }
 
-    public void SendMessageToChat(string text)
+    void CheckNewMessage()
     {
+        Message LastMessage = NeighbourhoodAppScript.ChatApp.GetLastMessage();
 
-        MessageTest newMessage = new MessageTest();
-
-        newMessage.text = text;
-
-        GameObject newText = Instantiate(sendTextBubblesObject, MKChatBoxSend.transform);
-
-        newMessage.textObject = newText.GetComponent<Text>();
-
-        newMessage.textObject.text = newMessage.text;
-
-        messageList.Add(newMessage);
+        if (!RenderedMessages.Contains(LastMessage) && LastMessage != null)
+        {
+            MoveAllMessages();
+            RenderedMessages.Add(LastMessage);
+            GameObject newMessage;
+            if (LastMessage.sender.role == Sender.Role.Meldkamer)
+            {
+                newMessage = Instantiate(SendBubble, SendBubble.transform.parent);
+            }
+            else
+            {
+                newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
+            }
+            Transform bubbleImage = newMessage.transform.Find("BubbleImage");
+            bubbleImage.Find("MessageText").gameObject.GetComponent<TMP_Text>().text = LastMessage.message;
+            if (LastMessage.sender.role != Sender.Role.Meldkamer)
+            {
+                bubbleImage.Find("MessageSenderName").gameObject.GetComponent<TMP_Text>().text = LastMessage.sender.name;
+            }
+            newMessage.SetActive(true);
+            CloneMessages.Add(newMessage);
+        }
     }
-}
-
-[System.Serializable]
-public class MessageTest
-{
-    public string text;
-    public Text textObject;
 }

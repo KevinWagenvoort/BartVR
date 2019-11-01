@@ -21,6 +21,8 @@ public class NeighbourhoodAppScript : MonoBehaviour
         Beer = new Sender("Bernard Beer", Sender.Role.Npc);
         Jong = new Sender("Marc de Jong", Sender.Role.Npc);
         Meldkamer = new Sender("Meldkamer", Sender.Role.Meldkamer);
+
+        Tutorial();
     }
 
     private int passCount = 0;
