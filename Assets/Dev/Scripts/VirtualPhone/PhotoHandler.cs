@@ -5,14 +5,24 @@ using UnityEngine.UI;
 
 public class PhotoHandler : MonoBehaviour {
 
-    private readonly string pictureRoot = "Assets/Resources/Snapshots/";
-    private readonly string tempPath = "Assets/Resources/Snapshots/screenshot.png";
+    private string pictureRoot;
+    private string tempPath;
 
     private int pictureID;
 
+    private void Start()
+    {
+        
+    }
+
     public IEnumerator TakeScreenShot(GameObject cam, GameObject preview, GameObject confirmPanel) {
         yield return new WaitForEndOfFrame();
-
+        pictureRoot = Application.persistentDataPath + "/images/";
+        tempPath = Application.persistentDataPath + "/images/screenshot.png";
+        if (!Directory.Exists(pictureRoot))
+        {
+            Directory.CreateDirectory(pictureRoot);
+        }
         string path;
 
 

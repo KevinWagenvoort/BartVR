@@ -127,6 +127,11 @@ public class VirtualGUI : MonoBehaviour {
 
     void PCNavigation()
     {
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            Debug.Log("photo");
+            StartCoroutine(pHandler.TakeScreenShot(virtualCamera, preview, confirmPanel));
+        }
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
             LaunchApp(1);
