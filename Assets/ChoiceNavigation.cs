@@ -48,23 +48,26 @@ public class ChoiceNavigation : MonoBehaviour
             controller = SteamVR_Controller.Input((int)trackedObject.index);
             if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y > 0.2f)
+                if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y > 0.3f)
                 {
                     PrevSelected = Selected.selected;
                     Selected.Previous();
-                } else if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y < -0.2f)
+                } else if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y < -0.3f)
                 {
                     PrevSelected = Selected.selected;
                     Selected.Next();
-                } else
+                }
+            }
+
+            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+            {
+                if (IsPrivate)
                 {
-                    if (IsPrivate)
-                    {
-                        PrivateAppScript.SendChoice(Selected.selected);
-                    } else
-                    {
-                        NeighbourhoodAppScript.SendChoice(Selected.selected);
-                    }
+                    PrivateAppScript.SendChoice(Selected.selected);
+                }
+                else
+                {
+                    NeighbourhoodAppScript.SendChoice(Selected.selected);
                 }
             }
         } catch (Exception e)
