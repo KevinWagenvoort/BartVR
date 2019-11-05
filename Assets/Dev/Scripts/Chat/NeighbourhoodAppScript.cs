@@ -17,7 +17,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
 
         //Senders
         Appel = new Sender("Daphne Appeltje", Sender.Role.Npc);
-        Jij = new Sender("Jij", Sender.Role.Burger);
+        Jij = new Sender("Bart van Rijn", Sender.Role.Burger);
         Beer = new Sender("Bernard Beer", Sender.Role.Npc);
         Jong = new Sender("Marc de Jong", Sender.Role.Npc);
         Meldkamer = new Sender("Meldkamer", Sender.Role.Meldkamer);
@@ -94,5 +94,10 @@ public class NeighbourhoodAppScript : MonoBehaviour
         ChatApp.Send(possibleAnswers[messageNumber], Meldkamer, Message.Type.Other);
         chosenAnswer = messageNumber;
         Invoke("Tutorial", 2);
+    }
+
+    public void SendPhoto(Sprite photo)
+    {
+        ChatApp.Send("", Jij, Message.Type.Photo, null, photo);
     }
 }
