@@ -81,7 +81,6 @@ public class VirtualGUI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        PCNavigation();
         try
         {
             device = SteamVR_Controller.Input((int)trackedObject.index);
@@ -95,6 +94,8 @@ public class VirtualGUI : MonoBehaviour {
         {
 
         }
+
+        PCNavigation();
 
         switch (CurrentApp()) {
             case App.camera:
@@ -201,10 +202,6 @@ public class VirtualGUI : MonoBehaviour {
     private void RunCamera() {
         if (confirmPanel.activeInHierarchy == false) {
             iHandler.Highlight(new List<Direction> { Direction.down, Direction.standby }, cameraButtons, device);
-
-            if (iHandler.GetPress(device) == Direction.down) {
-                StartCoroutine(pHandler.TakeScreenShot(virtualCamera, preview, confirmPanel));
-            }
         }
     }
 
