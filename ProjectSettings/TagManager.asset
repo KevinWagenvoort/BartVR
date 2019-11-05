@@ -36,7 +36,7 @@ TagManager:
   - Minimap - Phone
   - Minimap - Control Room
   - ReflectionIgnore
-  - TeleportPointer
+  - IgnorePhoneCamera
   - 
   - 
   - 
