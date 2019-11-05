@@ -127,7 +127,7 @@ public class VirtualGUI : MonoBehaviour {
 
     void PCNavigation()
     {
-        if (Input.GetKeyUp(KeyCode.P))
+        if (Input.GetKeyUp(KeyCode.P) || device.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
         {
             Debug.Log("photo");
             StartCoroutine(pHandler.TakeScreenShot(virtualCamera, preview, confirmPanel));
