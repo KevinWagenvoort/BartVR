@@ -8,7 +8,7 @@ public class MKChat : MonoBehaviour
 {
     public GameObject NeighbourhoodApp;
     public Button SendButton;
-    public GameObject ReceivedBubble;
+    public GameObject ReceivedBubble, ReceivedPhotoBubble;
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
 
@@ -62,10 +62,23 @@ public class MKChat : MonoBehaviour
             }
             else
             {
-                newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
+                if (LastMessage.type == Message.Type.Photo)
+                {
+                    newMessage = Instantiate(ReceivedPhotoBubble, ReceivedPhotoBubble.transform.parent);
+                    Image photoComponent = newMessage.transform.Find("BubbleImage").Find("Photo").gameObject.GetComponent<Image>();
+                    photoComponent.sprite = LastMessage.photo;
+                    photoComponent.preserveAspect = true;
+                }
+                else
+                {
+                    newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
+                }
             }
             Transform bubbleImage = newMessage.transform.Find("BubbleImage");
-            bubbleImage.Find("MessageText").gameObject.GetComponent<TMP_Text>().text = LastMessage.message;
+            if (LastMessage.type != Message.Type.Photo)
+            {
+                bubbleImage.Find("MessageText").gameObject.GetComponent<TMP_Text>().text = LastMessage.message;
+            }
             if (LastMessage.sender.role != Sender.Role.Meldkamer)
             {
                 bubbleImage.Find("MessageSenderName").gameObject.GetComponent<TMP_Text>().text = LastMessage.sender.name;
