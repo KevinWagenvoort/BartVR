@@ -23,15 +23,16 @@ public enum MovementMode
 public class GameManager : MonoBehaviour
 {
 
-    public static int amountOfNpcsToSpawn;
+    public static int amountOfNpcsToSpawn = 0;
     public static int currentScenario = 1;
 
     public void StartGame()
     {
-
+        //Spawn npc
+        amountOfNpcsToSpawn = 40;
+        //Load scene
         SceneManager.LoadScene(currentScenario);
         //Start time
         Time.timeScale = 1;
-        amountOfNpcsToSpawn = 40;
     }
 }
