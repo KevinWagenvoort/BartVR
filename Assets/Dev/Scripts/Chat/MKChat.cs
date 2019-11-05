@@ -37,12 +37,12 @@ public class MKChat : MonoBehaviour
         NeighbourhoodAppScript.SendChoice(Dropdown.value);
     }
 
-    void MoveAllMessages()
+    void MoveAllMessages(int distance = 200)
     {
         foreach (GameObject message in CloneMessages)
         {
             Vector3 oldPos = message.transform.localPosition;
-            oldPos.y += 200;
+            oldPos.y += distance;
             message.transform.localPosition = oldPos;
         }
     }
@@ -53,7 +53,13 @@ public class MKChat : MonoBehaviour
 
         if (!RenderedMessages.Contains(LastMessage) && LastMessage != null)
         {
-            MoveAllMessages();
+            if (LastMessage.type == Message.Type.Photo)
+            {
+                MoveAllMessages(510);
+            } else
+            {
+                MoveAllMessages(200);
+            }
             RenderedMessages.Add(LastMessage);
             GameObject newMessage;
             if (LastMessage.sender.role == Sender.Role.Meldkamer)
