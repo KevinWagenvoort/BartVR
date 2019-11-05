@@ -1,21 +1,50 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PhotoHandler : MonoBehaviour {
 
+    public GameObject VirtualCamera, Preview, ConfirmPanel;
     private string pictureRoot;
     private string tempPath;
 
     private int pictureID;
 
+    // SteamVR
+    private SteamVR_TrackedObject trackedObject;
+    private SteamVR_Controller.Device controller;
+
     private void Start()
     {
-        
+        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
     }
 
-    public IEnumerator TakeScreenShot(GameObject cam, GameObject preview, GameObject confirmPanel) {
+    private void Update()
+    {
+        //VR
+        try
+        {
+            controller = SteamVR_Controller.Input((int)trackedObject.index);
+            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+            {
+                StartCoroutine(TakeScreenShot(VirtualCamera, Preview, ConfirmPanel));
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+
+        //PC
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            StartCoroutine(TakeScreenShot(VirtualCamera, Preview, ConfirmPanel));
+        }
+    }
+
+    public IEnumerator TakeScreenShot(GameObject cam, GameObject preview, GameObject confirmPanel) { 
         yield return new WaitForEndOfFrame();
         pictureRoot = Application.persistentDataPath + "/images/";
         tempPath = Application.persistentDataPath + "/images/screenshot.png";
