@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class PhotoHandler : MonoBehaviour {
 
-    public GameObject VirtualCamera, Preview, ConfirmPanel;
+    public GameObject VirtualCamera, Preview, ConfirmPanel, NeighbourhoodApp;
     private string pictureRoot;
     private string tempPath;
 
     private int pictureID;
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     // SteamVR
     private SteamVR_TrackedObject trackedObject;
@@ -19,6 +20,7 @@ public class PhotoHandler : MonoBehaviour {
     private void Start()
     {
         trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
     }
 
     private void Update()
@@ -75,7 +77,8 @@ public class PhotoHandler : MonoBehaviour {
         path = pictureRoot + filename;
         // Write to path (previous screenshots are overwritten)
         File.WriteAllBytes(path, bytes);
-        SetPreview(preview, confirmPanel);
+        Sprite photo = MakeSprite();
+        NeighbourhoodAppScript.SendPhoto(photo);
     }
 
     private void SetPreview(GameObject preview, GameObject confirmPanel) {

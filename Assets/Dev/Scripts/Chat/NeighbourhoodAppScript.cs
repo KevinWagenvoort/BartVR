@@ -95,4 +95,9 @@ public class NeighbourhoodAppScript : MonoBehaviour
         chosenAnswer = messageNumber;
         Invoke("Tutorial", 2);
     }
+
+    public void SendPhoto(Sprite photo)
+    {
+        ChatApp.Send("", Jij, Message.Type.Photo, null, photo);
+    }
 }
