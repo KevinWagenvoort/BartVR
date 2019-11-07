@@ -18,6 +18,11 @@ public class ChatApp
         MessageList.Add(new Message(message, sender, type, possibleAnswers, photo));
     }
 
+    public void Send(Message message)
+    {
+        MessageList.Add(message);
+    }
+
     /// <summary>
     /// Get answers of latest message with type == Type.Question
     /// </summary>

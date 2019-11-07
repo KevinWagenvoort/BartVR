@@ -5,15 +5,18 @@ using UnityEngine;
 public class NeighbourhoodAppScript : MonoBehaviour
 {
     public ChatApp ChatApp;
+    public GameObject MKChat;
 
     private Sender Appel, Jij, Beer, Jong, Meldkamer;
     private List<string> possibleAnswers = new List<string>();
     private int chosenAnswer = 0;
+    private MKChat MKChatScript;
 
     // Start is called before the first frame update
     void Start()
     {
         ChatApp = new ChatApp();
+        MKChatScript = MKChat.GetComponent<MKChat>();
 
         //Senders
         Appel = new Sender("Daphne Appeltje", Sender.Role.Npc);
@@ -55,28 +58,23 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Tutorial", 2);
                 break;
             case 5:
-                ChatApp.Send("*Stelt vraag*", Meldkamer, Message.Type.Other);
-                Invoke("Tutorial", 2);
+                MKChatScript.SetMessage("*Stelt vraag*", Meldkamer, Message.Type.Other);
                 break;
             case 6:
                 ChatApp.Send("*Beantwoord vraag*", Appel, Message.Type.Answer);
                 Invoke("Tutorial", 2);
                 break;
             case 7:
-                ChatApp.Send("We sturen er direct een agent naartoe.", Meldkamer, Message.Type.Other);
-                Invoke("Tutorial", 2);
+                MKChatScript.SetMessage("We sturen er direct een agent naartoe.", Meldkamer, Message.Type.Other);
                 break;
             case 8:
-                ChatApp.Send("Er was inderdaad sprake van een inbraak.", Meldkamer, Message.Type.Other);
-                Invoke("Tutorial", 2);
+                MKChatScript.SetMessage("Er was inderdaad sprake van een inbraak.", Meldkamer, Message.Type.Other);
                 break;
             case 9:
-                ChatApp.Send("De Inbreker is opgepakt.", Meldkamer, Message.Type.Other);
-                Invoke("Tutorial", 2);
+                MKChatScript.SetMessage("De Inbreker is opgepakt.", Meldkamer, Message.Type.Other);
                 break;
             case 10:
-                ChatApp.Send("Bedankt voor jullie medewerking.", Meldkamer, Message.Type.Other);
-                Invoke("Tutorial", 2);
+                MKChatScript.SetMessage("Bedankt voor jullie medewerking.", Meldkamer, Message.Type.Other);
                 break;
             case 11:
                 ChatApp.Send("Jullie bedankt voor het oppakken van de inbreker.", Appel, Message.Type.Other);
@@ -99,5 +97,11 @@ public class NeighbourhoodAppScript : MonoBehaviour
     public void SendPhoto(Sprite photo)
     {
         ChatApp.Send("", Jij, Message.Type.Photo, null, photo);
+    }
+
+    public void SendMessage(Message message)
+    {
+        ChatApp.Send(message);
+        Invoke("Tutorial", 2);
     }
 }
