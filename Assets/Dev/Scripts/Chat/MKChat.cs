@@ -11,12 +11,14 @@ public class MKChat : MonoBehaviour
     public GameObject ReceivedBubble, ReceivedPhotoBubble;
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
+    public GameObject Arrow;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     private List<Message> RenderedMessages = new List<Message>();
     private List<GameObject> CloneMessages = new List<GameObject>();
     private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
+    private Message CurrentMessage;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +36,15 @@ public class MKChat : MonoBehaviour
 
     void OnClickHandler()
     {
-        NeighbourhoodAppScript.SendChoice(Dropdown.value);
+        if (CurrentMessage != null)
+        {
+            SendCurrentMessage();
+        }
+        else
+        {
+            NeighbourhoodAppScript.SendChoice(Dropdown.value);
+            Dropdown.ClearOptions();
+        }
     }
 
     void MoveAllMessages(int distance = 200)
@@ -95,13 +105,32 @@ public class MKChat : MonoBehaviour
                 Dropdown.AddOptions(LastMessage.possibleAnswers);
                 Dropdown.interactable = true;
                 SendButton.interactable = true;
+                Arrow.SetActive(true);
             } else
             {
                 Dropdown.interactable = false;
                 SendButton.interactable = false;
+                Arrow.SetActive(false);
             }
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
         }
+    }
+
+    public void SetMessage(string message, Sender sender, Message.Type type, List<string> possibleAnswers = null, Sprite photo = null)
+    {
+        Dropdown.ClearOptions();
+        Dropdown.AddOptions(new List<string>() { message });
+        CurrentMessage = new Message(message, sender, type, possibleAnswers, photo);
+        Dropdown.interactable = false;
+        SendButton.interactable = true;
+    }
+
+    private void SendCurrentMessage()
+    {
+        NeighbourhoodAppScript.SendMessage(CurrentMessage);
+        SendButton.interactable = false;
+        CurrentMessage = null;
+        Dropdown.ClearOptions();
     }
 }

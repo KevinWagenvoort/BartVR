@@ -8930,6 +8930,7 @@ MonoBehaviour:
   ReceivedPhotoBubble: {fileID: 8715510319749189620}
   SendBubble: {fileID: 8926104280249078301}
   Dropdown: {fileID: 4692975635681251525}
+  Arrow: {fileID: 4692975636037965190}
 --- !u!1 &5099437076244547978
 GameObject:
   m_ObjectHideFlags: 0
@@ -10121,6 +10122,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5035923
       objectReference: {fileID: 0}
+    - target: {fileID: 114920974177922438, guid: 7c5ae5716cbd6c640a7912de122dc0fd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114920974177922438, guid: 7c5ae5716cbd6c640a7912de122dc0fd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Next
+      objectReference: {fileID: 0}
     - target: {fileID: 114286222934684640, guid: 7c5ae5716cbd6c640a7912de122dc0fd,
         type: 3}
       propertyPath: m_Text
@@ -10159,16 +10170,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Previous
-      objectReference: {fileID: 0}
-    - target: {fileID: 114920974177922438, guid: 7c5ae5716cbd6c640a7912de122dc0fd,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114920974177922438, guid: 7c5ae5716cbd6c640a7912de122dc0fd,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Next
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c5ae5716cbd6c640a7912de122dc0fd, type: 3}

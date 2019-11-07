@@ -55,5 +55,6 @@ public class MapOpenScript : MonoBehaviour
         MinimapPanel.SetActive(true);
         TeleportTutorial.SetActive(true);
         MapPath.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
