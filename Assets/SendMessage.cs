@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MapOpenScript : MonoBehaviour
+public class SendMessage : MonoBehaviour
 {
-    public GameObject ChatAppPanel;
-    public GameObject MinimapPanel;
-    public GameObject TeleportTutorial;
-    public GameObject MapPath;
+    public Text Text;
+    public GameObject PrivateApp;
+
+    private Message CurrentMessage;
+    private PrivateAppScript PrivateAppScript;
 
     // SteamVR
     private SteamVR_TrackedObject trackedObject;
@@ -18,6 +20,7 @@ public class MapOpenScript : MonoBehaviour
     void Start()
     {
         trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
+        PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
     }
 
     // Update is called once per frame
@@ -34,7 +37,7 @@ public class MapOpenScript : MonoBehaviour
             controller = SteamVR_Controller.Input((int)trackedObject.index);
             if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
             {
-                OpenMap();
+                SendCurrentMessage();
             }
         }
         catch (Exception e)
@@ -45,16 +48,21 @@ public class MapOpenScript : MonoBehaviour
         //PC
         if (Input.GetKeyUp(KeyCode.Return))
         {
-            OpenMap();
+            SendCurrentMessage();
         }
     }
 
-    void OpenMap()
+    public void SetMessage(string message, Sender sender, Message.Type type, List<string> possibleAnswers = null, Sprite photo = null)
     {
-        ChatAppPanel.SetActive(false);
-        MinimapPanel.SetActive(true);
-        TeleportTutorial.SetActive(true);
-        MapPath.SetActive(true);
+        Text.text = message;
+        CurrentMessage = new Message(message, sender, type, possibleAnswers, photo);
+        gameObject.SetActive(true);
+    }
+
+    private void SendCurrentMessage()
+    {
+        PrivateAppScript.ChatApp.Send(CurrentMessage);
+        PrivateAppScript.Tutorial();
         gameObject.SetActive(false);
     }
 }
