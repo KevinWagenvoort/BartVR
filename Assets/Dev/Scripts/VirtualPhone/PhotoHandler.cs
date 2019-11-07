@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PhotoHandler : MonoBehaviour {
 
-    public GameObject VirtualCamera, Preview, ConfirmPanel, NeighbourhoodApp;
+    public GameObject VirtualCamera, Preview, FeedbackPanel, NeighbourhoodApp;
     private string pictureRoot;
     private string tempPath;
 
@@ -31,7 +31,7 @@ public class PhotoHandler : MonoBehaviour {
             controller = SteamVR_Controller.Input((int)trackedObject.index);
             if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
             {
-                StartCoroutine(TakeScreenShot(VirtualCamera, Preview, ConfirmPanel));
+                StartCoroutine(TakeScreenShot(VirtualCamera, Preview));
             }
         }
         catch (Exception e)
@@ -42,11 +42,11 @@ public class PhotoHandler : MonoBehaviour {
         //PC
         if (Input.GetKeyUp(KeyCode.P))
         {
-            StartCoroutine(TakeScreenShot(VirtualCamera, Preview, ConfirmPanel));
+            StartCoroutine(TakeScreenShot(VirtualCamera, Preview));
         }
     }
 
-    public IEnumerator TakeScreenShot(GameObject cam, GameObject preview, GameObject confirmPanel) { 
+    public IEnumerator TakeScreenShot(GameObject cam, GameObject preview) { 
         yield return new WaitForEndOfFrame();
         pictureRoot = Application.persistentDataPath + "/images/";
         tempPath = Application.persistentDataPath + "/images/screenshot.png";
@@ -79,6 +79,8 @@ public class PhotoHandler : MonoBehaviour {
         File.WriteAllBytes(path, bytes);
         Sprite photo = MakeSprite();
         NeighbourhoodAppScript.SendPhoto(photo);
+        FeedbackPanel.SetActive(true);
+        Invoke("TurnOffFeedbackPanel", 2);
     }
 
     private void SetPreview(GameObject preview, GameObject confirmPanel) {
@@ -119,5 +121,10 @@ public class PhotoHandler : MonoBehaviour {
         pictureID++;
         if (File.Exists(tempPath))
             File.Move(tempPath, newPath);
+    }
+
+    private void TurnOffFeedbackPanel()
+    {
+        FeedbackPanel.SetActive(false);
     }
 }
