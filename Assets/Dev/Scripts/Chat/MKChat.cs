@@ -11,6 +11,7 @@ public class MKChat : MonoBehaviour
     public GameObject ReceivedBubble, ReceivedPhotoBubble;
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
+    public GameObject Arrow;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
 
@@ -42,6 +43,7 @@ public class MKChat : MonoBehaviour
         else
         {
             NeighbourhoodAppScript.SendChoice(Dropdown.value);
+            Dropdown.ClearOptions();
         }
     }
 
@@ -103,10 +105,12 @@ public class MKChat : MonoBehaviour
                 Dropdown.AddOptions(LastMessage.possibleAnswers);
                 Dropdown.interactable = true;
                 SendButton.interactable = true;
+                Arrow.SetActive(true);
             } else
             {
                 Dropdown.interactable = false;
                 SendButton.interactable = false;
+                Arrow.SetActive(false);
             }
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
@@ -127,5 +131,6 @@ public class MKChat : MonoBehaviour
         NeighbourhoodAppScript.SendMessage(CurrentMessage);
         SendButton.interactable = false;
         CurrentMessage = null;
+        Dropdown.ClearOptions();
     }
 }
