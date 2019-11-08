@@ -5,25 +5,21 @@ using UnityEngine;
 public class DistanceTrigger : MonoBehaviour
 {
     public GameObject CameraRig, Phone, LeftHand;
+    public static bool TutorialBurgerIsDone = false;
+    public static bool TutorialControlRoomIsDone = false;
     private bool phoneIsActive = true;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(CameraRig.transform.position, gameObject.transform.position);
-        if (distance < 53 && phoneIsActive)
+        if (distance < 53 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone)
         {
             Phone.SetActive(false);
             LeftHand.SetActive(true);
             phoneIsActive = false;
             Debug.Log("enter");
-        } else if (distance >= 53 && !phoneIsActive)
+        } else if (distance >= 53 && !phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone)
         {
             Phone.SetActive(true);
             LeftHand.SetActive(false);
