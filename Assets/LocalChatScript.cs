@@ -29,7 +29,6 @@ public class LocalChatScript : MonoBehaviour
     void Start()
     {
         ChatApp = new ChatApp();
-        ConversationNavigationScript = ChoiceBubbles.GetComponent<ConversationNavigation>();
 
         //Senders
         Jongeren = new Sender("Jongeren", Sender.Role.Npc);
@@ -38,6 +37,11 @@ public class LocalChatScript : MonoBehaviour
         possibleAnswers = new List<string>();
         possibleAnswers.Add("Wat is het adres?");
         possibleAnswers.Add("Kunt u omschrijven wat u precies ziet?");
+    }
+
+    private void Awake()
+    {
+        ConversationNavigationScript = ChoiceBubbles.GetComponent<ConversationNavigation>();
     }
 
     private int passCount = 0;
