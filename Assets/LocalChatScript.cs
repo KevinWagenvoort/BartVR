@@ -103,52 +103,40 @@ public class LocalChatScript : MonoBehaviour
         switch(scenarioCount)
         {
             case 0:
-                ConversationNavigationScript.SetChoice("Jullie hebben de herrie veel te hard");
+                PlayerTalk("Jullie hebben de herrie veel te hard");
                 break;
             case 1:
-                ConversationNavigationScript.SetChoice("Zet het uit");
+                PlayerTalk("Zet het uit");
                 break;
             case 2:
-                TextBalloon.SetActive(true);
-                BalloonText.text = "Nee nergens voor nodig";
-                Invoke("DefaultPath", 2);
+                NPCTalk("Nee nergens voor nodig", 2);
                 break;
             case 3:
-                BalloonText.text = "We hebben gewoon plezier";
-                Invoke("DefaultPath", 2);
+                NPCTalk("We hebben gewoon plezier", 2);
                 break;
             case 4:
-                BalloonText.text = "Dat laten we niet door jou verpesten";
-                Invoke("DefaultPath", 2);
+                NPCTalk("Dat laten we niet door jou verpesten", 2);
                 break;
             case 5:
-                TextBalloon.SetActive(false);
-                ConversationNavigationScript.SetChoice("Het is toch niet zo lastig om dat lawaai te verminderen");
+                PlayerTalk("Het is toch niet zo lastig om dat lawaai te verminderen");
                 break;
             case 6:
-                ConversationNavigationScript.SetChoice("Iedereen heeft er last van");
+                PlayerTalk("Iedereen heeft er last van");
                 break;
             case 7:
-                TextBalloon.SetActive(true);
-                BalloonText.text = "Kan ons weinig schelen";
-                Invoke("DefaultPath", 2);
+                NPCTalk("Kan ons weinig schelen", 2);
                 break;
             case 8:
-                BalloonText.text = "Jullie bekijken het maar";
-                Invoke("DefaultPath", 2);
+                NPCTalk("Jullie bekijken het maar", 2);
                 break;
             case 9:
-                TextBalloon.SetActive(false);
-                ConversationNavigationScript.SetChoice("Dan stuur ik de politie op jullie af");
+                PlayerTalk("Dan stuur ik de politie op jullie af");
                 break;
             case 10:
-                TextBalloon.SetActive(true);
-                BalloonText.text = "Je doet maar";
-                Invoke("DefaultPath", 2);
+                NPCTalk("Je doet maar", 2);
                 break;
             case 11:
-                BalloonText.text = "Boeit ons toch niet";
-                Invoke("DefaultPath", 2);
+                NPCTalk("Boeit ons toch niet", 2);
                 break;
         }
         scenarioCount++;
@@ -182,5 +170,18 @@ public class LocalChatScript : MonoBehaviour
     private void DefaultPath ()
     {
         path();
+    }
+
+    private void NPCTalk(string message, int seconds = 1)
+    {
+        TextBalloon.SetActive(true);
+        BalloonText.text = message;
+        Invoke("DefaultPath", seconds);
+    }
+
+    private void PlayerTalk(string message)
+    {
+        TextBalloon.SetActive(false);
+        ConversationNavigationScript.SetChoice(message);
     }
 }
