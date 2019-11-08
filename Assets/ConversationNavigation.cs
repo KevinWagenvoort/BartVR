@@ -19,6 +19,7 @@ public class ConversationNavigation : MonoBehaviour
     private CurrentlySelected Selected;
     private int PrevSelected = 0;
     private LocalChatScript LocalChatScript;
+    private Vector3 defaultScale;
 
     // SteamVR
     private SteamVR_TrackedObject trackedObject;
@@ -30,6 +31,11 @@ public class ConversationNavigation : MonoBehaviour
         trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
         LocalChatScript = LocalChat.GetComponent<LocalChatScript>();
         LocalChatScript.PizzaSuspects();
+    }
+
+    private void Awake()
+    {
+        defaultScale = Buttons[0].transform.localScale;
     }
 
     // Update is called once per frame
@@ -60,7 +66,7 @@ public class ConversationNavigation : MonoBehaviour
                 }
             }
 
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
                 LocalChatScript.SendChoice(Selected.selected);
                 DisableButtons();
@@ -120,6 +126,7 @@ public class ConversationNavigation : MonoBehaviour
             i++;
         }
         Selected = new CurrentlySelected(0, choices.Count - 1);
+        Buttons[0].transform.localScale = defaultScale;
         ButtonColor();
     }
 
@@ -128,6 +135,7 @@ public class ConversationNavigation : MonoBehaviour
         DisableButtons();
         Buttons[0].transform.Find("ChoiceText").gameObject.GetComponent<TMP_Text>().text = choice;
         Buttons[0].SetActive(true);
+        Buttons[0].transform.localScale = (defaultScale + new Vector3(1, 1, 1));
         Selected = new CurrentlySelected(0, 0);
         ButtonColor();
     }
