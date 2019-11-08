@@ -9,7 +9,6 @@ public class LocalChatScript : MonoBehaviour
 {
     public ChatApp ChatApp;
     public GameObject ChoiceBubbles;
-    public GameObject ControllerLeft;
     public GameObject TextBalloon;
     public TMP_Text BalloonText;
 
@@ -29,7 +28,6 @@ public class LocalChatScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ControllerLeft.SetActive(true);
         ChatApp = new ChatApp();
         ConversationNavigationScript = ChoiceBubbles.GetComponent<ConversationNavigation>();
 
