@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 delegate void ScenarioPath();
 
@@ -9,6 +10,8 @@ public class LocalChatScript : MonoBehaviour
     public ChatApp ChatApp;
     public GameObject ChoiceBubbles;
     public GameObject ControllerLeft;
+    public GameObject TextBalloon;
+    public TMP_Text BalloonText;
 
     private Sender Jongeren, Jij;
     private List<string> possibleAnswers = new List<string>();
@@ -106,40 +109,45 @@ public class LocalChatScript : MonoBehaviour
                 ConversationNavigationScript.SetChoice("Zet het uit");
                 break;
             case 2:
-                // Jongeren: Nee nergens voor nodig
+                TextBalloon.SetActive(true);
+                BalloonText.text = "Nee nergens voor nodig";
                 Invoke("DefaultPath", 2);
                 break;
             case 3:
-                // Jongeren: We hebben gewoon plezier
+                BalloonText.text = "We hebben gewoon plezier";
                 Invoke("DefaultPath", 2);
                 break;
             case 4:
-                // Jongeren: Dat laten we niet door jou verpesten
+                BalloonText.text = "Dat laten we niet door jou verpesten";
                 Invoke("DefaultPath", 2);
                 break;
             case 5:
+                TextBalloon.SetActive(false);
                 ConversationNavigationScript.SetChoice("Het is toch niet zo lastig om dat lawaai te verminderen");
                 break;
             case 6:
                 ConversationNavigationScript.SetChoice("Iedereen heeft er last van");
                 break;
             case 7:
-                // Jongeren: Kan ons weinig schelen
+                TextBalloon.SetActive(true);
+                BalloonText.text = "Kan ons weinig schelen";
                 Invoke("DefaultPath", 2);
                 break;
             case 8:
-                // Jongeren: Jullie bekijken het maar
+                BalloonText.text = "Jullie bekijken het maar";
                 Invoke("DefaultPath", 2);
                 break;
             case 9:
+                TextBalloon.SetActive(false);
                 ConversationNavigationScript.SetChoice("Dan stuur ik de politie op jullie af");
                 break;
             case 10:
-                // Jongeren: Je doet maar
+                TextBalloon.SetActive(true);
+                BalloonText.text = "Je doet maar";
                 Invoke("DefaultPath", 2);
                 break;
             case 11:
-                // Jongeren: Boeit ons toch niet
+                BalloonText.text = "Boeit ons toch niet";
                 Invoke("DefaultPath", 2);
                 break;
         }
