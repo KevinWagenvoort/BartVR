@@ -89,6 +89,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
             case 11:
                 ChatApp.Send("Gelukkig waren we er op tijd bij.", Jong, Message.Type.Other);
+                DistanceTrigger.TutorialControlRoomIsDone = true;
                 break;
         }
         passCount++;
