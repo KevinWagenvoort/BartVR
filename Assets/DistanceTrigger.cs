@@ -13,18 +13,21 @@ public class DistanceTrigger : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(CameraRig.transform.position, gameObject.transform.position);
-        if (distance < 53 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone)
+        if (distance < 37 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone)
         {
             Phone.SetActive(false);
             LeftHand.SetActive(true);
             phoneIsActive = false;
             Debug.Log("enter");
-        } else if (distance >= 53 && !phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone)
+        } else if (distance >= 37 && !phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone)
         {
             Phone.SetActive(true);
             LeftHand.SetActive(false);
             phoneIsActive = true;
             Debug.Log("exit");
+        } else
+        {
+            Debug.Log(distance);
         }
     }
 }
