@@ -11,16 +11,14 @@ public class ConversationNavigation : MonoBehaviour
     [SerializeField]
     public bool IsPrivate;
     public List<GameObject> Buttons;
-    public GameObject NeighbourhoodApp;
-    public GameObject PrivateApp;
+    public GameObject LocalChat;
     public Color SelectedColor;
     public Color DefaultColor;
 
     //private
     private CurrentlySelected Selected;
     private int PrevSelected = 0;
-    private NeighbourhoodAppScript NeighbourhoodAppScript;
-    private PrivateAppScript PrivateAppScript;
+    private LocalChatScript LocalChatScript;
 
     // SteamVR
     private SteamVR_TrackedObject trackedObject;
@@ -30,7 +28,8 @@ public class ConversationNavigation : MonoBehaviour
     void Start()
     {
         trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
-        SetChoices(new List<string>() { "Hallo 1", "Hallo 3" });
+        LocalChatScript = LocalChat.GetComponent<LocalChatScript>();
+        LocalChatScript.PizzaSuspects();
     }
 
     // Update is called once per frame
@@ -63,8 +62,8 @@ public class ConversationNavigation : MonoBehaviour
 
             if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
             {
-                Debug.Log(Buttons[Selected.selected].transform.Find("ChoiceText").GetComponent<Text>().text);
-                SetChoices(new List<string>() { "Hallo Reach", "Hallo 4", "Hallo 5" });
+                LocalChatScript.SendChoice(Selected.selected);
+                DisableButtons();
             }
         }
         catch (Exception e)
@@ -87,8 +86,8 @@ public class ConversationNavigation : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.Return))
         {
-            Debug.Log(Buttons[Selected.selected].transform.Find("ChoiceText").gameObject.GetComponent<TMP_Text>().text);
-            SetChoices(new List<string>() { "Hallo Reach", "Hallo 4", "Hallo 5" });
+            LocalChatScript.SendChoice(Selected.selected);
+            DisableButtons();
         }
     }
 
@@ -121,6 +120,15 @@ public class ConversationNavigation : MonoBehaviour
             i++;
         }
         Selected = new CurrentlySelected(0, choices.Count - 1);
+        ButtonColor();
+    }
+
+    public void SetChoice(string choice)
+    {
+        DisableButtons();
+        Buttons[0].transform.Find("ChoiceText").gameObject.GetComponent<TMP_Text>().text = choice;
+        Buttons[0].SetActive(true);
+        Selected = new CurrentlySelected(0, 0);
         ButtonColor();
     }
 }
