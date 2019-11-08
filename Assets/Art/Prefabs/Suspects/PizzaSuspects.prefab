@@ -5536,6 +5536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 246446224572385123}
   - component: {fileID: 1447827078}
+  - component: {fileID: 2954999588318095513}
   m_Layer: 0
   m_Name: PizzaSuspects
   m_TagString: Untagged
@@ -5582,6 +5583,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2954999588318095513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977723621866926670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f695525d586805d4780df27df3259014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4053052153707777507
 GameObject:
   m_ObjectHideFlags: 0
@@ -11741,7 +11754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8296172668749237434}
   m_LocalRotation: {x: -0, y: -0.6824905, z: -0, w: 0.73089445}
-  m_LocalPosition: {x: -20.444061, y: 2.88687, z: -2.758081}
+  m_LocalPosition: {x: -20.714, y: 2.88687, z: -2.758081}
   m_LocalScale: {x: 1.1947293, y: 1.1947293, z: 1.1947293}
   m_Children:
   - {fileID: 1009394687819613144}
