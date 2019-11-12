@@ -12,6 +12,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
     public GameObject SendBubble;
     public GameObject ChoiceBubbles;
     public GameObject MapOpenBubble;
+    public GameObject SendPhotoBubble;
     public Text SubjectText;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
@@ -58,8 +59,18 @@ public class MobileNeigborhoodChat : MonoBehaviour
             GameObject newMessage;
             if (LastMessage.sender.role == Sender.Role.Burger)
             {
-                newMessage = Instantiate(SendBubble, SendBubble.transform.parent);
-                MapOpenBubble.SetActive(false);
+                if (LastMessage.type == Message.Type.Photo)
+                {
+                    newMessage = Instantiate(SendPhotoBubble, SendPhotoBubble.transform.parent);
+                    Image photoComponent = newMessage.transform.Find("BubbleImage").Find("Photo").gameObject.GetComponent<Image>();
+                    photoComponent.sprite = LastMessage.photo;
+                    photoComponent.preserveAspect = true;
+                }
+                else
+                {
+                    newMessage = Instantiate(SendBubble, SendBubble.transform.parent);
+                    MapOpenBubble.SetActive(false);
+                }
             }
             else
             {
@@ -75,7 +86,10 @@ public class MobileNeigborhoodChat : MonoBehaviour
                 }
             }
             Transform bubbleImage = newMessage.transform.Find("BubbleImage");
-            bubbleImage.Find("MessageText").gameObject.GetComponent<Text>().text = LastMessage.message;
+            if (LastMessage.type != Message.Type.Photo)
+            {
+                bubbleImage.Find("MessageText").gameObject.GetComponent<Text>().text = LastMessage.message;
+            }
             if (LastMessage.sender.role != Sender.Role.Burger)
             {
                 bubbleImage.Find("MessageSenderName").gameObject.GetComponent<Text>().text = LastMessage.sender.name;

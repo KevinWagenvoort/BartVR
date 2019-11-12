@@ -8,15 +8,17 @@ public class MKChat : MonoBehaviour
 {
     public GameObject NeighbourhoodApp;
     public Button SendButton;
-    public GameObject ReceivedBubble;
+    public GameObject ReceivedBubble, ReceivedPhotoBubble;
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
+    public GameObject Arrow;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     private List<Message> RenderedMessages = new List<Message>();
     private List<GameObject> CloneMessages = new List<GameObject>();
     private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
+    private Message CurrentMessage;
 
     // Start is called before the first frame update
     void Start()
@@ -34,15 +36,23 @@ public class MKChat : MonoBehaviour
 
     void OnClickHandler()
     {
-        NeighbourhoodAppScript.SendChoice(Dropdown.value);
+        if (CurrentMessage != null)
+        {
+            SendCurrentMessage();
+        }
+        else
+        {
+            NeighbourhoodAppScript.SendChoice(Dropdown.value);
+            Dropdown.ClearOptions();
+        }
     }
 
-    void MoveAllMessages()
+    void MoveAllMessages(int distance = 200)
     {
         foreach (GameObject message in CloneMessages)
         {
             Vector3 oldPos = message.transform.localPosition;
-            oldPos.y += 200;
+            oldPos.y += distance;
             message.transform.localPosition = oldPos;
         }
     }
@@ -53,7 +63,13 @@ public class MKChat : MonoBehaviour
 
         if (!RenderedMessages.Contains(LastMessage) && LastMessage != null)
         {
-            MoveAllMessages();
+            if (LastMessage.type == Message.Type.Photo)
+            {
+                MoveAllMessages(510);
+            } else
+            {
+                MoveAllMessages(200);
+            }
             RenderedMessages.Add(LastMessage);
             GameObject newMessage;
             if (LastMessage.sender.role == Sender.Role.Meldkamer)
@@ -62,10 +78,23 @@ public class MKChat : MonoBehaviour
             }
             else
             {
-                newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
+                if (LastMessage.type == Message.Type.Photo)
+                {
+                    newMessage = Instantiate(ReceivedPhotoBubble, ReceivedPhotoBubble.transform.parent);
+                    Image photoComponent = newMessage.transform.Find("BubbleImage").Find("Photo").gameObject.GetComponent<Image>();
+                    photoComponent.sprite = LastMessage.photo;
+                    photoComponent.preserveAspect = true;
+                }
+                else
+                {
+                    newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
+                }
             }
             Transform bubbleImage = newMessage.transform.Find("BubbleImage");
-            bubbleImage.Find("MessageText").gameObject.GetComponent<TMP_Text>().text = LastMessage.message;
+            if (LastMessage.type != Message.Type.Photo)
+            {
+                bubbleImage.Find("MessageText").gameObject.GetComponent<TMP_Text>().text = LastMessage.message;
+            }
             if (LastMessage.sender.role != Sender.Role.Meldkamer)
             {
                 bubbleImage.Find("MessageSenderName").gameObject.GetComponent<TMP_Text>().text = LastMessage.sender.name;
@@ -76,13 +105,32 @@ public class MKChat : MonoBehaviour
                 Dropdown.AddOptions(LastMessage.possibleAnswers);
                 Dropdown.interactable = true;
                 SendButton.interactable = true;
+                Arrow.SetActive(true);
             } else
             {
                 Dropdown.interactable = false;
                 SendButton.interactable = false;
+                Arrow.SetActive(false);
             }
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
         }
+    }
+
+    public void SetMessage(string message, Sender sender, Message.Type type, List<string> possibleAnswers = null, Sprite photo = null)
+    {
+        Dropdown.ClearOptions();
+        Dropdown.AddOptions(new List<string>() { message });
+        CurrentMessage = new Message(message, sender, type, possibleAnswers, photo);
+        Dropdown.interactable = false;
+        SendButton.interactable = true;
+    }
+
+    private void SendCurrentMessage()
+    {
+        NeighbourhoodAppScript.SendMessage(CurrentMessage);
+        SendButton.interactable = false;
+        CurrentMessage = null;
+        Dropdown.ClearOptions();
     }
 }

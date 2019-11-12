@@ -32,12 +32,9 @@ public class MapOpenScript : MonoBehaviour
         try
         {
             controller = SteamVR_Controller.Input((int)trackedObject.index);
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
             {
-                if (!(controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y > 0.2f) && !(controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y < -0.2f))
-                {
-                    OpenMap();
-                }
+                OpenMap();
             }
         }
         catch (Exception e)
@@ -58,5 +55,6 @@ public class MapOpenScript : MonoBehaviour
         MinimapPanel.SetActive(true);
         TeleportTutorial.SetActive(true);
         MapPath.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

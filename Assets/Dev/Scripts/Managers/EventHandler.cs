@@ -44,37 +44,6 @@ public class EventHandler : MonoBehaviour {
     public void ReturnToGame() {
         Time.timeScale = 1;
         escapeMenu.SetActive(false);
-        FindObjectOfType<Movement>().UpdateMovement();
-    }
-
-    public void Next(GameObject movementSelection) {
-        if ((int)GameManager.currentMovement < 2)
-            GameManager.currentMovement++;
-        else
-            GameManager.currentMovement = MovementMode.FacingDirection;
-        SetMovementText(movementSelection);
-    }
-
-    public void Previous(GameObject movementSelection) {
-        if (GameManager.currentMovement > 0)
-            GameManager.currentMovement--;
-        else
-            GameManager.currentMovement =MovementMode.Teleport;
-        SetMovementText(movementSelection);
-    }
-
-    private void SetMovementText(GameObject go) {
-        switch (GameManager.currentMovement) {
-            case MovementMode.ControllerDirection:
-                go.GetComponent<InputField>().text = "Lopen richting controller";
-                break;
-            case MovementMode.Teleport:
-                go.GetComponent<InputField>().text = "Teleporteren";
-                break;
-            default:
-                go.GetComponent<InputField>().text = "Lopen richting kijkrichting";
-                break;
-        }
     }
 
     public void End() {

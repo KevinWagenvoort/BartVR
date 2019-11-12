@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class PhotoHandler : MonoBehaviour {
 
-    public GameObject VirtualCamera, Preview, ConfirmPanel;
+    public GameObject VirtualCamera, Preview, FeedbackPanel, NeighbourhoodApp;
     private string pictureRoot;
     private string tempPath;
 
     private int pictureID;
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     // SteamVR
     private SteamVR_TrackedObject trackedObject;
@@ -19,6 +20,7 @@ public class PhotoHandler : MonoBehaviour {
     private void Start()
     {
         trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
     }
 
     private void Update()
@@ -29,7 +31,7 @@ public class PhotoHandler : MonoBehaviour {
             controller = SteamVR_Controller.Input((int)trackedObject.index);
             if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
             {
-                StartCoroutine(TakeScreenShot(VirtualCamera, Preview, ConfirmPanel));
+                StartCoroutine(TakeScreenShot(VirtualCamera, Preview));
             }
         }
         catch (Exception e)
@@ -40,11 +42,11 @@ public class PhotoHandler : MonoBehaviour {
         //PC
         if (Input.GetKeyUp(KeyCode.P))
         {
-            StartCoroutine(TakeScreenShot(VirtualCamera, Preview, ConfirmPanel));
+            StartCoroutine(TakeScreenShot(VirtualCamera, Preview));
         }
     }
 
-    public IEnumerator TakeScreenShot(GameObject cam, GameObject preview, GameObject confirmPanel) { 
+    public IEnumerator TakeScreenShot(GameObject cam, GameObject preview) { 
         yield return new WaitForEndOfFrame();
         pictureRoot = Application.persistentDataPath + "/images/";
         tempPath = Application.persistentDataPath + "/images/screenshot.png";
@@ -75,7 +77,10 @@ public class PhotoHandler : MonoBehaviour {
         path = pictureRoot + filename;
         // Write to path (previous screenshots are overwritten)
         File.WriteAllBytes(path, bytes);
-        SetPreview(preview, confirmPanel);
+        Sprite photo = MakeSprite();
+        NeighbourhoodAppScript.SendPhoto(photo);
+        FeedbackPanel.SetActive(true);
+        Invoke("TurnOffFeedbackPanel", 2);
     }
 
     private void SetPreview(GameObject preview, GameObject confirmPanel) {
@@ -90,7 +95,7 @@ public class PhotoHandler : MonoBehaviour {
         // Turn the Texture2D from the screenshot into a sprite so it can be loaded for preview
         Sprite sprite;
         Texture2D spriteTexture = LoadTexture(pictureRoot + "screenshot.png");
-        sprite = Sprite.Create(spriteTexture, new Rect(0, 0, 500, 1000), new Vector2(0, 0), 100f, 0, SpriteMeshType.Tight);
+        sprite = Sprite.Create(spriteTexture, new Rect(0, 0, 250, 500), new Vector2(0, 0), 100f, 0, SpriteMeshType.Tight);
 
         return sprite;
     }
@@ -116,5 +121,10 @@ public class PhotoHandler : MonoBehaviour {
         pictureID++;
         if (File.Exists(tempPath))
             File.Move(tempPath, newPath);
+    }
+
+    private void TurnOffFeedbackPanel()
+    {
+        FeedbackPanel.SetActive(false);
     }
 }

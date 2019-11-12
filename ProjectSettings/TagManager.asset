@@ -20,6 +20,7 @@ TagManager:
   - Node
   - Marker
   - Cursor
+  - ScenarioTrigger
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - Minimap - Phone
   - Minimap - Control Room
   - ReflectionIgnore
-  - 
+  - IgnorePhoneCamera
   - 
   - 
   - 

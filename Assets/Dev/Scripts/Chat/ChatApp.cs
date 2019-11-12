@@ -13,9 +13,14 @@ public class ChatApp
     /// <param name="sender">Sender is a Message.Sender object</param>
     /// <param name="type">Type is a Message.Type object</param>
     /// <param name="possibleAnswers">List<string> of possible answers</param>
-    public void Send(string message, Sender sender, Message.Type type, List<string> possibleAnswers = null)
+    public void Send(string message, Sender sender, Message.Type type, List<string> possibleAnswers = null, Sprite photo = null)
     {
-        MessageList.Add(new Message(message, sender, type, possibleAnswers));
+        MessageList.Add(new Message(message, sender, type, possibleAnswers, photo));
+    }
+
+    public void Send(Message message)
+    {
+        MessageList.Add(message);
     }
 
     /// <summary>
@@ -48,13 +53,15 @@ public class Message
     public Sender sender;
     public Type type;
     public List<string> possibleAnswers = new List<string>();
+    public Sprite photo;
 
-    public Message(string message, Sender sender, Type type, List<string> possibleAnswers = null)
+    public Message(string message, Sender sender, Type type, List<string> possibleAnswers = null, Sprite photo = null)
     {
         this.message = message;
         this.sender = sender;
         this.type = type;
         this.possibleAnswers = possibleAnswers;
+        this.photo = photo;
     }
 
     public override string ToString()
@@ -69,7 +76,8 @@ public class Message
         QuestionTrigger,
         Answer,
         Other,
-        Location
+        Location,
+        Photo
     }
 }
 

@@ -5,11 +5,13 @@ using UnityEngine;
 public class PrivateAppScript : MonoBehaviour
 {
     public ChatApp ChatApp;
+    public GameObject SendMessageButton;
 
     private Sender Vriend;
     private Sender Jij;
     private List<string> possibleAnswers;
     private int chosenAnswer;
+    private SendMessage SendMessageButtonScript;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class PrivateAppScript : MonoBehaviour
         possibleAnswers.Add("Is goed. Ik haal wel pizza. Zie je dan.");
         possibleAnswers.Add("Is goed. Ik haal wel patat. Zie je dan.");
         possibleAnswers.Add("Is goed. Ik haal wel chinees. Zie je dan.");
+        SendMessageButtonScript = SendMessageButton.GetComponent<SendMessage>();
     }
 
     private int passCount = 0;
@@ -44,14 +47,14 @@ public class PrivateAppScript : MonoBehaviour
                 {
                     ChatApp.Send("Ik heb liever pizza.", Vriend, Message.Type.Other);
                 }
-                Invoke("Tutorial", 2);
+                SendMessageButtonScript.SetMessage("Ik ga het nu halen maar ik weet niet waar het is.", Jij, Message.Type.Other);
                 break;
             case 3:
-                ChatApp.Send("Ik ga het nu halen maar ik weet niet waar het is.", Jij, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
             case 4:
                 ChatApp.Send("Hier is het.", Vriend, Message.Type.Location);
+                DistanceTrigger.TutorialBurgerIsDone = true;
                 break;
         }
         passCount++;
