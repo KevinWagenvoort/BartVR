@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 932894250305807940}
   - component: {fileID: 2115100164537087111}
   m_Layer: 0
-  m_Name: Cube.002
+  m_Name: WindowLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,7 +241,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2614958202364284914}
-  m_Mesh: {fileID: -1550514412580984892, guid: aae1eadcb1f782b41878364dec298a67, type: 3}
+  m_Mesh: {fileID: -8678823145569952518, guid: aae1eadcb1f782b41878364dec298a67, type: 3}
 --- !u!23 &2115100164537087111
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: aae1eadcb1f782b41878364dec298a67, type: 3}
+  - {fileID: 2100000, guid: 5c8541621c320c548a25f779064ff304, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -290,7 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 475260461080781793}
   m_Layer: 0
-  m_Name: pizzaplace_deco (1)
+  m_Name: PizzaModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 3522741389675220610}
   - component: {fileID: 5445131687660679176}
   m_Layer: 0
-  m_Name: Cube.003
+  m_Name: WindowRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,7 +456,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: aae1eadcb1f782b41878364dec298a67, type: 3}
+  - {fileID: 2100000, guid: 5c8541621c320c548a25f779064ff304, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 7459276295970074250}
   - component: {fileID: 1139902367749323256}
   m_Layer: 0
-  m_Name: Cube.004
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -610,7 +610,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6598696378697697371}
-  m_Mesh: {fileID: -5053925668127403250, guid: aae1eadcb1f782b41878364dec298a67, type: 3}
+  m_Mesh: {fileID: -8678823145569952518, guid: aae1eadcb1f782b41878364dec298a67, type: 3}
 --- !u!23 &1139902367749323256
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -628,7 +628,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 255e5e362cb7ebe408928b8b3b235cb9, type: 2}
+  - {fileID: 2100000, guid: 5c8541621c320c548a25f779064ff304, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 3503398643332514753}
   - component: {fileID: 4435804185414465151}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 2755684126988334799}
   - component: {fileID: 6644112983308462908}
   m_Layer: 0
-  m_Name: Cone.005
+  m_Name: Kruk2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -897,7 +897,7 @@ GameObject:
   - component: {fileID: 7866589485540965625}
   - component: {fileID: 8484112533185805286}
   m_Layer: 0
-  m_Name: Cone.006
+  m_Name: Kruk1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1055,11 +1055,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 475260461080781793}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 8803e27afb1c3424e85209f4770f2b53,
-        type: 3}
-      propertyPath: m_Name
-      value: Pizza Bord new
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8803e27afb1c3424e85209f4770f2b53,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1114,6 +1109,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8803e27afb1c3424e85209f4770f2b53,
+        type: 3}
+      propertyPath: m_Name
+      value: Pizza Bord new
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 8803e27afb1c3424e85209f4770f2b53,
         type: 3}
