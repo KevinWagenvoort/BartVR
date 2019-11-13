@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NeighbourhoodAppScript : MonoBehaviour
 {
     public ChatApp ChatApp;
     public GameObject MKChat;
+
 
     private Sender Appel, Jij, Beer, Jong, Meldkamer;
     private List<string> possibleAnswers = new List<string>();
@@ -27,9 +29,9 @@ public class NeighbourhoodAppScript : MonoBehaviour
 
         possibleAnswers = new List<string>();
         possibleAnswers.Add("Wat is het adres?");
-        possibleAnswers.Add("Kunt u omschrijven wat u precies ziet?");
-        Tutorial();
-    }
+        possibleAnswers.Add("Kunt u omschrijven wat u precies ziet?");     
+        
+    }  
 
     private int passCount = 0;
     public void Tutorial()
