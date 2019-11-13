@@ -118,6 +118,5 @@ public class MobileNeigborhoodChat : MonoBehaviour
     public void TriggerNotification()
     {
         ChatSwitcher.OpenNeighbourhoodApp();
-        Debug.Log("Trigger notification");
     }
 }

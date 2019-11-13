@@ -35,15 +35,13 @@ public class DistanceTrigger : MonoBehaviour
             phoneIsActive = true;
         }
         // TODO: SET TUTORIAL STUFF BACK
-        if (distance < 160 && phoneIsActive && !TutorialBurgerIsDone && !TutorialControlRoomIsDone && !StartedSendingMessages)
+        if (distance < 160 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !StartedSendingMessages)
         {
-            Debug.Log("Start sending messages");
-            NeighbourhoodAppScript.StartScenarioMessages();
+            NeighbourhoodAppScript.Scenario();
             StartedSendingMessages = true;
         }
-        if (distance < 102 && phoneIsActive && !TutorialBurgerIsDone && !TutorialControlRoomIsDone && !NotificationSent)
+        if (distance < 102 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !NotificationSent)
         {
-            Debug.Log("Notification on phone");
             MobileNeigborhoodChat.TriggerNotification();
             NotificationSent = true;
         }
