@@ -54,6 +54,7 @@ public class PrivateAppScript : MonoBehaviour
                 break;
             case 4:
                 ChatApp.Send("Hier is het.", Vriend, Message.Type.Location);
+                DistanceTrigger.TutorialBurgerIsDone = true;
                 break;
         }
         passCount++;

@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class SendMessage : MonoBehaviour
 {
     public Text Text;
-    public GameObject PrivateApp;
+    public GameObject PrivateApp, NeighbourhoodApp;
+    public bool isNeighbourhood;
 
     private Message CurrentMessage;
     private PrivateAppScript PrivateAppScript;
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     // SteamVR
     private SteamVR_TrackedObject trackedObject;
@@ -20,7 +22,14 @@ public class SendMessage : MonoBehaviour
     void Start()
     {
         trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
-        PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
+        if (isNeighbourhood)
+        {
+            NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+        }
+        else
+        {
+            PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
+        }
     }
 
     // Update is called once per frame
@@ -61,8 +70,16 @@ public class SendMessage : MonoBehaviour
 
     private void SendCurrentMessage()
     {
-        PrivateAppScript.ChatApp.Send(CurrentMessage);
-        PrivateAppScript.Tutorial();
         gameObject.SetActive(false);
+        if (isNeighbourhood)
+        {
+            NeighbourhoodAppScript.ChatApp.Send(CurrentMessage);
+            NeighbourhoodAppScript.Scenario();
+        }
+        else
+        {
+            PrivateAppScript.ChatApp.Send(CurrentMessage);
+            PrivateAppScript.Tutorial();
+        }
     }
 }
