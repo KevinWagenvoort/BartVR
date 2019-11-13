@@ -9,7 +9,7 @@ public class LocalChatScript : MonoBehaviour
 {
     public ChatApp ChatApp;
     public GameObject ChoiceBubbles;
-    public GameObject TextBalloon;
+    public GameObject TextBalloon, LeftHand, Phone;
     public TMP_Text BalloonText;
 
     private Sender Jongeren, Jij;
@@ -139,6 +139,9 @@ public class LocalChatScript : MonoBehaviour
                 break;
             case 11:
                 NPCTalk("Boeit ons toch niet", 2);
+                Phone.SetActive(true);
+                LeftHand.SetActive(false);
+                DistanceTrigger.ConversationIsDone = true;
                 break;
         }
         scenarioCount++;
