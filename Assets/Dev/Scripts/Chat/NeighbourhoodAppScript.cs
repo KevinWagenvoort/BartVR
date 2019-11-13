@@ -31,7 +31,6 @@ public class NeighbourhoodAppScript : MonoBehaviour
         possibleAnswers = new List<string>();
         possibleAnswers.Add("Wat is het adres?");
         possibleAnswers.Add("Kunt u omschrijven wat u precies ziet?");
-        Tutorial();
     }
 
     private int passCount = 0;

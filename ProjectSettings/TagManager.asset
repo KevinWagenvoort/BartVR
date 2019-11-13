@@ -55,6 +55,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: AlwaysOnTop
+    uniqueID: 2055988083
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

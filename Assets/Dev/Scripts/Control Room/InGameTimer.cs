@@ -4,18 +4,15 @@ using UnityEngine.UI;
 public class InGameTimer : MonoBehaviour {
 	[Tooltip("Update in game time every X seconds")]
     public float updateTimeEvery;
+    
+    public Text currentDate;
+    public Text currentTime;
 
-    private GameObject timestamp;
-    private Text currentDate;
-    private Text currentTime;
     private int hour;
     private double minute;
 
 	// Use this for initialization
     void Start () {
-		timestamp = transform.Find("Timestamp").gameObject;
-        currentDate = timestamp.transform.Find("Date").GetComponent<Text>();
-        currentTime = timestamp.transform.Find("Time").GetComponent<Text>();
         currentDate.text = System.DateTime.Now.ToString("dd/MM/yyyy");
         LoadTime();
         //Get function so we can extract its name dynamically rather than literal string

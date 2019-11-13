@@ -35,7 +35,7 @@ public class DistanceTrigger : MonoBehaviour
             LeftHand.SetActive(false);
             phoneIsActive = true;
         }
-        // TODO: SET TUTORIAL STUFF BACK
+
         if (distance < 160 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !StartedSendingMessages)
         {
             NeighbourhoodAppScript.Scenario();
