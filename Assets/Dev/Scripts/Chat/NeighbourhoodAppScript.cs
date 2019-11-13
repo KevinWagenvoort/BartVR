@@ -112,4 +112,9 @@ public class NeighbourhoodAppScript : MonoBehaviour
         ChatApp.Send(message);
         Invoke("Tutorial", 2);
     }
+
+    public void StartScenarioMessages()
+    {
+        Debug.Log("Start scenario messages");
+    }
 }
