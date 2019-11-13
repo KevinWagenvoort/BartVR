@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5622053898539880238, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_Name
-      value: IncidentMessage (Twitter)
+      value: IncidentMessage (Twitter) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6087606042612927967, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
@@ -117,6 +117,36 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_text
+      value: 'De politie is hiervan op de hoogte #Zwolle ^Nick'
+      objectReference: {fileID: 0}
     - target: {fileID: 7363599717636161041, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_Sprite
@@ -126,24 +156,49 @@ PrefabInstance:
     - target: {fileID: 6129714835028431967, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 57
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 6129714835028431967, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6129714835028431967, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6129714835028431967, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6129714835028431967, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6129714835028431967, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_text
+      value: 'Juwelier overvallen #shocking'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136463921415824908, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136463921415824908, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136463921415824908, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136463921415824908, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
@@ -164,51 +219,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3712453045539694783, guid: ad0fa3708bef28144a5df08fe3dde38a,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 57
-      objectReference: {fileID: 0}
-    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2136463921415824908, guid: ad0fa3708bef28144a5df08fe3dde38a,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2136463921415824908, guid: ad0fa3708bef28144a5df08fe3dde38a,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2136463921415824908, guid: ad0fa3708bef28144a5df08fe3dde38a,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2136463921415824908, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1

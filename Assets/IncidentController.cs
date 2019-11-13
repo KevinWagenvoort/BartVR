@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class IncidentController : MonoBehaviour
@@ -9,6 +10,8 @@ public class IncidentController : MonoBehaviour
     public GameObject Content;
     public GameObject ChatScreen;
     public GameObject OpenIncidentScreen;
+    public Color ActiveColor;
+
     public List<GameObject> ListOfIncidentsTypes = new List<GameObject>();
 
     //private
@@ -62,13 +65,14 @@ public class IncidentController : MonoBehaviour
         AddIncident(ListOfIncidentsTypes[3]);
     }
 
-    void LocationHandler ()
+    void LocationHandler()
     {
         Debug.Log("Location");
     }
 
     void SendHandler()
     {
+        EventSystem.current.currentSelectedGameObject.transform.parent.gameObject.SetActive(false);
         Debug.Log("Send");
     }
 
@@ -76,6 +80,7 @@ public class IncidentController : MonoBehaviour
     {
         OpenIncidentScreen.SetActive(false);
         ChatScreen.SetActive(true);
+        EventSystem.current.currentSelectedGameObject.transform.parent.Find("Background").gameObject.GetComponent<Image>().color = ActiveColor;
         Debug.Log("Open");
     }
 }
