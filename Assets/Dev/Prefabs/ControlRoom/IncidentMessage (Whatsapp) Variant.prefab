@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5622053898539880238, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_Name
-      value: IncidentMessage (Whatsapp)
+      value: IncidentMessage (Whatsapp) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6087606042612927967, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
@@ -125,12 +125,12 @@ PrefabInstance:
     - target: {fileID: 6129714835028431967, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6129714835028431967, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6129714835028431967, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
@@ -142,10 +142,15 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6129714835028431967, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_text
+      value: Groep jongeren veroorzaken overlast bij bartonio's pizza.
+      objectReference: {fileID: 0}
     - target: {fileID: 3712453045539694783, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3712453045539694783, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
@@ -161,6 +166,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712453045539694783, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_text
+      value: Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712453045539694783, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4064793657227524460, guid: ad0fa3708bef28144a5df08fe3dde38a,
         type: 3}
@@ -206,6 +221,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081713174251929399, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682894853015983022, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257077108095993813, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880740160892131658, guid: ad0fa3708bef28144a5df08fe3dde38a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad0fa3708bef28144a5df08fe3dde38a, type: 3}

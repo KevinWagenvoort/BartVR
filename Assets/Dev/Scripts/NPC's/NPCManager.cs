@@ -14,7 +14,7 @@ public class NPCManager : MonoBehaviour {
         npcMaker.Setup(NpcPrefabsPath, CheckpointContainer);
 
         // Create suspect
-        npcMaker.CreateSuspect();
+        //npcMaker.CreateSuspect();
 
         for(int i = 0; i < 5; i++)
         {
