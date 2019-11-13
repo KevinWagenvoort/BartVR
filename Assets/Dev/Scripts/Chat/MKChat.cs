@@ -26,6 +26,7 @@ public class MKChat : MonoBehaviour
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
         SendButton.onClick.AddListener(OnClickHandler);
         Dropdown.ClearOptions();
+        NeighbourhoodAppScript.Tutorial();
     }
 
     // Update is called once per frame
