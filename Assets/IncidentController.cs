@@ -22,7 +22,6 @@ public class IncidentController : MonoBehaviour
         AddIncident(ListOfIncidentsTypes[1]);
         AddIncident(ListOfIncidentsTypes[2]);
         Invoke("CreateScenarioIncident", 5);
-        LocationHandler();
     }
 
     void SetHandlers(GameObject gj)
@@ -53,8 +52,9 @@ public class IncidentController : MonoBehaviour
 
     void AddIncident (GameObject Incident)
     {
-        ListOfObjects.Add(Instantiate(Incident, Content.transform));
-        SetHandlers(Incident);
+        GameObject CopyOf = Instantiate(Incident, Content.transform);
+        ListOfObjects.Add(CopyOf);
+        SetHandlers(CopyOf);
     }
 
     void CreateScenarioIncident()
