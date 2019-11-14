@@ -8,7 +8,7 @@ public class MKChat : MonoBehaviour
 {
     public GameObject NeighbourhoodApp;
     public Button SendButton;
-    public GameObject ReceivedBubble, ReceivedPhotoBubble;
+    public GameObject ReceivedBubble, ReceivedPhotoBubble, Content;
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
     public GameObject Arrow;
@@ -75,20 +75,20 @@ public class MKChat : MonoBehaviour
             GameObject newMessage;
             if (LastMessage.sender.role == Sender.Role.Meldkamer)
             {
-                newMessage = Instantiate(SendBubble, SendBubble.transform.parent);
+                newMessage = Instantiate(SendBubble, Content.transform);
             }
             else
             {
                 if (LastMessage.type == Message.Type.Photo)
                 {
-                    newMessage = Instantiate(ReceivedPhotoBubble, ReceivedPhotoBubble.transform.parent);
+                    newMessage = Instantiate(ReceivedPhotoBubble, Content.transform);
                     Image photoComponent = newMessage.transform.Find("BubbleImage").Find("Photo").gameObject.GetComponent<Image>();
                     photoComponent.sprite = LastMessage.photo;
                     photoComponent.preserveAspect = true;
                 }
                 else
                 {
-                    newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
+                    newMessage = Instantiate(ReceivedBubble, Content.transform);
                 }
             }
             Transform bubbleImage = newMessage.transform.Find("BubbleImage");
@@ -133,5 +133,15 @@ public class MKChat : MonoBehaviour
         SendButton.interactable = false;
         CurrentMessage = null;
         Dropdown.ClearOptions();
+    }
+
+    public void ResetMK()
+    {
+        Transform[] GameArray = Content.GetComponentsInChildren<Transform>();
+        foreach (Transform gj in GameArray)
+        {
+            Destroy(gj.gameObject);
+        }
+        RenderedMessages = new List<Message>();
     }
 }

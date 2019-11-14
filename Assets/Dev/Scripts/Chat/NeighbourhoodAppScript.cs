@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class NeighbourhoodAppScript : MonoBehaviour
 {
     public ChatApp ChatApp;
-    public GameObject MKChat, SendMessageButton;
+    public GameObject MKChat, SendMessageButton, IncidentController;
+    public TMP_Text GroupChatName;
 
     private Sender Appel, Jij, Beer, Jong, Meldkamer;
     private List<string> possibleAnswers = new List<string>();
@@ -13,6 +15,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
     private MKChat MKChatScript;
     private SendMessage SendMessageButtonScript;
     private string currentScenario = "Tutorial";
+    private IncidentController IncidentControllerScript;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +23,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
         ChatApp = new ChatApp();
         MKChatScript = MKChat.GetComponent<MKChat>();
         SendMessageButtonScript = SendMessageButton.GetComponent<SendMessage>();
+        IncidentControllerScript = IncidentController.GetComponent<IncidentController>();
 
         //Senders
         Appel = new Sender("Daphne Appeltje", Sender.Role.Npc);
@@ -39,6 +43,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
         switch (passCount)
         {
             case 0:
+                GroupChatName.text = "De huistegers";
                 ChatApp.Send("Ik zie iemand in het huis van familie Benjamins.", Appel, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
@@ -92,6 +97,8 @@ public class NeighbourhoodAppScript : MonoBehaviour
             case 11:
                 ChatApp.Send("Gelukkig waren we er op tijd bij.", Jong, Message.Type.Other);
                 DistanceTrigger.TutorialControlRoomIsDone = true;
+                IncidentControllerScript.ResetMK();
+                MKChatScript.ResetMK();
                 currentScenario = "Scenario";
                 break;
         }
@@ -122,6 +129,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
         switch(scenarioPassCount)
         {
             case 0:
+                GroupChatName.text = "Pizzalanden";
                 ChatApp.Send("Horen jullie dat lawaai ook?", Appel, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;

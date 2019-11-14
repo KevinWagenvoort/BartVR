@@ -9,7 +9,7 @@ public class DistanceTrigger : MonoBehaviour
     public static bool TutorialControlRoomIsDone = false;
     public static bool ConversationIsDone = false;
     private bool phoneIsActive = true;
-    private bool StartedSendingMessages = false;
+    public static bool StartedSendingMessages = false;
     private bool NotificationSent = false;
     private NeighbourhoodAppScript NeighbourhoodAppScript;
     private MobileNeigborhoodChat MobileNeigborhoodChat;
