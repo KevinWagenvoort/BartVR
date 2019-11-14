@@ -45,10 +45,15 @@ public class IncidentController : MonoBehaviour
         }
     }
 
+    bool OneTimeStartedSendingMessages = true;
     // Update is called once per frame
     void Update()
     {
-        
+        if (DistanceTrigger.StartedSendingMessages && OneTimeStartedSendingMessages)
+        {
+            OneTimeStartedSendingMessages = false;
+            BeginScenario();
+        }
     }
 
     int passCount = 0;
@@ -75,6 +80,31 @@ public class IncidentController : MonoBehaviour
         }
 
         passCount++;
+    }
+    int bsCount = 0;
+    void BeginScenario()
+    {
+        switch (bsCount)
+        {
+            case 0:
+                AddIncident(ListOfIncidentsTypes[0], "Er zit een kat vast de in boom!", "Kun je de kat uit de boom proberen te lokken met voer?");
+                Invoke("BeginScenario", 2);
+                break;
+            case 1:
+                AddIncident(ListOfIncidentsTypes[1], "Mijn fiets is gestolen, maar de band ligt er nog.", "Klik <color=#0000FF>hier</color> om aangifte te doen via onze website.");
+                Invoke("BeginScenario", 2);
+                break;
+            case 2:
+                AddIncident(ListOfIncidentsTypes[2], "Juwelier overvallen #shocking", "De politie is hiervan op de hoogte #Zwolle ^Nick");
+                Invoke("BeginScenario", 2);
+                break;
+            case 3:
+                AddIncident(ListOfIncidentsTypes[3], "Groep jongeren veroorzaken overlast bij bartonio's pizza.", "");
+                Invoke("BeginScenario", 2);
+                break;
+        }
+
+        bsCount++;
     }
 
     void AddIncident (GameObject Incident, string message, string answer)
