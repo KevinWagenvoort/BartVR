@@ -17,7 +17,6 @@ public class MKChat : MonoBehaviour
 
     private List<Message> RenderedMessages = new List<Message>();
     private List<GameObject> CloneMessages = new List<GameObject>();
-    private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
     private Message CurrentMessage;
 
     // Start is called before the first frame update
@@ -137,11 +136,12 @@ public class MKChat : MonoBehaviour
 
     public void ResetMK()
     {
-        Transform[] GameArray = Content.GetComponentsInChildren<Transform>();
-        foreach (Transform gj in GameArray)
+        foreach (GameObject gj in CloneMessages)
         {
             Destroy(gj.gameObject);
         }
+        CloneMessages = new List<GameObject>();
         RenderedMessages = new List<Message>();
+        CurrentMessage = null;
     }
 }
