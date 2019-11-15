@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class EventHandler : MonoBehaviour {
 
-    private readonly string pictureRoot = "Assets/Resources/Snapshots/";
-
     [SerializeField]
     private GameObject escapeMenu;
 
@@ -21,16 +19,6 @@ public class EventHandler : MonoBehaviour {
                 escapeMenu.SetActive(true);
             }
         }
-    }
-
-    // Delete screenshots after application quit
-    private void OnApplicationQuit() {
-        DirectoryInfo di = new DirectoryInfo(pictureRoot);
-
-        if (di == null)
-            return;
-        foreach (FileInfo file in di.GetFiles())
-            file.Delete();
     }
 
     public void ReturnToMenu() {
