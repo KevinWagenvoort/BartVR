@@ -8,16 +8,19 @@ public class DistanceTrigger : MonoBehaviour
     public static bool TutorialBurgerIsDone = false;
     public static bool TutorialControlRoomIsDone = false;
     public static bool ConversationIsDone = false;
+    public bool VandalismHasHappend = false;
     private bool phoneIsActive = true;
     public static bool StartedSendingMessages = false;
     private bool NotificationSent = false;
     private NeighbourhoodAppScript NeighbourhoodAppScript;
     private MobileNeigborhoodChat MobileNeigborhoodChat;
+    private VandalismController VandalismController;
 
     private void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
         MobileNeigborhoodChat = PhoneChatAppPanel.GetComponent<MobileNeigborhoodChat>();
+        VandalismController = gameObject.GetComponent<VandalismController>();
     }
 
     // Update is called once per frame
@@ -34,6 +37,10 @@ public class DistanceTrigger : MonoBehaviour
             Phone.SetActive(true);
             LeftHand.SetActive(false);
             phoneIsActive = true;
+        } else if (distance >= 37 && ConversationIsDone && !VandalismHasHappend)//Conversation is over and player walked away
+        {
+            VandalismHasHappend = true;
+            VandalismController.StartVandalism();
         }
 
         if (distance < 160 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !StartedSendingMessages)
