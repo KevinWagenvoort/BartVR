@@ -13,6 +13,11 @@ public class MKChat : MonoBehaviour
     public TMP_Dropdown Dropdown;
     public GameObject Arrow;
 
+    public GameObject popup;
+    public GameObject popupMap;
+    public Button closePopup;
+    public Button closePopupMap;
+
     private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     private List<Message> RenderedMessages = new List<Message>();
@@ -24,6 +29,7 @@ public class MKChat : MonoBehaviour
     void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+        
         SendButton.onClick.AddListener(OnClickHandler);
         Dropdown.ClearOptions();
         NeighbourhoodAppScript.Tutorial();
@@ -34,6 +40,24 @@ public class MKChat : MonoBehaviour
     {
         CheckNewMessage();
     }
+
+    //void OnClickHandlerMap()
+    //{
+    //    if (popupMap.active)
+    //    {
+    //        popupMap.SetActive(false);
+    //        closePopup.onClick.AddListener(OnClickHandlerPopup);
+    //    }
+    //}
+
+    //void OnClickHandlerPopup()
+    //{
+    //    if (popup.active)
+    //    {
+    //        popup.SetActive(false);
+    //        NeighbourhoodAppScript.Tutorial();
+    //    }
+    //}
 
     void OnClickHandler()
     {

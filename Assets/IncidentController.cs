@@ -13,6 +13,15 @@ public class IncidentController : MonoBehaviour
     public GameObject OpenIncidentScreen;
     public Color ActiveColor;
 
+    public GameObject popup;
+    public GameObject popupMap;
+    public GameObject popupIncident;
+    public GameObject popupEnd;
+    public Button closePopup;
+    public Button closePopupMap;
+    public Button closePopupIncident;
+    public Button closePopupEnd;
+
     public List<GameObject> ListOfIncidentsTypes = new List<GameObject>();
 
     //private
@@ -22,7 +31,44 @@ public class IncidentController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TutScenario();
+        closePopupMap.onClick.AddListener(OnClickHandlerMap);
+        //TutScenario();
+    }
+
+    void OnClickHandlerMap()
+    {
+        if (popupMap.active)
+        {
+            popupMap.SetActive(false);
+            closePopupIncident.onClick.AddListener(OnClickHandlerIncident);
+        }
+    }
+
+    void OnClickHandlerIncident()
+    {
+        if (popupIncident.active)
+        {
+            popupIncident.SetActive(false);
+            closePopup.onClick.AddListener(OnClickHandlerPopup);
+        }
+    }
+
+    void OnClickHandlerPopup()
+    {
+        if (popup.active)
+        {
+            popup.SetActive(false);
+            closePopupEnd.onClick.AddListener(OnClickHandlerPopupEnd);
+        }
+    }
+
+    void OnClickHandlerPopupEnd()
+    {
+        if (popupEnd.active)
+        {
+            popupEnd.SetActive(false);
+            TutScenario();
+        }
     }
 
     void SetHandlers(GameObject gj)
