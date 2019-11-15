@@ -8,7 +8,7 @@ public class MKChat : MonoBehaviour
 {
     public GameObject NeighbourhoodApp;
     public Button SendButton;
-    public GameObject ReceivedBubble, ReceivedPhotoBubble;
+    public GameObject ReceivedBubble, ReceivedPhotoBubble, Content;
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
     public GameObject Arrow;
@@ -17,7 +17,6 @@ public class MKChat : MonoBehaviour
 
     private List<Message> RenderedMessages = new List<Message>();
     private List<GameObject> CloneMessages = new List<GameObject>();
-    private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
     private Message CurrentMessage;
 
     // Start is called before the first frame update
@@ -26,6 +25,7 @@ public class MKChat : MonoBehaviour
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
         SendButton.onClick.AddListener(OnClickHandler);
         Dropdown.ClearOptions();
+        NeighbourhoodAppScript.Tutorial();
     }
 
     // Update is called once per frame
@@ -74,20 +74,20 @@ public class MKChat : MonoBehaviour
             GameObject newMessage;
             if (LastMessage.sender.role == Sender.Role.Meldkamer)
             {
-                newMessage = Instantiate(SendBubble, SendBubble.transform.parent);
+                newMessage = Instantiate(SendBubble, Content.transform);
             }
             else
             {
                 if (LastMessage.type == Message.Type.Photo)
                 {
-                    newMessage = Instantiate(ReceivedPhotoBubble, ReceivedPhotoBubble.transform.parent);
+                    newMessage = Instantiate(ReceivedPhotoBubble, Content.transform);
                     Image photoComponent = newMessage.transform.Find("BubbleImage").Find("Photo").gameObject.GetComponent<Image>();
                     photoComponent.sprite = LastMessage.photo;
                     photoComponent.preserveAspect = true;
                 }
                 else
                 {
-                    newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
+                    newMessage = Instantiate(ReceivedBubble, Content.transform);
                 }
             }
             Transform bubbleImage = newMessage.transform.Find("BubbleImage");
@@ -132,5 +132,16 @@ public class MKChat : MonoBehaviour
         SendButton.interactable = false;
         CurrentMessage = null;
         Dropdown.ClearOptions();
+    }
+
+    public void ResetMK()
+    {
+        foreach (GameObject gj in CloneMessages)
+        {
+            Destroy(gj.gameObject);
+        }
+        CloneMessages = new List<GameObject>();
+        RenderedMessages = new List<Message>();
+        CurrentMessage = null;
     }
 }

@@ -64,4 +64,10 @@ public class ChatSwitcher : MonoBehaviour
         NeighbourhoodApp.SetActive(!NeighbourhoodApp.activeInHierarchy);
         PrivateApp.SetActive(!PrivateApp.activeInHierarchy);
     }
+
+    public void OpenNeighbourhoodApp()
+    {
+        NeighbourhoodApp.SetActive(true);
+        PrivateApp.SetActive(false);
+    }
 }

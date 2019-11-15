@@ -16,7 +16,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
     public Text SubjectText;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
-
+    private ChatSwitcher ChatSwitcher;
     private List<Message> RenderedMessages = new List<Message>();
     private List<GameObject> CloneMessages = new List<GameObject>();
     private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
@@ -25,6 +25,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
     void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+        ChatSwitcher = gameObject.GetComponent<ChatSwitcher>();
         foreach (Transform child in ChoiceBubbles.transform)
         {
             ChoiceBubbleTextList.Add(child.Find("Text").gameObject);
@@ -112,5 +113,10 @@ public class MobileNeigborhoodChat : MonoBehaviour
                 ChoiceBubbles.SetActive(false);
             }
         }
+    }
+
+    public void TriggerNotification()
+    {
+        ChatSwitcher.OpenNeighbourhoodApp();
     }
 }

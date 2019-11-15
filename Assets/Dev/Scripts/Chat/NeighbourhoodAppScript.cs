@@ -1,22 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class NeighbourhoodAppScript : MonoBehaviour
 {
     public ChatApp ChatApp;
-    public GameObject MKChat;
+    public GameObject MKChat, SendMessageButton, IncidentController;
+    public TMP_Text GroupChatName;
 
     private Sender Appel, Jij, Beer, Jong, Meldkamer;
     private List<string> possibleAnswers = new List<string>();
     private int chosenAnswer = 0;
     private MKChat MKChatScript;
+    private SendMessage SendMessageButtonScript;
+    private string currentScenario = "Tutorial";
+    private IncidentController IncidentControllerScript;
 
     // Start is called before the first frame update
     void Start()
     {
         ChatApp = new ChatApp();
         MKChatScript = MKChat.GetComponent<MKChat>();
+        SendMessageButtonScript = SendMessageButton.GetComponent<SendMessage>();
+        IncidentControllerScript = IncidentController.GetComponent<IncidentController>();
 
         //Senders
         Appel = new Sender("Daphne Appeltje", Sender.Role.Npc);
@@ -28,7 +35,6 @@ public class NeighbourhoodAppScript : MonoBehaviour
         possibleAnswers = new List<string>();
         possibleAnswers.Add("Wat is het adres?");
         possibleAnswers.Add("Kunt u omschrijven wat u precies ziet?");
-        Tutorial();
     }
 
     private int passCount = 0;
@@ -37,6 +43,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
         switch (passCount)
         {
             case 0:
+                GroupChatName.text = "De huistegers";
                 ChatApp.Send("Ik zie iemand in het huis van familie Benjamins.", Appel, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
@@ -90,6 +97,9 @@ public class NeighbourhoodAppScript : MonoBehaviour
             case 11:
                 ChatApp.Send("Gelukkig waren we er op tijd bij.", Jong, Message.Type.Other);
                 DistanceTrigger.TutorialControlRoomIsDone = true;
+                IncidentControllerScript.ResetMK();
+                MKChatScript.ResetMK();
+                currentScenario = "Scenario";
                 break;
         }
         passCount++;
@@ -99,7 +109,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
     {
         ChatApp.Send(possibleAnswers[messageNumber], Meldkamer, Message.Type.Other);
         chosenAnswer = messageNumber;
-        Invoke("Tutorial", 2);
+        Invoke(currentScenario, 2);
     }
 
     public void SendPhoto(Sprite photo)
@@ -110,6 +120,56 @@ public class NeighbourhoodAppScript : MonoBehaviour
     public void SendMessage(Message message)
     {
         ChatApp.Send(message);
-        Invoke("Tutorial", 2);
+        Invoke(currentScenario, 2);
+    }
+
+    private int scenarioPassCount = 0;
+    public void Scenario()
+    {
+        switch(scenarioPassCount)
+        {
+            case 0:
+                GroupChatName.text = "Pizzalanden";
+                ChatApp.Send("Horen jullie dat lawaai ook?", Appel, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 1:
+                ChatApp.Send("Ja, ik hoor het ook", Jong, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 2:
+                ChatApp.Send("Ja, het komt van een paar straten verderop", Beer, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 3:
+                ChatApp.Send("Onze honden worden er helemaal gek van", Appel, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 4:
+                ChatApp.Send("Moeten we de politie bellen?", Jong, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 5:
+                ChatApp.Send("Ja, misschien kunnen zij het oplossen", Appel, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 6:
+                MKChatScript.SetMessage("Wij zullen kijken of we kunnen helpen", Meldkamer, Message.Type.Other);
+                break;
+            case 7:
+                MKChatScript.SetMessage("Is er iemand in de buurt die even kan kijken?", Meldkamer, Message.Type.Other);
+                break;
+            case 8:
+                ChatApp.Send("Nee, ik moet zo weg", Beer, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 9:
+                SendMessageButtonScript.SetMessage("Ik kan wel even kijken", Jij, Message.Type.Other);
+                break;
+            case 10:
+                SendMessageButtonScript.SetMessage("Ik ben er nu in de buurt en kan ze zien", Jij, Message.Type.Other);
+                break;
+        }
+        scenarioPassCount++;
     }
 }
