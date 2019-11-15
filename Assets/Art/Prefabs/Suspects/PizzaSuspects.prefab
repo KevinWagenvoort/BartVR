@@ -6128,6 +6128,8 @@ MonoBehaviour:
   CameraRig: {fileID: 0}
   Phone: {fileID: 0}
   LeftHand: {fileID: 0}
+  NeighbourhoodApp: {fileID: 0}
+  PhoneChatAppPanel: {fileID: 0}
 --- !u!1 &4053052153707777507
 GameObject:
   m_ObjectHideFlags: 0
@@ -13352,6 +13354,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1740176549101101004, guid: 2c09e73213ce9df41b648f958615e659,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5245141285971470967, guid: 2c09e73213ce9df41b648f958615e659,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13421,6 +13428,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.35046774
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613039053637836494, guid: 2c09e73213ce9df41b648f958615e659,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151053781417333195, guid: 2c09e73213ce9df41b648f958615e659,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2980434240639207405, guid: 2c09e73213ce9df41b648f958615e659,
         type: 3}
