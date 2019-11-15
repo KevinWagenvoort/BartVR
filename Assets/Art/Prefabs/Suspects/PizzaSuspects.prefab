@@ -6148,6 +6148,8 @@ MonoBehaviour:
   Thrower: {fileID: 0}
   Window: {fileID: 0}
   ThrowingObject: {fileID: 0}
+  FlyingObject: {fileID: 0}
+  LandedObject: {fileID: 0}
   BrokenWindowMesh: {fileID: 0}
 --- !u!1 &4053052153707777507
 GameObject:
@@ -11471,7 +11473,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6af55938748c07f4b9a51315230742d4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0

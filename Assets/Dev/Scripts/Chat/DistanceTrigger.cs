@@ -37,7 +37,7 @@ public class DistanceTrigger : MonoBehaviour
             Phone.SetActive(true);
             LeftHand.SetActive(false);
             phoneIsActive = true;
-        } else if (!VandalismHasHappend)//Conversation is over and player walked away // distance >= 37 && ConversationIsDone && !VandalismHasHappend
+        } else if (distance >= 37 && ConversationIsDone && !VandalismHasHappend)//Conversation is over and player walked away
         {
             VandalismHasHappend = true;
             VandalismController.StartVandalism();

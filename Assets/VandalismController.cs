@@ -10,12 +10,14 @@ public class VandalismController : MonoBehaviour
 
     private Animator animator;
     private MeshFilter meshFilter;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = Thrower.GetComponent<Animator>();
         meshFilter = Window.GetComponent<MeshFilter>();
+        audioSource = Window.GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
@@ -39,6 +41,7 @@ public class VandalismController : MonoBehaviour
     void MidVandalism()
     {
         //TODO: Add glass breaking sound
+        audioSource.Play();
 
         ThrowingObject.SetActive(false);
         FlyingObject.SetActive(true);
@@ -51,14 +54,5 @@ public class VandalismController : MonoBehaviour
         FlyingObject.SetActive(false);
         LandedObject.SetActive(true);
         meshFilter.mesh = BrokenWindowMesh;
-        Invoke("StartVandalism", 5);
-    }
-
-    void ResetVandalism()
-    {
-        ThrowingObject.SetActive(false);
-        FlyingObject.SetActive(false);
-        LandedObject.SetActive(false);
-        StartVandalism();
     }
 }
