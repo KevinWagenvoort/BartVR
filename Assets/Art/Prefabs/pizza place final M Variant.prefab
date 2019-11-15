@@ -241,7 +241,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2614958202364284914}
-  m_Mesh: {fileID: -8678823145569952518, guid: aae1eadcb1f782b41878364dec298a67, type: 3}
+  m_Mesh: {fileID: -1550514412580984892, guid: aae1eadcb1f782b41878364dec298a67, type: 3}
 --- !u!23 &2115100164537087111
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -438,7 +438,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4235723607018418494}
-  m_Mesh: {fileID: -8678823145569952518, guid: aae1eadcb1f782b41878364dec298a67, type: 3}
+  m_Mesh: {fileID: -1550514412580984892, guid: aae1eadcb1f782b41878364dec298a67, type: 3}
 --- !u!23 &5445131687660679176
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1055,6 +1055,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 475260461080781793}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 8803e27afb1c3424e85209f4770f2b53,
+        type: 3}
+      propertyPath: m_Name
+      value: Pizza Bord new
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8803e27afb1c3424e85209f4770f2b53,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1109,11 +1114,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 8803e27afb1c3424e85209f4770f2b53,
-        type: 3}
-      propertyPath: m_Name
-      value: Pizza Bord new
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 8803e27afb1c3424e85209f4770f2b53,
         type: 3}
