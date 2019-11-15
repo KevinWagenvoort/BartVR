@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VandalismController : MonoBehaviour
 {
-    public GameObject Thrower, Window, ThrowingObject;
+    public GameObject Thrower, Window, ThrowingObject, FlyingObject, LandedObject;
 
     public Mesh BrokenWindowMesh;
 
@@ -26,7 +26,6 @@ public class VandalismController : MonoBehaviour
 
     public void StartVandalism()
     {
-        Debug.Log("StartVandalism");
         Invoke("DoingVandalism", 5);
     }
 
@@ -34,12 +33,32 @@ public class VandalismController : MonoBehaviour
     {
         animator.SetTrigger("VandalismTrigger");
         ThrowingObject.SetActive(true);
-        Invoke("DoneVandalism", 1);
+        Invoke("MidVandalism", 1);
+    }
+
+    void MidVandalism()
+    {
+        //TODO: Add glass breaking sound
+
+        ThrowingObject.SetActive(false);
+        FlyingObject.SetActive(true);
+        meshFilter.mesh = BrokenWindowMesh;
+        Invoke("DoneVandalism", 0.1f);
     }
 
     void DoneVandalism()
     {
-        ThrowingObject.SetActive(false);
+        FlyingObject.SetActive(false);
+        LandedObject.SetActive(true);
         meshFilter.mesh = BrokenWindowMesh;
+        Invoke("StartVandalism", 5);
+    }
+
+    void ResetVandalism()
+    {
+        ThrowingObject.SetActive(false);
+        FlyingObject.SetActive(false);
+        LandedObject.SetActive(false);
+        StartVandalism();
     }
 }
