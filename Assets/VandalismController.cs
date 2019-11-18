@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class VandalismController : MonoBehaviour
 {
-    public GameObject Thrower, Window, ThrowingObject, FlyingObject, LandedObject;
+    public GameObject Thrower, Window, ThrowingObject, FlyingObject, LandedObject, NeighbourhoodApp;
 
     public Mesh BrokenWindowMesh;
 
     private Animator animator;
     private MeshFilter meshFilter;
     private AudioSource audioSource;
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class VandalismController : MonoBehaviour
         animator = Thrower.GetComponent<Animator>();
         meshFilter = Window.GetComponent<MeshFilter>();
         audioSource = Window.GetComponentInChildren<AudioSource>();
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
     }
 
     // Update is called once per frame
@@ -54,5 +56,6 @@ public class VandalismController : MonoBehaviour
         FlyingObject.SetActive(false);
         LandedObject.SetActive(true);
         meshFilter.mesh = BrokenWindowMesh;
+        NeighbourhoodAppScript.Scenario();
     }
 }
