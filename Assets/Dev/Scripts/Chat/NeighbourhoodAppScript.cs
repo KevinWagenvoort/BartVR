@@ -107,9 +107,21 @@ public class NeighbourhoodAppScript : MonoBehaviour
 
     public void SendChoice(int messageNumber)
     {
-        ChatApp.Send(possibleAnswers[messageNumber], Meldkamer, Message.Type.Other);
         chosenAnswer = messageNumber;
-        Invoke(currentScenario, 2);
+        if (currentScenario != "Scenario")
+        {
+            ChatApp.Send(possibleAnswers[messageNumber], Meldkamer, Message.Type.Other);
+            Invoke(currentScenario, 2);
+        }
+        else
+        {
+            Scenario();
+        }
+    }
+
+    public void SendChoiceCitizen(string text)
+    {
+        ChatApp.Send(text, Jij, Message.Type.QuestionTrigger, possibleAnswers);
     }
 
     public void SendPhoto(Sprite photo)
@@ -120,7 +132,10 @@ public class NeighbourhoodAppScript : MonoBehaviour
     public void SendMessage(Message message)
     {
         ChatApp.Send(message);
-        Invoke(currentScenario, 2);
+        if (message.type != Message.Type.QuestionTrigger)
+        {
+            Invoke(currentScenario, 2);
+        }
     }
 
     private int scenarioPassCount = 0;
@@ -240,14 +255,46 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
             case 30:
                 possibleAnswers = new List<string>();
-                possibleAnswers.Add("Zijn er verdovende middelen in het spel?");
                 possibleAnswers.Add("Hebben de jongeren naast de ruit nog meer vernield?");
                 possibleAnswers.Add("Om hoeveel jongeren gaat het?");
-                possibleAnswers.Add("Heeft u gezien wie van de jongeren de ruit heeft ingegooid, zo ja zou u dan een beschrijving kunnen geven van deze persoon?");
                 possibleAnswers.Add("Zou u een foto kunnen maken van de huidige situatie?");
                 MKChatScript.SetMessage("We zullen u een aantal vragen stellen zodat de agent genoeg informatie heeft", Meldkamer, Message.Type.QuestionTrigger, possibleAnswers);
                 break;
+            case 31:
+                AskQuestionToCitizen();
+                break;
+            case 32:
+                AskQuestionToCitizen();
+                break;
+            case 33:
+                AskQuestionToCitizen();
+                break;
+
         }
         scenarioPassCount++;
+    }
+
+    void AskQuestionToCitizen()
+    {
+        List<string> citizenAnswers;
+        switch (chosenAnswer)
+        {
+            case 0:
+                citizenAnswers = new List<string>();
+                citizenAnswers.Add("Ja, ik zie ook een kapotte prullenbak");
+                citizenAnswers.Add("Nee, alleen de ruit");
+                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Question, citizenAnswers);
+                break;
+            case 1:
+                citizenAnswers = new List<string>();
+                citizenAnswers.Add("Drie");
+                citizenAnswers.Add("Vijf");
+                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Question, citizenAnswers);
+                break;
+            case 2:
+                // Open camera button
+                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Other);
+                break;
+        }
     }
 }
