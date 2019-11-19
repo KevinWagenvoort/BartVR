@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PhotoHandler : MonoBehaviour {
 
-    public GameObject VirtualCamera, Preview, FeedbackPanel, NeighbourhoodApp;
+    public GameObject VirtualCamera, Preview, FeedbackPanel, NeighbourhoodApp, ChatAppPanel;
     private string pictureRoot;
     private string tempPath;
 
@@ -126,5 +126,7 @@ public class PhotoHandler : MonoBehaviour {
     private void TurnOffFeedbackPanel()
     {
         FeedbackPanel.SetActive(false);
+        gameObject.SetActive(false);
+        ChatAppPanel.SetActive(true);
     }
 }

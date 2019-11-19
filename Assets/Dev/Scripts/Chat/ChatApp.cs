@@ -77,7 +77,9 @@ public class Message
         Answer,
         Other,
         Location,
-        Photo
+        Photo,
+        PhotoRequest,
+        PhotoQuestionTrigger
     }
 }
 

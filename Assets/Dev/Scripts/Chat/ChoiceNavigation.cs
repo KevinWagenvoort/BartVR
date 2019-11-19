@@ -67,7 +67,7 @@ public class ChoiceNavigation : MonoBehaviour
                 }
                 else
                 {
-                    NeighbourhoodAppScript.SendChoice(Selected.selected);
+                    NeighbourhoodAppScript.SendChoiceCitizen(Buttons[Selected.selected].GetText());
                 }
             }
         } catch (Exception e)
@@ -93,7 +93,7 @@ public class ChoiceNavigation : MonoBehaviour
             }
             else
             {
-                NeighbourhoodAppScript.SendChoice(Selected.selected);
+                NeighbourhoodAppScript.SendChoiceCitizen(Buttons[Selected.selected].GetText());
             }
         }
     }
