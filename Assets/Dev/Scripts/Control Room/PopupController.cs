@@ -35,6 +35,7 @@ public class PopupController : MonoBehaviour
         {
             popupMap.SetActive(false);
             closePopupIncident.onClick.AddListener(OnClickHandlerIncident);
+            popupIncident.SetActive(true);
         }
     }
 
@@ -44,6 +45,8 @@ public class PopupController : MonoBehaviour
         {
             popupIncident.SetActive(false);
             closePopup.onClick.AddListener(OnClickHandlerPopup);
+            popup.SetActive(true);
+
         }
     }
 
@@ -53,6 +56,7 @@ public class PopupController : MonoBehaviour
         {
             popup.SetActive(false);
             closePopupEnd.onClick.AddListener(OnClickHandlerPopupEnd);
+            popupEnd.SetActive(true);
         }
     }
 
