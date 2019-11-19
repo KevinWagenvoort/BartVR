@@ -45,7 +45,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
         {
             case 0:
                 GroupChatName.text = "Buurtapp De huistegers";
-                ChatApp.Send("Ik zie iemand in het huis van familie Benjamins.", Appel, Message.Type.Other);
+                ChatApp.Send("Ik zie iemand in het huis van familie Benjamins.", Appel, Message.Type.Other, null, null, "iemand in huis");
                 Invoke("Tutorial", 2);
                 break;
             case 1:
@@ -62,20 +62,20 @@ public class NeighbourhoodAppScript : MonoBehaviour
             case 4:
                 if (chosenAnswer == 0)
                 {
-                    ChatApp.Send("Huissteeg 1", Appel, Message.Type.QuestionTrigger, possibleAnswers);
+                    ChatApp.Send("Huissteeg 1", Appel, Message.Type.QuestionTrigger, possibleAnswers, null, "huissteeg 1");
                 } else
                 {
-                    ChatApp.Send("Ik denk dat ik een inbreker binnen zie.", Appel, Message.Type.QuestionTrigger, possibleAnswers);
+                    ChatApp.Send("Ik denk dat ik een inbreker binnen zie.", Appel, Message.Type.QuestionTrigger, possibleAnswers, null, "inbreker");
                 }
                 break;
             case 5:
                 if (chosenAnswer == 0)
                 {
-                    ChatApp.Send("Huissteeg 1", Appel, Message.Type.Other);
+                    ChatApp.Send("Huissteeg 1", Appel, Message.Type.Other, null, null, "huissteeg 1");
                 }
                 else
                 {
-                    ChatApp.Send("Ik denk dat ik een inbreker binnen zie.", Appel, Message.Type.Other);
+                    ChatApp.Send("Ik denk dat ik een inbreker binnen zie.", Appel, Message.Type.Other, null, null, "inbreker");
                 }
                 Invoke("Tutorial", 2);
                 break;
@@ -160,7 +160,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
         {
             case 0:
                 GroupChatName.text = "Buurtapp Pizzalanden";
-                ChatApp.Send("Horen jullie dat lawaai ook?", Appel, Message.Type.Other);
+                ChatApp.Send("Horen jullie dat lawaai ook?", Appel, Message.Type.Other, null, null, "lawaai");
                 Invoke("Scenario", 2);
                 break;
             case 1:
@@ -168,7 +168,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Scenario", 2);
                 break;
             case 2:
-                ChatApp.Send("Ja, het komt van een paar straten verderop", Beer, Message.Type.Other);
+                ChatApp.Send("Ja, het komt van een paar straten verderop", Beer, Message.Type.Other, null, null, "van paar straten verderop");
                 Invoke("Scenario", 2);
                 break;
             case 3:
@@ -208,7 +208,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Scenario", 2);
                 break;
             case 13:
-                SendMessageButtonScript.SetMessage("Ze hebben een ruit ingegooid", Jij, Message.Type.Other);
+                SendMessageButtonScript.SetMessage("Ze hebben een ruit ingegooid", Jij, Message.Type.Other, null, null, "ruit ingegooid");
                 break;
             case 14:
                 Invoke("Scenario", 2);
@@ -226,11 +226,11 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Scenario", 2);
                 break;
             case 18:
-                ChatApp.Send("VAN BARTONIO'S?", Jong, Message.Type.Other);
+                ChatApp.Send("VAN BARTONIO'S?", Jong, Message.Type.Other, null, null, "bartonio's");
                 Invoke("Scenario", 2);
                 break;
             case 19:
-                SendMessageButtonScript.SetMessage("Ja, met een steen", Jij, Message.Type.Other);
+                SendMessageButtonScript.SetMessage("Ja, met een steen", Jij, Message.Type.Other, null, null, "steen");
                 break;
             case 20:
                 Invoke("Scenario", 2);
@@ -244,7 +244,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Scenario", 2);
                 break;
             case 23:
-                ChatApp.Send("Eerst al overlast met hun muziek en nu dit!!!", Beer, Message.Type.Other);
+                ChatApp.Send("Eerst al overlast met hun muziek en nu dit!!!", Beer, Message.Type.Other, null, null, "overlast muziek");
                 Invoke("Scenario", 2);
                 break;
             case 24:
@@ -252,7 +252,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Scenario", 2);
                 break;
             case 25:
-                SendMessageButtonScript.SetMessage("Ze zijn veel te agressief", Jij, Message.Type.Other);
+                SendMessageButtonScript.SetMessage("Ze zijn veel te agressief", Jij, Message.Type.Other, null, null, "agressief");
                 break;
             case 26:
                 SendMessageButtonScript.SetMessage("De politie moet er nu wel echt bij komen", Jij, Message.Type.Other);
