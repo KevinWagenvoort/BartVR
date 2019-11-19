@@ -13,6 +13,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
     public GameObject ChoiceBubbles;
     public GameObject MapOpenBubble;
     public GameObject SendPhotoBubble;
+    public GameObject CameraOpenBubble;
     public Text SubjectText;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
@@ -20,6 +21,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
     private List<Message> RenderedMessages = new List<Message>();
     private List<GameObject> CloneMessages = new List<GameObject>();
     private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
+    private Message.Type PreviousMessageType;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +62,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
             GameObject newMessage;
             if (LastMessage.sender.role == Sender.Role.Burger)
             {
-                if (LastMessage.type == Message.Type.Photo)
+                if (LastMessage.type == Message.Type.Photo || LastMessage.type == Message.Type.PhotoQuestionTrigger)
                 {
                     newMessage = Instantiate(SendPhotoBubble, SendPhotoBubble.transform.parent);
                     Image photoComponent = newMessage.transform.Find("BubbleImage").Find("Photo").gameObject.GetComponent<Image>();
@@ -79,6 +81,10 @@ public class MobileNeigborhoodChat : MonoBehaviour
                 {
                     newMessage = Instantiate(ReceivedLocationBubble, ReceivedLocationBubble.transform.parent);
                     MapOpenBubble.SetActive(true);
+                } else if (LastMessage.type == Message.Type.PhotoRequest)
+                {
+                    newMessage = Instantiate(ReceivedBubble, ReceivedBubble.transform.parent);
+                    CameraOpenBubble.SetActive(true);
                 }
                 else
                 {
@@ -87,7 +93,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
                 }
             }
             Transform bubbleImage = newMessage.transform.Find("BubbleImage");
-            if (LastMessage.type != Message.Type.Photo)
+            if (LastMessage.type != Message.Type.Photo && LastMessage.type != Message.Type.PhotoQuestionTrigger)
             {
                 bubbleImage.Find("MessageText").gameObject.GetComponent<Text>().text = LastMessage.message;
             }
@@ -112,6 +118,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
             {
                 ChoiceBubbles.SetActive(false);
             }
+            PreviousMessageType = LastMessage.type;
         }
     }
 

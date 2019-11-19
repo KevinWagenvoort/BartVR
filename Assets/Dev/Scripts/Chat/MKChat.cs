@@ -63,7 +63,7 @@ public class MKChat : MonoBehaviour
 
         if (!RenderedMessages.Contains(LastMessage) && LastMessage != null)
         {
-            if (LastMessage.type == Message.Type.Photo)
+            if (LastMessage.type == Message.Type.Photo || LastMessage.type == Message.Type.PhotoQuestionTrigger)
             {
                 MoveAllMessages(510);
             } else
@@ -78,7 +78,7 @@ public class MKChat : MonoBehaviour
             }
             else
             {
-                if (LastMessage.type == Message.Type.Photo)
+                if (LastMessage.type == Message.Type.Photo || LastMessage.type == Message.Type.PhotoQuestionTrigger)
                 {
                     newMessage = Instantiate(ReceivedPhotoBubble, Content.transform);
                     Image photoComponent = newMessage.transform.Find("BubbleImage").Find("Photo").gameObject.GetComponent<Image>();
@@ -91,7 +91,7 @@ public class MKChat : MonoBehaviour
                 }
             }
             Transform bubbleImage = newMessage.transform.Find("BubbleImage");
-            if (LastMessage.type != Message.Type.Photo)
+            if (LastMessage.type != Message.Type.Photo && LastMessage.type != Message.Type.PhotoQuestionTrigger)
             {
                 bubbleImage.Find("MessageText").gameObject.GetComponent<TMP_Text>().text = LastMessage.message;
             }
@@ -99,7 +99,7 @@ public class MKChat : MonoBehaviour
             {
                 bubbleImage.Find("MessageSenderName").gameObject.GetComponent<TMP_Text>().text = LastMessage.sender.name;
             }
-            if (LastMessage.type == Message.Type.QuestionTrigger)
+            if (LastMessage.type == Message.Type.QuestionTrigger || LastMessage.type == Message.Type.PhotoQuestionTrigger)
             {
                 Dropdown.ClearOptions();
                 Dropdown.AddOptions(LastMessage.possibleAnswers);
