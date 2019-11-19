@@ -950,10 +950,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ecddb56c921aa9489b4cdc0b0eb501b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VirtualCamera: {fileID: 0}
-  Preview: {fileID: 0}
-  FeedbackPanel: {fileID: 0}
+  VirtualCamera: {fileID: 1738111326254551}
+  Preview: {fileID: 1027423513160083}
+  FeedbackPanel: {fileID: 4664916005965226061}
   NeighbourhoodApp: {fileID: 0}
+  ChatAppPanel: {fileID: 1711967388300215}
 --- !u!1 &1537031705674967
 GameObject:
   m_ObjectHideFlags: 0
