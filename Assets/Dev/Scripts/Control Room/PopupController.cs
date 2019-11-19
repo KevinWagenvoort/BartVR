@@ -8,10 +8,12 @@ public class PopupController : MonoBehaviour
     public GameObject popup;
     public GameObject popupMap;
     public GameObject popupIncident;
+    public GameObject popupKernwoorden;
     public GameObject popupEnd;
     public Button closePopup;
     public Button closePopupMap;
     public Button closePopupIncident;
+    public Button closePopupKernwoorden;
     public Button closePopupEnd;
 
     public IncidentController incidentController;
@@ -55,6 +57,16 @@ public class PopupController : MonoBehaviour
         if (popup.active)
         {
             popup.SetActive(false);
+            closePopupKernwoorden.onClick.AddListener(OnClickHandlerPopupKernwoorden);
+            popupKernwoorden.SetActive(true);
+        }
+    }
+
+    void OnClickHandlerPopupKernwoorden()
+    {
+        if (popupKernwoorden.active)
+        {
+            popupKernwoorden.SetActive(false);
             closePopupEnd.onClick.AddListener(OnClickHandlerPopupEnd);
             popupEnd.SetActive(true);
         }
