@@ -126,7 +126,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
 
     public void SendPhoto(Sprite photo)
     {
-        ChatApp.Send("", Jij, Message.Type.Photo, null, photo);
+        ChatApp.Send("", Jij, Message.Type.PhotoQuestionTrigger, possibleAnswers, photo);
     }
 
     public void SendMessage(Message message)
@@ -269,7 +269,6 @@ public class NeighbourhoodAppScript : MonoBehaviour
             case 33:
                 AskQuestionToCitizen();
                 break;
-
         }
         scenarioPassCount++;
     }
@@ -293,7 +292,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
             case 2:
                 // Open camera button
-                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Other);
+                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.PhotoRequest);
                 break;
         }
     }
