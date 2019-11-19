@@ -16,6 +16,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
     private SendMessage SendMessageButtonScript;
     private string currentScenario = "Tutorial";
     private IncidentController IncidentControllerScript;
+    private bool conversationIsDone = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
         switch (passCount)
         {
             case 0:
-                GroupChatName.text = "De huistegers";
+                GroupChatName.text = "Buurtapp De huistegers";
                 ChatApp.Send("Ik zie iemand in het huis van familie Benjamins.", Appel, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
@@ -121,12 +122,26 @@ public class NeighbourhoodAppScript : MonoBehaviour
 
     public void SendChoiceCitizen(string text)
     {
-        ChatApp.Send(text, Jij, Message.Type.QuestionTrigger, possibleAnswers);
+        if (!conversationIsDone)
+        {
+            ChatApp.Send(text, Jij, Message.Type.QuestionTrigger, possibleAnswers);
+        } else
+        {
+            ChatApp.Send(text, Jij, Message.Type.Other);
+            Invoke("Scenario", 1);
+        }
     }
 
     public void SendPhoto(Sprite photo)
     {
-        ChatApp.Send("", Jij, Message.Type.PhotoQuestionTrigger, possibleAnswers, photo);
+        if (!conversationIsDone)
+        {
+            ChatApp.Send("", Jij, Message.Type.PhotoQuestionTrigger, possibleAnswers, photo);
+        } else
+        {
+            ChatApp.Send("", Jij, Message.Type.Photo, null, photo);
+            Invoke("Scenario", 1);
+        }
     }
 
     public void SendMessage(Message message)
@@ -144,7 +159,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
         switch(scenarioPassCount)
         {
             case 0:
-                GroupChatName.text = "Pizzalanden";
+                GroupChatName.text = "Buurtapp Pizzalanden";
                 ChatApp.Send("Horen jullie dat lawaai ook?", Appel, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
@@ -268,6 +283,10 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
             case 33:
                 AskQuestionToCitizen();
+                conversationIsDone = true;
+                break;
+            case 34:
+                MKChatScript.SetMessage("Bedankt, de agent is onderweg", Meldkamer, Message.Type.Other);
                 break;
         }
         scenarioPassCount++;
