@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -68,7 +69,7 @@ public class VirtualGUI : MonoBehaviour {
     private float cursorMargin = 0.15f;
 
     [SerializeField]
-    private GameObject MessageIcon;
+    private GameObject MessageIcon, PhoneSpeakers;
     public GameObject MenuTutorial;
 
     // Use this for initialization
@@ -76,6 +77,7 @@ public class VirtualGUI : MonoBehaviour {
         pHandler = new PhotoHandler();
         iHandler = new InputHandler();
         trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
+        StartCoroutine(LongVibration(1, 3999));
     }
 
     // Update is called once per frame
@@ -124,6 +126,25 @@ public class VirtualGUI : MonoBehaviour {
         RunCameraPopUp(confirmPanel.activeInHierarchy);
     }
 
+    // Vibrate phone
+
+    IEnumerator LongVibration(float seconds, ushort strength)
+    {
+        for (float i = 0; i < seconds; i += Time.deltaTime)
+        {
+            try
+            {
+                device = SteamVR_Controller.Input((int)trackedObject.index);
+                device.TriggerHapticPulse(strength);
+            }
+            catch
+            {
+
+            }
+            yield return null; //every single frame for the duration of "length" you will vibrate at "strength" amount
+        }
+    }
+
     // MAIN MENU ----
 
     void PCNavigation()
@@ -135,6 +156,7 @@ public class VirtualGUI : MonoBehaviour {
         else if (Input.GetKeyUp(KeyCode.Alpha2))
         {
             LaunchApp(2);
+            RunChat();
         }
         else if (Input.GetKeyUp(KeyCode.Alpha3))
         {
@@ -175,6 +197,7 @@ public class VirtualGUI : MonoBehaviour {
     private void RunChat()
     {
         MessageIcon.SetActive(false);
+        PhoneSpeakers.SetActive(false);
     }
 
     private void LaunchApp(int app) {

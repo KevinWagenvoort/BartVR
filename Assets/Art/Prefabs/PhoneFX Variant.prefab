@@ -1175,6 +1175,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -85
   MessageIcon: {fileID: 917720430724566154}
+  PhoneSpeakers: {fileID: 5974547255320387305}
   MenuTutorial: {fileID: 0}
 --- !u!1 &1604913370725769
 GameObject:
@@ -6115,7 +6116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2552660873691941074
 Transform:
   m_ObjectHideFlags: 0
