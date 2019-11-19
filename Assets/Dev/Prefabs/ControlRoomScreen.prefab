@@ -2517,18 +2517,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4692975634768993631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d3916663f4321c4d857f0449a6926e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e22f619e406bc14bb262903ec7385d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Content: {fileID: 4692975636030921343}
   ChatScreen: {fileID: 4692975636069306864}
   OpenIncidentScreen: {fileID: 4827259243770383950}
   ActiveColor: {r: 0, g: 0, b: 0, a: 0}
-  ListOfIncidentsTypes:
-  - {fileID: 6933362577478989706, guid: 2645056b2797e82478929979fdb287c7, type: 3}
-  - {fileID: 7383824784002020172, guid: b53a01c0c0c4a804ab19044700ee3a16, type: 3}
-  - {fileID: 8632017239223810969, guid: e7276c7c511a83e419ceef2cd3417152, type: 3}
-  - {fileID: 3064942579565348474, guid: 24c4c5fdec2987044a71e2f7b2a04824, type: 3}
+  ListOfIncidentsTypes: []
 --- !u!1 &4692975634789843039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5854,6 +5850,10 @@ MonoBehaviour:
     type: 3}
   Dropdown: {fileID: 4692975635681251525}
   Arrow: {fileID: 4692975636037965190}
+  popup: {fileID: 0}
+  popupMap: {fileID: 0}
+  closePopup: {fileID: 0}
+  closePopupMap: {fileID: 0}
 --- !u!1 &4827259243770383950
 GameObject:
   m_ObjectHideFlags: 0
@@ -5977,7 +5977,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -63.4}
+  m_AnchoredPosition: {x: 0, y: -63.399902}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8910051810454114180
