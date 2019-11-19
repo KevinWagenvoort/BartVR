@@ -10,21 +10,17 @@ public class NotificationsController : MonoBehaviour
 
     //private
     private GameObject ActiveNotification = null;
+    private SteamVR_TrackedObject trackedObject;
+    private SteamVR_Controller.Device controller;
 
-    int a = 0;
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.B))
+        try
         {
-            SetActiveNotification(NotificationType[a], NotificationType[a].name + ": Dit is een hele lange zin, maar is deze zin wel lang genoeg?");
-            a++;
-        } else if (Input.GetKeyUp(KeyCode.N))
+            controller = SteamVR_Controller.Input((int)trackedObject.index);
+        } catch
         {
-            HideNotification();
-        }
-        else if (Input.GetKeyUp(KeyCode.M))
-        {
-            ShowNotification();
+
         }
     }
 
@@ -53,6 +49,7 @@ public class NotificationsController : MonoBehaviour
         ActiveNotification.GetComponentInChildren<TMP_Text>().text = message;
         ShowNotification();//Show new
         HideAfterSeconds(2.5f);
+        StartCoroutine(LongVibration(1, 3999));
     }
 
     GameObject NotificatioToHide;
@@ -60,5 +57,20 @@ public class NotificationsController : MonoBehaviour
     {
         NotificatioToHide = ActiveNotification;
         Invoke("HideNotification", 3);
+    }
+
+    IEnumerator LongVibration(float seconds, ushort strength)
+    {
+        for (float i = 0; i < seconds; i += Time.deltaTime)
+        {
+            try
+            {
+                controller.TriggerHapticPulse(strength);
+            } catch
+            {
+
+            }
+            yield return null; //every single frame for the duration of "length" you will vibrate at "strength" amount
+        }
     }
 }
