@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,6 +11,7 @@ public class IncidentController : MonoBehaviour
     public GameObject Content;
     public GameObject ChatScreen;
     public GameObject OpenIncidentScreen;
+    public GameObject NeighbourhoodApp;
     public Color ActiveColor;
 
     public PopupController popupController;
@@ -20,12 +21,12 @@ public class IncidentController : MonoBehaviour
     //private
     private List<GameObject> ListOfIncidents = new List<GameObject>();
     private List<GameObject> ListOfObjects = new List<GameObject>();
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        //popupController.closePopupMap.onClick.AddListener(popupController.OnClickHandlerMap);
-        //TutScenario();
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
     }
 
     
@@ -38,13 +39,13 @@ public class IncidentController : MonoBehaviour
             switch (btn.name)
             {
                 case "LocationButton":
-                    btn.onClick.AddListener(LocationHandler);
+                    btn.onClick.AddListener(() => LocationHandler(btn));
                     break;
                 case "SendButton":
-                    btn.onClick.AddListener(SendHandler);
+                    btn.onClick.AddListener(() => SendHandler(btn));
                     break;
                 case "OpenButton":
-                    btn.onClick.AddListener(OpenHandler);
+                    btn.onClick.AddListener(() => OpenHandler(btn));
                     break;
             }
         }
@@ -122,23 +123,25 @@ public class IncidentController : MonoBehaviour
         text[1].text = answer;
     }
 
-    void LocationHandler()
+    void LocationHandler(Button btn)
     {
         Debug.Log("Location");
     }
 
-    void SendHandler()
+    void SendHandler(Button btn)
     {
-        EventSystem.current.currentSelectedGameObject.transform.parent.gameObject.SetActive(false);
-        Debug.Log("Send");
+        btn.transform.parent.gameObject.SetActive(false);
     }
 
-    void OpenHandler ()
+    void OpenHandler (Button btn)
     {
         OpenIncidentScreen.SetActive(false);
         ChatScreen.SetActive(true);
-        EventSystem.current.currentSelectedGameObject.transform.parent.Find("Background").gameObject.GetComponent<Image>().color = ActiveColor;
-        Debug.Log("Open");
+        if (DistanceTrigger.TutorialControlRoomIsDone)
+        {
+            NeighbourhoodAppScript.Scenario();
+        }
+        btn.transform.parent.Find("Background").GetComponent<Image>().color = ActiveColor;
     }
 
     public void ResetMK()

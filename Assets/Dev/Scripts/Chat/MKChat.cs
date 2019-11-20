@@ -12,6 +12,7 @@ public class MKChat : MonoBehaviour
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
     public GameObject Arrow;
+    public Text KeywordText;
 
     public GameObject popup;
     public GameObject popupMap;
@@ -22,7 +23,6 @@ public class MKChat : MonoBehaviour
 
     private List<Message> RenderedMessages = new List<Message>();
     private List<GameObject> CloneMessages = new List<GameObject>();
-    private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
     private Message CurrentMessage;
 
     // Start is called before the first frame update
@@ -88,7 +88,7 @@ public class MKChat : MonoBehaviour
 
         if (!RenderedMessages.Contains(LastMessage) && LastMessage != null)
         {
-            if (LastMessage.type == Message.Type.Photo)
+            if (LastMessage.type == Message.Type.Photo || LastMessage.type == Message.Type.PhotoQuestionTrigger)
             {
                 MoveAllMessages(510);
             } else
@@ -103,7 +103,7 @@ public class MKChat : MonoBehaviour
             }
             else
             {
-                if (LastMessage.type == Message.Type.Photo)
+                if (LastMessage.type == Message.Type.Photo || LastMessage.type == Message.Type.PhotoQuestionTrigger)
                 {
                     newMessage = Instantiate(ReceivedPhotoBubble, Content.transform);
                     Image photoComponent = newMessage.transform.Find("BubbleImage").Find("Photo").gameObject.GetComponent<Image>();
@@ -116,7 +116,7 @@ public class MKChat : MonoBehaviour
                 }
             }
             Transform bubbleImage = newMessage.transform.Find("BubbleImage");
-            if (LastMessage.type != Message.Type.Photo)
+            if (LastMessage.type != Message.Type.Photo && LastMessage.type != Message.Type.PhotoQuestionTrigger)
             {
                 bubbleImage.Find("MessageText").gameObject.GetComponent<TMP_Text>().text = LastMessage.message;
             }
@@ -124,7 +124,7 @@ public class MKChat : MonoBehaviour
             {
                 bubbleImage.Find("MessageSenderName").gameObject.GetComponent<TMP_Text>().text = LastMessage.sender.name;
             }
-            if (LastMessage.type == Message.Type.QuestionTrigger)
+            if (LastMessage.type == Message.Type.QuestionTrigger || LastMessage.type == Message.Type.PhotoQuestionTrigger)
             {
                 Dropdown.ClearOptions();
                 Dropdown.AddOptions(LastMessage.possibleAnswers);
@@ -136,6 +136,10 @@ public class MKChat : MonoBehaviour
                 Dropdown.interactable = false;
                 SendButton.interactable = false;
                 Arrow.SetActive(false);
+            }
+            if (LastMessage.keywords != null)
+            {
+                KeywordText.text += LastMessage.keywords + " ";
             }
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
@@ -161,11 +165,13 @@ public class MKChat : MonoBehaviour
 
     public void ResetMK()
     {
-        Transform[] GameArray = Content.GetComponentsInChildren<Transform>();
-        foreach (Transform gj in GameArray)
+        foreach (GameObject gj in CloneMessages)
         {
             Destroy(gj.gameObject);
         }
+        CloneMessages = new List<GameObject>();
         RenderedMessages = new List<Message>();
+        CurrentMessage = null;
+        KeywordText.text = "";
     }
 }
