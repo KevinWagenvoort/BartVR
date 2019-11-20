@@ -28,7 +28,7 @@ public class MobilePrivateChat : MonoBehaviour
         {
             ChoiceBubbleTextList.Add(child.Find("Text").gameObject);
         }
-        SubjectText.text = "Vriend";
+        SubjectText.text = "Robin";
         PrivateAppScript.Tutorial();
     }
 
@@ -63,6 +63,7 @@ public class MobilePrivateChat : MonoBehaviour
                 MapOpenBubble.SetActive(false);
             } else
             {
+                StartCoroutine(Vibrations.LongVibration(0.5f, 250));
                 if (LastMessage.type == Message.Type.Location)
                 {
                     newMessage = Instantiate(ReceivedLocationBubble, ReceivedLocationBubble.transform.parent);
