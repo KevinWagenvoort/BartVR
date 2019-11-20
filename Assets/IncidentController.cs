@@ -11,6 +11,7 @@ public class IncidentController : MonoBehaviour
     public GameObject Content;
     public GameObject ChatScreen;
     public GameObject OpenIncidentScreen;
+    public GameObject NeighbourhoodApp;
     public Color ActiveColor;
 
     public List<GameObject> ListOfIncidentsTypes = new List<GameObject>();
@@ -18,10 +19,12 @@ public class IncidentController : MonoBehaviour
     //private
     private List<GameObject> ListOfIncidents = new List<GameObject>();
     private List<GameObject> ListOfObjects = new List<GameObject>();
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
         TutScenario();
     }
 
@@ -131,6 +134,10 @@ public class IncidentController : MonoBehaviour
     {
         OpenIncidentScreen.SetActive(false);
         ChatScreen.SetActive(true);
+        if (DistanceTrigger.TutorialControlRoomIsDone)
+        {
+            NeighbourhoodAppScript.Scenario();
+        }
         btn.transform.parent.Find("Background").GetComponent<Image>().color = ActiveColor;
     }
 
