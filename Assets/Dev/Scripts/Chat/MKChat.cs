@@ -12,6 +12,12 @@ public class MKChat : MonoBehaviour
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
     public GameObject Arrow;
+    public Text KeywordText;
+
+    public GameObject popup;
+    public GameObject popupMap;
+    public Button closePopup;
+    public Button closePopupMap;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
 
@@ -23,6 +29,7 @@ public class MKChat : MonoBehaviour
     void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+        
         SendButton.onClick.AddListener(OnClickHandler);
         Dropdown.ClearOptions();
         NeighbourhoodAppScript.Tutorial();
@@ -33,6 +40,24 @@ public class MKChat : MonoBehaviour
     {
         CheckNewMessage();
     }
+
+    //void OnClickHandlerMap()
+    //{
+    //    if (popupMap.active)
+    //    {
+    //        popupMap.SetActive(false);
+    //        closePopup.onClick.AddListener(OnClickHandlerPopup);
+    //    }
+    //}
+
+    //void OnClickHandlerPopup()
+    //{
+    //    if (popup.active)
+    //    {
+    //        popup.SetActive(false);
+    //        NeighbourhoodAppScript.Tutorial();
+    //    }
+    //}
 
     void OnClickHandler()
     {
@@ -112,6 +137,10 @@ public class MKChat : MonoBehaviour
                 SendButton.interactable = false;
                 Arrow.SetActive(false);
             }
+            if (LastMessage.keywords != null)
+            {
+                KeywordText.text += LastMessage.keywords + " ";
+            }
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
         }
@@ -143,5 +172,6 @@ public class MKChat : MonoBehaviour
         CloneMessages = new List<GameObject>();
         RenderedMessages = new List<Message>();
         CurrentMessage = null;
+        KeywordText.text = "";
     }
 }
