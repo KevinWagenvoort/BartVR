@@ -6,7 +6,7 @@ using UnityEngine;
 public class NeighbourhoodAppScript : MonoBehaviour
 {
     public ChatApp ChatApp;
-    public GameObject MKChat, SendMessageButton, IncidentController;
+    public GameObject MKChat, SendMessageButton, IncidentController, PizzaLocation;
     public TMP_Text GroupChatName;
 
     private Sender Appel, Jij, Beer, Jong, Meldkamer;
@@ -287,6 +287,8 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
             case 34:
                 MKChatScript.SetMessage("Bedankt, de agent is onderweg", Meldkamer, Message.Type.Other);
+                GameObject Officer = GameObject.FindGameObjectsWithTag("Officer")[0];
+                Officer.GetComponent<NPCBehaviour>().MoveToTarget(PizzaLocation);
                 break;
         }
         scenarioPassCount++;

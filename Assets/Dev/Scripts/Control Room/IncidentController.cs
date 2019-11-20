@@ -172,6 +172,7 @@ public class IncidentController : MonoBehaviour
             ChatTut.SetActive(true);
         }
         btn.transform.parent.Find("Background").GetComponent<Image>().color = ActiveColor;
+        btn.enabled = false;
     }
 
     public void ResetMK()
