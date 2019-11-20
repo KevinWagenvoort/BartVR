@@ -38,6 +38,7 @@ public class PopupController : MonoBehaviour
             popupMap.SetActive(false);
             closePopupIncident.onClick.AddListener(OnClickHandlerIncident);
             popupIncident.SetActive(true);
+            incidentController.TutScenario();
         }
     }
 
@@ -77,7 +78,7 @@ public class PopupController : MonoBehaviour
         if (popupEnd.active)
         {
             popupEnd.SetActive(false);
-            incidentController.TutScenario();
+            
         }
     }
 

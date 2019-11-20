@@ -2523,8 +2523,13 @@ MonoBehaviour:
   Content: {fileID: 4692975636030921343}
   ChatScreen: {fileID: 4692975636069306864}
   OpenIncidentScreen: {fileID: 4827259243770383950}
-  ActiveColor: {r: 0, g: 0, b: 0, a: 0}
-  ListOfIncidentsTypes: []
+  ActiveColor: {r: 0.21937028, g: 0.735849, b: 0.19090424, a: 1}
+  popupController: {fileID: 0}
+  ListOfIncidentsTypes:
+  - {fileID: 6933362577478989706, guid: 2645056b2797e82478929979fdb287c7, type: 3}
+  - {fileID: 7383824784002020172, guid: b53a01c0c0c4a804ab19044700ee3a16, type: 3}
+  - {fileID: 8632017239223810969, guid: e7276c7c511a83e419ceef2cd3417152, type: 3}
+  - {fileID: 3064942579565348474, guid: 24c4c5fdec2987044a71e2f7b2a04824, type: 3}
 --- !u!1 &4692975634789843039
 GameObject:
   m_ObjectHideFlags: 0
