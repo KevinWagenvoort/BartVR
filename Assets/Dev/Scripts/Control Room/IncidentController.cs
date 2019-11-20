@@ -29,6 +29,7 @@ public class IncidentController : MonoBehaviour
     void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+        NotificationsController = PhoneNotifications.GetComponent<NotificationsController>();
     }
 
     
