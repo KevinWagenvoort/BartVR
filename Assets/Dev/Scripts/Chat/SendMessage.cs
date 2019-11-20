@@ -61,10 +61,10 @@ public class SendMessage : MonoBehaviour
         }
     }
 
-    public void SetMessage(string message, Sender sender, Message.Type type, List<string> possibleAnswers = null, Sprite photo = null)
+    public void SetMessage(string message, Sender sender, Message.Type type, List<string> possibleAnswers = null, Sprite photo = null, string keywords = null)
     {
         Text.text = message;
-        CurrentMessage = new Message(message, sender, type, possibleAnswers, photo);
+        CurrentMessage = new Message(message, sender, type, possibleAnswers, photo, keywords);
         gameObject.SetActive(true);
     }
 

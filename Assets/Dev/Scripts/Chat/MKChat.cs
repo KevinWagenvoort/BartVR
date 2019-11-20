@@ -12,6 +12,12 @@ public class MKChat : MonoBehaviour
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
     public GameObject Arrow;
+    public Text KeywordText;
+
+    public GameObject popup;
+    public GameObject popupMap;
+    public Button closePopup;
+    public Button closePopupMap;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
 
@@ -23,6 +29,7 @@ public class MKChat : MonoBehaviour
     void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+        
         SendButton.onClick.AddListener(OnClickHandler);
         Dropdown.ClearOptions();
         NeighbourhoodAppScript.Tutorial();
@@ -33,6 +40,24 @@ public class MKChat : MonoBehaviour
     {
         CheckNewMessage();
     }
+
+    //void OnClickHandlerMap()
+    //{
+    //    if (popupMap.active)
+    //    {
+    //        popupMap.SetActive(false);
+    //        closePopup.onClick.AddListener(OnClickHandlerPopup);
+    //    }
+    //}
+
+    //void OnClickHandlerPopup()
+    //{
+    //    if (popup.active)
+    //    {
+    //        popup.SetActive(false);
+    //        NeighbourhoodAppScript.Tutorial();
+    //    }
+    //}
 
     void OnClickHandler()
     {
@@ -63,7 +88,7 @@ public class MKChat : MonoBehaviour
 
         if (!RenderedMessages.Contains(LastMessage) && LastMessage != null)
         {
-            if (LastMessage.type == Message.Type.Photo)
+            if (LastMessage.type == Message.Type.Photo || LastMessage.type == Message.Type.PhotoQuestionTrigger)
             {
                 MoveAllMessages(510);
             } else
@@ -78,7 +103,7 @@ public class MKChat : MonoBehaviour
             }
             else
             {
-                if (LastMessage.type == Message.Type.Photo)
+                if (LastMessage.type == Message.Type.Photo || LastMessage.type == Message.Type.PhotoQuestionTrigger)
                 {
                     newMessage = Instantiate(ReceivedPhotoBubble, Content.transform);
                     Image photoComponent = newMessage.transform.Find("BubbleImage").Find("Photo").gameObject.GetComponent<Image>();
@@ -91,7 +116,7 @@ public class MKChat : MonoBehaviour
                 }
             }
             Transform bubbleImage = newMessage.transform.Find("BubbleImage");
-            if (LastMessage.type != Message.Type.Photo)
+            if (LastMessage.type != Message.Type.Photo && LastMessage.type != Message.Type.PhotoQuestionTrigger)
             {
                 bubbleImage.Find("MessageText").gameObject.GetComponent<TMP_Text>().text = LastMessage.message;
             }
@@ -99,7 +124,7 @@ public class MKChat : MonoBehaviour
             {
                 bubbleImage.Find("MessageSenderName").gameObject.GetComponent<TMP_Text>().text = LastMessage.sender.name;
             }
-            if (LastMessage.type == Message.Type.QuestionTrigger)
+            if (LastMessage.type == Message.Type.QuestionTrigger || LastMessage.type == Message.Type.PhotoQuestionTrigger)
             {
                 Dropdown.ClearOptions();
                 Dropdown.AddOptions(LastMessage.possibleAnswers);
@@ -111,6 +136,10 @@ public class MKChat : MonoBehaviour
                 Dropdown.interactable = false;
                 SendButton.interactable = false;
                 Arrow.SetActive(false);
+            }
+            if (LastMessage.keywords != null)
+            {
+                KeywordText.text += LastMessage.keywords + " ";
             }
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
@@ -143,5 +172,6 @@ public class MKChat : MonoBehaviour
         CloneMessages = new List<GameObject>();
         RenderedMessages = new List<Message>();
         CurrentMessage = null;
+        KeywordText.text = "";
     }
 }
