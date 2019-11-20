@@ -20,21 +20,15 @@ public class MobilePrivateChat : MonoBehaviour
     private List<GameObject> CloneMessages = new List<GameObject>();
     private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
 
-    private SteamVR_TrackedObject trackedObject;
-    private SteamVR_Controller.Device controller;
-
     // Start is called before the first frame update
     void Start()
     {
-        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
-        controller = SteamVR_Controller.Input((int)trackedObject.index);
-
         PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
         foreach (Transform child in ChoiceBubbles.transform)
         {
             ChoiceBubbleTextList.Add(child.Find("Text").gameObject);
         }
-        SubjectText.text = "Vriend";
+        SubjectText.text = "Robin";
         PrivateAppScript.Tutorial();
     }
 

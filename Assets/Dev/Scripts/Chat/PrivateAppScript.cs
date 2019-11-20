@@ -7,7 +7,7 @@ public class PrivateAppScript : MonoBehaviour
     public ChatApp ChatApp;
     public GameObject SendMessageButton;
 
-    private Sender Vriend;
+    private Sender Robin;
     private Sender Jij;
     private List<string> possibleAnswers;
     private int chosenAnswer;
@@ -17,7 +17,7 @@ public class PrivateAppScript : MonoBehaviour
     void Start()
     {
         ChatApp = new ChatApp();
-        Vriend = new Sender("Vriend", Sender.Role.Npc);
+        Robin = new Sender("Vriend", Sender.Role.Npc);
         Jij = new Sender("Jij", Sender.Role.Burger);
         possibleAnswers = new List<string>();
         possibleAnswers.Add("Is goed. Ik haal wel pizza. Zie je dan.");
@@ -32,20 +32,20 @@ public class PrivateAppScript : MonoBehaviour
         switch (passCount)
         {
             case 0:
-                ChatApp.Send("Yo zin om vanavond samen te eten?", Vriend, Message.Type.Question, possibleAnswers);
+                ChatApp.Send("Yo zin om vanavond samen te eten?", Robin, Message.Type.Question, possibleAnswers);
                 Invoke("Tutorial", 2);
                 break;
             case 1:
-                ChatApp.Send("Vanaf 7 uur ben ik thuis. Dan kan je wel komen.", Vriend, Message.Type.QuestionFollowup);
+                ChatApp.Send("Vanaf 7 uur ben ik thuis. Dan kan je wel komen.", Robin, Message.Type.QuestionFollowup);
                 break;
             case 2:
                 if (chosenAnswer == 0)
                 {
-                    ChatApp.Send("Top, zin in.", Vriend, Message.Type.Other);
+                    ChatApp.Send("Top, zin in.", Robin, Message.Type.Other);
                 }
                 else
                 {
-                    ChatApp.Send("Ik heb liever pizza.", Vriend, Message.Type.Other);
+                    ChatApp.Send("Ik heb liever pizza.", Robin, Message.Type.Other);
                 }
                 SendMessageButtonScript.SetMessage("Ik ga het nu halen maar ik weet niet waar het is.", Jij, Message.Type.Other);
                 break;
@@ -53,7 +53,7 @@ public class PrivateAppScript : MonoBehaviour
                 Invoke("Tutorial", 2);
                 break;
             case 4:
-                ChatApp.Send("Hier is het.", Vriend, Message.Type.Location);
+                ChatApp.Send("Hier is het.", Robin, Message.Type.Location);
                 DistanceTrigger.TutorialBurgerIsDone = true;
                 break;
         }
