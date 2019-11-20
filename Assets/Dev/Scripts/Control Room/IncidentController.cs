@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,6 +11,8 @@ public class IncidentController : MonoBehaviour
     public GameObject Content;
     public GameObject ChatScreen;
     public GameObject OpenIncidentScreen;
+    public GameObject NeighbourhoodApp;
+    public GameObject ChatTut;
     public Color ActiveColor;
 
     public List<GameObject> ListOfIncidentsTypes = new List<GameObject>();
@@ -18,12 +20,15 @@ public class IncidentController : MonoBehaviour
     //private
     private List<GameObject> ListOfIncidents = new List<GameObject>();
     private List<GameObject> ListOfObjects = new List<GameObject>();
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        TutScenario();
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
     }
+
+    
 
     void SetHandlers(GameObject gj)
     {
@@ -57,7 +62,7 @@ public class IncidentController : MonoBehaviour
     }
 
     int passCount = 0;
-    void TutScenario()
+    public void TutScenario()
     {
         switch(passCount)
         {
@@ -131,6 +136,13 @@ public class IncidentController : MonoBehaviour
     {
         OpenIncidentScreen.SetActive(false);
         ChatScreen.SetActive(true);
+        if (DistanceTrigger.TutorialControlRoomIsDone)
+        {
+            NeighbourhoodAppScript.Scenario();
+        } else
+        {
+            ChatTut.SetActive(true);
+        }
         btn.transform.parent.Find("Background").GetComponent<Image>().color = ActiveColor;
     }
 
