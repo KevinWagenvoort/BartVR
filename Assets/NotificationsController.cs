@@ -49,7 +49,7 @@ public class NotificationsController : MonoBehaviour
         ActiveNotification.GetComponentInChildren<TMP_Text>().text = message;
         ShowNotification();//Show new
         HideAfterSeconds(2.5f);
-        StartCoroutine(LongVibration(1, 3999));
+        StartCoroutine(LongVibration(0.5f, 10000));
     }
 
     GameObject NotificatioToHide;
