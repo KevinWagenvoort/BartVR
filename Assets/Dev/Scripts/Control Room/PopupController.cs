@@ -22,7 +22,10 @@ public class PopupController : MonoBehaviour
     void Start()
     {
         closePopupMap.onClick.AddListener(OnClickHandlerMap);
-
+        closePopup.onClick.AddListener(OnClickHandlerPopup);
+        closePopupIncident.onClick.AddListener(OnClickHandlerIncident);
+        closePopupKernwoorden.onClick.AddListener(OnClickHandlerPopupKernwoorden);
+        closePopupEnd.onClick.AddListener(OnClickHandlerPopupEnd);
     }
 
     // Update is called once per frame
@@ -33,10 +36,9 @@ public class PopupController : MonoBehaviour
 
     public void OnClickHandlerMap()
     {
-        if (popupMap.active)
+        if (popupMap.activeInHierarchy)
         {
             popupMap.SetActive(false);
-            closePopupIncident.onClick.AddListener(OnClickHandlerIncident);
             popupIncident.SetActive(true);
             incidentController.TutScenario();
         }
@@ -44,38 +46,33 @@ public class PopupController : MonoBehaviour
 
     void OnClickHandlerIncident()
     {
-        if (popupIncident.active)
+        if (popupIncident.activeInHierarchy)
         {
             popupIncident.SetActive(false);
-            closePopup.onClick.AddListener(OnClickHandlerPopup);
-            popup.SetActive(true);
-
         }
     }
 
     void OnClickHandlerPopup()
     {
-        if (popup.active)
+        if (popup.activeInHierarchy)
         {
             popup.SetActive(false);
-            closePopupKernwoorden.onClick.AddListener(OnClickHandlerPopupKernwoorden);
             popupKernwoorden.SetActive(true);
         }
     }
 
     void OnClickHandlerPopupKernwoorden()
     {
-        if (popupKernwoorden.active)
+        if (popupKernwoorden.activeInHierarchy)
         {
             popupKernwoorden.SetActive(false);
-            closePopupEnd.onClick.AddListener(OnClickHandlerPopupEnd);
             popupEnd.SetActive(true);
         }
     }
 
     void OnClickHandlerPopupEnd()
     {
-        if (popupEnd.active)
+        if (popupEnd.activeInHierarchy)
         {
             popupEnd.SetActive(false);
             

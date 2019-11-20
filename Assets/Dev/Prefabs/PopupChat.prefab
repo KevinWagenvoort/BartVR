@@ -63,9 +63,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: In dit geval maak je gebruik van de buurtapp als social media. In de buurtapp
+  m_text: "In dit geval maak je gebruik van de buurtapp als social media. In de buurtapp
     komen berichten van mensen uit de buurt binnen. Hier kan je als meldkamer op reageren.
-    Zo help je de mensen om je heen en kun je de situatie beoordelen.
+    Zo help je de mensen om je heen en kun je de situatie beoordelen.\r\nDe buurtapp
+    kun je openen door op de knop te klikken in het incidentmenu."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02c563c340bd0d04e8002e66c980aeac, type: 2}
   m_sharedMaterial: {fileID: 60645976946648644, guid: 02c563c340bd0d04e8002e66c980aeac,
@@ -135,12 +136,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: -7.3455853, z: 24.287851, w: -25.057014}
   m_textInfo:
     textComponent: {fileID: 4706035698337623732}
-    characterCount: 230
+    characterCount: 305
     spriteCount: 0
-    spaceCount: 43
-    wordCount: 44
+    spaceCount: 57
+    wordCount: 58
     linkCount: 0
-    lineCount: 6
+    lineCount: 8
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

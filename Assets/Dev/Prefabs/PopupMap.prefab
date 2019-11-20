@@ -330,10 +330,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Links hierboven bevindt zich de kaart van de stad. Op de kaart zie je de
-    politieagenten rondbewegen. Dit kun je met de politie icon zien die hieronder
-    ook weergegeven wordt. De paarse pijl geeft de locatie van de VR speler weer.
-    De pizza icon geeft de locatie van de pizzeria weer.
+  m_text: "Links hierboven bevindt zich de kaart van de stad. Op de kaart zie je de
+    politieagenten rondbewegen.\r\n\nJe kunt met de muis ingedrukt de kaart bewegen.
+    Als je op de kaart scrolt, kun je ook nog in- en uitzoomen."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02c563c340bd0d04e8002e66c980aeac, type: 2}
   m_sharedMaterial: {fileID: 60645976946648644, guid: 02c563c340bd0d04e8002e66c980aeac,
@@ -403,10 +402,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: -7.3455853, z: 24.287851, w: -25.057014}
   m_textInfo:
     textComponent: {fileID: 2515437017124657746}
-    characterCount: 281
+    characterCount: 210
     spriteCount: 0
-    spaceCount: 50
-    wordCount: 51
+    spaceCount: 39
+    wordCount: 39
     linkCount: 0
     lineCount: 7
     pageCount: 1

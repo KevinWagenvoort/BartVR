@@ -12,9 +12,8 @@ public class IncidentController : MonoBehaviour
     public GameObject ChatScreen;
     public GameObject OpenIncidentScreen;
     public GameObject NeighbourhoodApp;
+    public GameObject ChatTut;
     public Color ActiveColor;
-
-    public PopupController popupController;
 
     public List<GameObject> ListOfIncidentsTypes = new List<GameObject>();
 
@@ -140,6 +139,9 @@ public class IncidentController : MonoBehaviour
         if (DistanceTrigger.TutorialControlRoomIsDone)
         {
             NeighbourhoodAppScript.Scenario();
+        } else
+        {
+            ChatTut.SetActive(true);
         }
         btn.transform.parent.Find("Background").GetComponent<Image>().color = ActiveColor;
     }

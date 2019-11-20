@@ -357,9 +357,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Links onder bevindt zich het incidentenmenu. Hierin komen berichten van
-    social media binnen. Hierop kan je antwoorden door op de verzendknop te drukken.
-    \n\nWhatsapp kan ook geopend worden. Dit doe je door op de open butten (zie icon
-    hieronder) te klikken. De chat wordt dan rechts geopend."
+    social media binnen. Hierop kan je antwoorden door op de verzendknop te drukken.\r\n\nWhatsapp
+    kan ook geopend worden. Dit doe je door op de open knop (zie hieronder) te klikken.
+    De chat wordt dan rechts geopend."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02c563c340bd0d04e8002e66c980aeac, type: 2}
   m_sharedMaterial: {fileID: 60645976946648644, guid: 02c563c340bd0d04e8002e66c980aeac,
@@ -429,10 +429,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: -7.3455853, z: 24.287851, w: -25.057014}
   m_textInfo:
     textComponent: {fileID: 1713104126889657161}
-    characterCount: 288
+    characterCount: 281
     spriteCount: 0
-    spaceCount: 48
-    wordCount: 47
+    spaceCount: 46
+    wordCount: 46
     linkCount: 0
     lineCount: 8
     pageCount: 1
