@@ -45,7 +45,6 @@ public class DistanceTrigger : MonoBehaviour
 
         if (distance < 160 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !StartedSendingMessages)
         {
-            NeighbourhoodAppScript.Scenario();
             StartedSendingMessages = true;
         }
         if (distance < 102 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !NotificationSent)

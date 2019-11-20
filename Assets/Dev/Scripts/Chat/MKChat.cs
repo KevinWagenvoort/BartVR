@@ -12,6 +12,7 @@ public class MKChat : MonoBehaviour
     public GameObject SendBubble;
     public TMP_Dropdown Dropdown;
     public GameObject Arrow;
+    public Text KeywordText;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
 
@@ -112,6 +113,10 @@ public class MKChat : MonoBehaviour
                 SendButton.interactable = false;
                 Arrow.SetActive(false);
             }
+            if (LastMessage.keywords != null)
+            {
+                KeywordText.text += LastMessage.keywords + " ";
+            }
             newMessage.SetActive(true);
             CloneMessages.Add(newMessage);
         }
@@ -143,5 +148,6 @@ public class MKChat : MonoBehaviour
         CloneMessages = new List<GameObject>();
         RenderedMessages = new List<Message>();
         CurrentMessage = null;
+        KeywordText.text = "";
     }
 }
