@@ -78,7 +78,7 @@ public class VirtualGUI : MonoBehaviour {
         pHandler = new PhotoHandler();
         iHandler = new InputHandler();
         trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
-        SpeakerLoop();
+        //SpeakerLoop();
     }
 
     // Update is called once per frame

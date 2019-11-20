@@ -20,9 +20,15 @@ public class MobilePrivateChat : MonoBehaviour
     private List<GameObject> CloneMessages = new List<GameObject>();
     private List<GameObject> ChoiceBubbleTextList = new List<GameObject>();
 
+    private SteamVR_TrackedObject trackedObject;
+    private SteamVR_Controller.Device controller;
+
     // Start is called before the first frame update
     void Start()
     {
+        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
+        controller = SteamVR_Controller.Input((int)trackedObject.index);
+
         PrivateAppScript = PrivateApp.GetComponent<PrivateAppScript>();
         foreach (Transform child in ChoiceBubbles.transform)
         {
@@ -63,6 +69,7 @@ public class MobilePrivateChat : MonoBehaviour
                 MapOpenBubble.SetActive(false);
             } else
             {
+                StartCoroutine(LongVibration(0.5f, 10000));
                 if (LastMessage.type == Message.Type.Location)
                 {
                     newMessage = Instantiate(ReceivedLocationBubble, ReceivedLocationBubble.transform.parent);
@@ -97,6 +104,24 @@ public class MobilePrivateChat : MonoBehaviour
             {
                 ChoiceBubbles.SetActive(false);
             }
+        }
+    }
+
+
+
+    IEnumerator LongVibration(float seconds, ushort strength)
+    {
+        for (float i = 0; i < seconds; i += Time.deltaTime)
+        {
+            try
+            {
+                controller.TriggerHapticPulse(strength);
+            }
+            catch
+            {
+
+            }
+            yield return null; //every single frame for the duration of "length" you will vibrate at "strength" amount
         }
     }
 }

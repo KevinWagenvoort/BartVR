@@ -13,15 +13,10 @@ public class NotificationsController : MonoBehaviour
     private SteamVR_TrackedObject trackedObject;
     private SteamVR_Controller.Device controller;
 
-    private void Update()
+    private void Start()
     {
-        try
-        {
-            controller = SteamVR_Controller.Input((int)trackedObject.index);
-        } catch
-        {
-
-        }
+        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
+        controller = SteamVR_Controller.Input((int)trackedObject.index);
     }
 
     void ShowNotification()
