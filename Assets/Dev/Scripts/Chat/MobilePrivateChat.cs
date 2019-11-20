@@ -69,7 +69,7 @@ public class MobilePrivateChat : MonoBehaviour
                 MapOpenBubble.SetActive(false);
             } else
             {
-                StartCoroutine(LongVibration(0.5f, 10000));
+                StartCoroutine(Vibrations.LongVibration(0.5f, 250));
                 if (LastMessage.type == Message.Type.Location)
                 {
                     newMessage = Instantiate(ReceivedLocationBubble, ReceivedLocationBubble.transform.parent);
@@ -104,24 +104,6 @@ public class MobilePrivateChat : MonoBehaviour
             {
                 ChoiceBubbles.SetActive(false);
             }
-        }
-    }
-
-
-
-    IEnumerator LongVibration(float seconds, ushort strength)
-    {
-        for (float i = 0; i < seconds; i += Time.deltaTime)
-        {
-            try
-            {
-                controller.TriggerHapticPulse(strength);
-            }
-            catch
-            {
-
-            }
-            yield return null; //every single frame for the duration of "length" you will vibrate at "strength" amount
         }
     }
 }

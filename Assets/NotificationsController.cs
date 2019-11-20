@@ -44,7 +44,7 @@ public class NotificationsController : MonoBehaviour
         ActiveNotification.GetComponentInChildren<TMP_Text>().text = message;
         ShowNotification();//Show new
         HideAfterSeconds(2.5f);
-        StartCoroutine(LongVibration(0.5f, 10000));
+        StartCoroutine(Vibrations.LongVibration(0.5f, 250));
     }
 
     GameObject NotificatioToHide;
@@ -52,20 +52,5 @@ public class NotificationsController : MonoBehaviour
     {
         NotificatioToHide = ActiveNotification;
         Invoke("HideNotification", 3);
-    }
-
-    IEnumerator LongVibration(float seconds, ushort strength)
-    {
-        for (float i = 0; i < seconds; i += Time.deltaTime)
-        {
-            try
-            {
-                controller.TriggerHapticPulse(strength);
-            } catch
-            {
-
-            }
-            yield return null; //every single frame for the duration of "length" you will vibrate at "strength" amount
-        }
     }
 }
