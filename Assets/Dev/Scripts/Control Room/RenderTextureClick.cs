@@ -11,10 +11,28 @@ public class RenderTextureClick : MonoBehaviour
     public Canvas canvas;
     public GameObject pizzaLocation;
 
+    public GameObject selectedPolice;
+    public bool? send;
+
+    public Button yes;
+    public Button no;
+
     // Start is called before the first frame update
     void Start()
     {
+        yes.onClick.AddListener(OnClickHandlerYes);
+        no.onClick.AddListener(OnClickHandlerNo);
 
+    }
+
+     void OnClickHandlerYes()
+    {
+        this.send = true;
+    }
+
+    void OnClickHandlerNo()
+    {
+        this.send = false;
     }
 
     // Update is called once per frame
@@ -46,11 +64,31 @@ public class RenderTextureClick : MonoBehaviour
                         if (hit.collider.gameObject.name == "OfficerIcon")
                         {
                             Debug.Log("Officer selected");
-                            hit.transform.gameObject.GetComponent<NPCBehaviour>().MoveToTarget(pizzaLocation);
+
+                            selectedPolice.SetActive(true);
+
+                            if (send == true)
+                            {
+                                hit.transform.gameObject.GetComponent<NPCBehaviour>().MoveToTarget(pizzaLocation);
+                                selectedPolice.SetActive(false);
+                                send = null;
+                            }
+                            else if (send == false)
+                            {
+                                Debug.Log("Officer unselected");
+                                selectedPolice.SetActive(false);
+                                send = null;
+                            }
                         }
                     }
                 }
             }
         }
     }
+
+    bool SendPoliceToPizza()
+    {
+        return true;
+    }
+
 }
