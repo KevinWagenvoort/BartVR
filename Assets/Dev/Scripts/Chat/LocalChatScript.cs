@@ -143,6 +143,9 @@ public class LocalChatScript : MonoBehaviour
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
                 break;
+            case 12:
+                TextBalloon.SetActive(false);
+                break;
         }
         scenarioCount++;
     }
@@ -242,6 +245,9 @@ public class LocalChatScript : MonoBehaviour
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
+                break;
+            case 12:
+                TextBalloon.SetActive(false);
                 break;
 
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,9 +67,10 @@ public class VirtualGUI : MonoBehaviour {
     private float offsetY;
     private float cursorSpeed = 35f;
     private float cursorMargin = 0.15f;
+    private bool ShouldLoop = true;
 
     [SerializeField]
-    private GameObject MessageIcon;
+    private GameObject MessageIcon, PhoneSpeakers;
     public GameObject MenuTutorial;
 
     // Use this for initialization
@@ -76,6 +78,7 @@ public class VirtualGUI : MonoBehaviour {
         pHandler = new PhotoHandler();
         iHandler = new InputHandler();
         trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
+        //SpeakerLoop();
     }
 
     // Update is called once per frame
@@ -135,6 +138,7 @@ public class VirtualGUI : MonoBehaviour {
         else if (Input.GetKeyUp(KeyCode.Alpha2))
         {
             LaunchApp(2);
+            RunChat();
         }
         else if (Input.GetKeyUp(KeyCode.Alpha3))
         {
@@ -174,7 +178,18 @@ public class VirtualGUI : MonoBehaviour {
 
     private void RunChat()
     {
+        ShouldLoop = false;
         MessageIcon.SetActive(false);
+        PhoneSpeakers.SetActive(false);
+    }
+
+    private void SpeakerLoop()
+    {
+        if (ShouldLoop)
+        {
+            PhoneSpeakers.GetComponent<AudioSource>().Play();
+            Invoke("SpeakerLoop", 2);
+        }
     }
 
     private void LaunchApp(int app) {
