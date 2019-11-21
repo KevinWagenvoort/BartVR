@@ -60,7 +60,5 @@ public class DistanceTrigger : MonoBehaviour
             MobileNeigborhoodChat.TriggerNotification();
             NotificationSent = true;
         }
-
-        Debug.Log(distanceToOfficer);
     }
 }
