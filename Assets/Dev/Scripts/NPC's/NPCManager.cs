@@ -33,10 +33,11 @@ public class NPCManager : MonoBehaviour {
             npcMaker.CreateCivilian();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!OfficerIsDirected && Officer.GetComponent<NPCBehaviour>().agent != null)
         {
+            Officer.GetComponent<NPCBehaviour>().agent.Warp(OfficerDefaultLocation.transform.position);
             Officer.GetComponent<NPCBehaviour>().MoveToTarget(OfficerDefaultLocation);
             OfficerIsDirected = true;
         }
