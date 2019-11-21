@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DistanceTrigger : MonoBehaviour
 {
-    public GameObject CameraRig, Phone, LeftHand, NeighbourhoodApp, PhoneChatAppPanel, FeedbackScreenMK, FeedbackScreenVR;
+    public GameObject CameraRig, Phone, LeftHand, NeighbourhoodApp, PhoneChatAppPanel, PhoneMapPanel, PhoneMainMenuPanel, PhoneCameraPanel, FeedbackScreenMK, FeedbackScreenVR;
     public static bool TutorialBurgerIsDone = false;
     public static bool TutorialControlRoomIsDone = false;
     public static bool ConversationIsDone = false;
@@ -62,6 +62,10 @@ public class DistanceTrigger : MonoBehaviour
         {
             MobileNeigborhoodChat.TriggerNotification();
             NotificationSent = true;
+            PhoneChatAppPanel.SetActive(true);
+            PhoneMainMenuPanel.SetActive(false);
+            PhoneCameraPanel.SetActive(false);
+            PhoneMapPanel.SetActive(false);
         }
     }
 }
