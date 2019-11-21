@@ -77,7 +77,10 @@ public class MobileNeigborhoodChat : MonoBehaviour
             }
             else
             {
-                StartCoroutine(Vibrations.LongVibration(0.5f, 250));
+                if (DistanceTrigger.StartedSendingMessages)
+                {
+                    StartCoroutine(Vibrations.LongVibration(0.5f, 250));
+                }
                 if (LastMessage.type == Message.Type.Location)
                 {
                     newMessage = Instantiate(ReceivedLocationBubble, ReceivedLocationBubble.transform.parent);
