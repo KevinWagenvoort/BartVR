@@ -66,27 +66,37 @@ public class IncidentController : MonoBehaviour
     }
 
     int passCount = 0;
+
     public void TutScenario()
     {
-        switch(passCount)
+        string message, answer;
+        switch (passCount)
         {
             case 0://Facebook
-                AddIncident(ListOfIncidentsTypes[0], "Ben vandaag ergens gezakkenrold. Lekker dit!", "Klik <color=#0000FF>hier</color> om aangifte te doen via onze website ");
-                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[0], "Er zit een kat vast de in boom!");
+                message = "Ben vandaag ergens gezakkenrold. Lekker dit!";
+                answer = "Klik <color=#0000FF>hier</color> om aangifte te doen via onze website.";
+                AddIncident(ListOfIncidentsTypes[0], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[0], message);
                 Invoke("TutScenario", 2);
-                break;//Instagram
-            case 1:
-                AddIncident(ListOfIncidentsTypes[1], "Mijn fiets is gestolen, maar de band ligt er nog.", "Klik <color=#0000FF>hier</color> om aangifte te doen via onze website.");
-                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[1], "Mijn fiets is gestolen, maar de band ligt er nog.");
+                break;
+            case 1://Instagram
+                message = "Mijn fiets is gestolen, maar de band ligt er nog.";
+                answer = "Klik <color=#0000FF>hier</color> om aangifte te doen via onze website.";
+                AddIncident(ListOfIncidentsTypes[1], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[1], message);
                 Invoke("TutScenario", 2);
                 break;
             case 2://Twitter
-                AddIncident(ListOfIncidentsTypes[2], "Juwelier overvallen #shocking", "De politie is hiervan op de hoogte #Zwolle ^Nick");
-                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[2], "Juwelier overvallen #shocking");
+                message = "Juwelier overvallen #shocking";
+                answer = "De politie is hiervan op de hoogte #Zwolle ^Nick";
+                AddIncident(ListOfIncidentsTypes[2], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[2], message);
                 Invoke("TutScenario", 2);
                 break;
             case 3://Whatsapp
-                AddIncident(ListOfIncidentsTypes[3], "Inbreker gespot in woonwijk, bewoners zijn op vakantie.", "");
+                message = "Inbreker gespot in woonwijk, bewoners zijn op vakantie.";
+                answer = "";
+                AddIncident(ListOfIncidentsTypes[3], message, answer);
                 Invoke("TutScenario", 2);
                 break;
         }
