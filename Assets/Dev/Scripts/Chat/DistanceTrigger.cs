@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DistanceTrigger : MonoBehaviour
 {
-    public GameObject CameraRig, Phone, LeftHand, NeighbourhoodApp, PhoneChatAppPanel;
+    public GameObject CameraRig, Phone, LeftHand, NeighbourhoodApp, PhoneChatAppPanel, FeedbackScreenMK, FeedbackScreenVR;
     public static bool TutorialBurgerIsDone = false;
     public static bool TutorialControlRoomIsDone = false;
     public static bool ConversationIsDone = false;
     public bool VandalismHasHappend = false;
+    private bool FeedbackShown = false;
     private bool phoneIsActive = true;
     public static bool StartedSendingMessages = false;
     private bool NotificationSent = false;
@@ -46,9 +47,11 @@ public class DistanceTrigger : MonoBehaviour
             VandalismController.StartVandalism();
         }
 
-        if (distanceToOfficer < 32 && VandalismHasHappend)
+        if (distanceToOfficer < 32 && VandalismHasHappend && !FeedbackShown)
         {
-            // feedback scherm
+            FeedbackShown = true;
+            FeedbackScreenMK.SetActive(true);
+            FeedbackScreenVR.SetActive(true);
         }
 
         if (distance < 160 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !StartedSendingMessages)

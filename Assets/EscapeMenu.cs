@@ -11,7 +11,8 @@ public class EscapeMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ReturnToGameButton.onClick.AddListener(ReturnToGame);
+        if (ReturnToGameButton != null)
+            ReturnToGameButton.onClick.AddListener(ReturnToGame);
         ReturnToMenuButton.onClick.AddListener(ReturnToMenu);
         ExitButton.onClick.AddListener(ExitGame);
     }
