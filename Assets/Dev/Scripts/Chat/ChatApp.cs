@@ -76,6 +76,7 @@ public class Message
         Question,
         QuestionFollowup,
         QuestionTrigger,
+        QuestionTriggerAnswer,
         Answer,
         Other,
         Location,

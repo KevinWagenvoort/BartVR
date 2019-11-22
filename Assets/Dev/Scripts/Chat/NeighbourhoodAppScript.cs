@@ -62,10 +62,10 @@ public class NeighbourhoodAppScript : MonoBehaviour
             case 4:
                 if (chosenAnswer == 0)
                 {
-                    ChatApp.Send("Huissteeg 1", Appel, Message.Type.QuestionTrigger, possibleAnswers, null, "huissteeg 1");
+                    ChatApp.Send("Huissteeg 1", Appel, Message.Type.QuestionTriggerAnswer, possibleAnswers, null, "huissteeg 1");
                 } else
                 {
-                    ChatApp.Send("Ik denk dat ik een inbreker binnen zie.", Appel, Message.Type.QuestionTrigger, possibleAnswers, null, "inbreker");
+                    ChatApp.Send("Ik denk dat ik een inbreker binnen zie.", Appel, Message.Type.QuestionTriggerAnswer, possibleAnswers, null, "inbreker");
                 }
                 break;
             case 5:
@@ -124,7 +124,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
     {
         if (!conversationIsDone)
         {
-            ChatApp.Send(text, Jij, Message.Type.QuestionTrigger, possibleAnswers);
+            ChatApp.Send(text, Jij, Message.Type.QuestionTriggerAnswer, possibleAnswers);
         } else
         {
             ChatApp.Send(text, Jij, Message.Type.Other);
