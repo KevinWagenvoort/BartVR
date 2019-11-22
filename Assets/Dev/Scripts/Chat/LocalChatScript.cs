@@ -11,11 +11,13 @@ public class LocalChatScript : MonoBehaviour
     public GameObject ChoiceBubbles;
     public GameObject TextBalloon, LeftHand, Phone;
     public TMP_Text BalloonText;
+    public GameObject NeighbourhoodApp;
 
     private Sender Jongeren, Jij;
     private List<string> possibleAnswers = new List<string>();
     private int chosenAnswer = 0;
     private ConversationNavigation ConversationNavigationScript;
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
     private enum Tone {
         Aggressive,
         Friendly,
@@ -29,6 +31,7 @@ public class LocalChatScript : MonoBehaviour
     void Start()
     {
         ChatApp = new ChatApp();
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
 
         //Senders
         Jongeren = new Sender("Jongeren", Sender.Role.Npc);
@@ -139,6 +142,7 @@ public class LocalChatScript : MonoBehaviour
                 break;
             case 11:
                 NPCTalk("Boeit ons toch niet", 2);
+                NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
@@ -193,9 +197,13 @@ public class LocalChatScript : MonoBehaviour
                 break;
             case 12:
                 PlayerTalk("Bedankt jongens");
+                NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
+                break;
+            case 13:
+                TextBalloon.SetActive(false);
                 break;
 
         }
@@ -242,6 +250,7 @@ public class LocalChatScript : MonoBehaviour
                 break;
             case 11:
                 NPCTalk("Fijn dat jullie zo rustig even met ons zijn komen praten", 2);
+                NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
