@@ -24,6 +24,7 @@ public class MKChat : MonoBehaviour
     private List<Message> RenderedMessages = new List<Message>();
     private List<GameObject> CloneMessages = new List<GameObject>();
     private Message CurrentMessage;
+    private List<int> SendChoices = new List<int>();
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class MKChat : MonoBehaviour
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
         
         SendButton.onClick.AddListener(OnClickHandler);
+        Dropdown.onValueChanged.AddListener(OnChangeHandler);
         Dropdown.ClearOptions();
         NeighbourhoodAppScript.Tutorial();
     }
@@ -59,6 +61,11 @@ public class MKChat : MonoBehaviour
     //    }
     //}
 
+    void OnChangeHandler(int value)
+    {
+        SendButton.interactable = !SendChoices.Contains(value);//Enable button if SendChoices does not contain value
+    }
+
     void OnClickHandler()
     {
         if (CurrentMessage != null)
@@ -68,7 +75,7 @@ public class MKChat : MonoBehaviour
         else
         {
             NeighbourhoodAppScript.SendChoice(Dropdown.value);
-            Dropdown.ClearOptions();
+            SendChoices.Add(Dropdown.value);
         }
     }
 
@@ -124,13 +131,25 @@ public class MKChat : MonoBehaviour
             {
                 bubbleImage.Find("MessageSenderName").gameObject.GetComponent<TMP_Text>().text = LastMessage.sender.name;
             }
-            if (LastMessage.type == Message.Type.QuestionTrigger || LastMessage.type == Message.Type.PhotoQuestionTrigger)
+            if (LastMessage.type == Message.Type.QuestionTrigger || LastMessage.type == Message.Type.PhotoQuestionTrigger || LastMessage.type == Message.Type.QuestionTriggerAnswer || LastMessage.type == Message.Type.PhotoQuestionTrigger)
             {
-                Dropdown.ClearOptions();
-                Dropdown.AddOptions(LastMessage.possibleAnswers);
-                Dropdown.interactable = true;
-                SendButton.interactable = true;
-                Arrow.SetActive(true);
+                if (LastMessage.type == Message.Type.QuestionTrigger)//New question
+                {
+                    //Empty dropdown
+                    Dropdown.ClearOptions();
+                    SendChoices = new List<int>();
+                    //Fill dropdown
+                    Dropdown.AddOptions(LastMessage.possibleAnswers);
+                    //Enable dropdown + button
+                    Dropdown.interactable = true;
+                    SendButton.interactable = true;
+                    Arrow.SetActive(true);
+                } else if (LastMessage.type == Message.Type.QuestionTriggerAnswer || LastMessage.type == Message.Type.PhotoQuestionTrigger)//Old question
+                {
+                    Dropdown.interactable = true;
+                    SendButton.interactable = !SendChoices.Contains(Dropdown.value);
+                    Arrow.SetActive(true);
+                }
             } else
             {
                 Dropdown.interactable = false;
