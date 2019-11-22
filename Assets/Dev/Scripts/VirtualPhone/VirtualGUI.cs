@@ -88,7 +88,7 @@ public class VirtualGUI : MonoBehaviour {
         {
             device = SteamVR_Controller.Input((int)trackedObject.index);
 
-            if (iHandler.GetTriggerDown(device))
+            if (device.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
                 if (confirmPanel.activeInHierarchy)
                     confirmPanel.SetActive(false);
                 else

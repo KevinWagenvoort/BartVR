@@ -59,7 +59,7 @@ public class ChoiceNavigation : MonoBehaviour
                 }
             }
 
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
                 if (IsPrivate)
                 {

@@ -44,7 +44,7 @@ public class SendMessage : MonoBehaviour
         try
         {
             controller = SteamVR_Controller.Input((int)trackedObject.index);
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
                 SendCurrentMessage();
             }
