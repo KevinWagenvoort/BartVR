@@ -12,6 +12,7 @@ public class DistanceTrigger : MonoBehaviour
     private bool FeedbackShown = false;
     private bool phoneIsActive = true;
     public static bool StartedSendingMessages = false;
+    public static bool ScenarioIsDone = false;
     private bool NotificationSent = false;
     private NeighbourhoodAppScript NeighbourhoodAppScript;
     private MobileNeigborhoodChat MobileNeigborhoodChat;
@@ -47,7 +48,7 @@ public class DistanceTrigger : MonoBehaviour
             VandalismController.StartVandalism();
         }
 
-        if (distanceToOfficer < 32 && VandalismHasHappend && !FeedbackShown)
+        if (distanceToOfficer < 32 && VandalismHasHappend && !FeedbackShown && ScenarioIsDone)
         {
             FeedbackShown = true;
             FeedbackScreenMK.SetActive(true);
