@@ -34,13 +34,15 @@ public class RenderTextureClick : MonoBehaviour
     //button yes to send police
     void OnClickHandlerYes()
     {
-        this.send = true;
+        SelectedOfficer.GetComponentInParent<NPCBehaviour>().MoveToTarget(pizzaLocation);
+        SendPopup.SetActive(false);
     }
 
     //button no to not send police
     void OnClickHandlerNo()
     {
-        this.send = false;
+        SelectedOfficer.transform.localScale = DefaultScale;
+        SendPopup.SetActive(false);
     }
 
     // Update is called once per frame
@@ -81,22 +83,6 @@ public class RenderTextureClick : MonoBehaviour
                     }
                 }
             }
-
-            //buttons on 'popup' to send police to location or not
-            if (send == true)
-            {
-                SelectedOfficer.GetComponent<NPCBehaviour>().MoveToTarget(pizzaLocation);
-                //Change icon to moving icon
-                SendPopup.SetActive(false);
-                send = null;
-            }
-            else if (send == false)
-            {
-                SelectedOfficer.transform.localScale = DefaultScale;
-                SendPopup.SetActive(false);
-                send = null;
-            }
-
         }
     }
 }
