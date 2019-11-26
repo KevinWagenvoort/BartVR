@@ -305,8 +305,8 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
             case 35:
                 MKChatScript.SetMessage("Bedankt, de agent is onderweg", Meldkamer, Message.Type.Other);
-                GameObject Officer = GameObject.FindGameObjectsWithTag("Officer")[0];
-                Officer.GetComponent<NPCBehaviour>().MoveToTarget(PizzaLocation);
+                //GameObject Officer = GameObject.FindGameObjectsWithTag("Officer")[0];
+                //Officer.GetComponent<NPCBehaviour>().MoveToTarget(PizzaLocation);
                 break;
         }
         scenarioPassCount++;
