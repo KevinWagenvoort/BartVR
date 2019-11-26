@@ -17,19 +17,23 @@ public class RenderTextureClick : MonoBehaviour
     public Button yes;
     public Button no;
 
+    Vector2 localpoint;
+    RaycastHit hit;
+
     // Start is called before the first frame update
     void Start()
     {
         yes.onClick.AddListener(OnClickHandlerYes);
         no.onClick.AddListener(OnClickHandlerNo);
-
     }
 
-     void OnClickHandlerYes()
+    //button yes to send police
+    void OnClickHandlerYes()
     {
         this.send = true;
     }
 
+    //button no to not send police
     void OnClickHandlerNo()
     {
         this.send = false;
@@ -50,13 +54,11 @@ public class RenderTextureClick : MonoBehaviour
             {
                 if (result.gameObject.name == "2DMap")
                 {
-                    Vector2 localpoint;
                     RectTransform rt = result.gameObject.GetComponent<RectTransform>();
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(rt, Input.mousePosition, canvasCamera, out localpoint);
 
                     Vector2 normalizedPoint = Rect.PointToNormalized(rt.rect, localpoint);
 
-                    RaycastHit hit;
                     Ray ray = mapCamera.ViewportPointToRay(normalizedPoint);
 
                     if (Physics.Raycast(ray, out hit))
@@ -65,30 +67,26 @@ public class RenderTextureClick : MonoBehaviour
                         {
                             Debug.Log("Officer selected");
 
-                            selectedPolice.SetActive(true);
-
-                            if (send == true)
-                            {
-                                hit.transform.gameObject.GetComponent<NPCBehaviour>().MoveToTarget(pizzaLocation);
-                                selectedPolice.SetActive(false);
-                                send = null;
-                            }
-                            else if (send == false)
-                            {
-                                Debug.Log("Officer unselected");
-                                selectedPolice.SetActive(false);
-                                send = null;
-                            }
+                            selectedPolice.SetActive(true);                           
                         }
                     }
                 }
             }
+
+            //buttons on 'popup' to send police to location or not
+            if (send == true)
+            {
+                hit.transform.gameObject.GetComponent<NPCBehaviour>().MoveToTarget(pizzaLocation);
+                selectedPolice.SetActive(false);
+                send = null;
+            }
+            else if (send == false)
+            {
+                Debug.Log("Officer unselected");
+                selectedPolice.SetActive(false);
+                send = null;
+            }
+
         }
     }
-
-    bool SendPoliceToPizza()
-    {
-        return true;
-    }
-
 }
