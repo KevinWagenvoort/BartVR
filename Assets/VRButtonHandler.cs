@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class VRButtonHandler : MonoBehaviour
 {
-    private void Start()
+    private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("VRButtonHandler");
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("OnTriggerEnter " + other.gameObject.name);
+        if (collider.gameObject.tag == "VRUIButton")
+        {
+            Debug.Log("VRUIButtonPressed " + collider.gameObject.name);
+        }
     }
 }
