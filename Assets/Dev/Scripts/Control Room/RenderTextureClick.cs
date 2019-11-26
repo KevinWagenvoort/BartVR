@@ -11,14 +11,18 @@ public class RenderTextureClick : MonoBehaviour
     public Canvas canvas;
     public GameObject pizzaLocation;
 
-    public GameObject selectedPolice;
+    //Send officer
+    public GameObject SendPopup;
     public bool? send;
-
     public Button yes;
     public Button no;
 
-    Vector2 localpoint;
-    RaycastHit hit;
+    //Private
+    private Vector2 localpoint;
+    private RaycastHit hit;
+    private GameObject SelectedOfficer;
+    private Vector3 DefaultScale = new Vector3(1, 1, 1);
+    private Vector3 SelectedScale = new Vector3(2, 2, 2);
 
     // Start is called before the first frame update
     void Start()
@@ -65,9 +69,14 @@ public class RenderTextureClick : MonoBehaviour
                     {
                         if (hit.collider.gameObject.name == "OfficerIcon")
                         {
-                            Debug.Log("Officer selected");
+                            if (SelectedOfficer != null)//Check if there was an old officer
+                            {
+                                SelectedOfficer.transform.localScale = DefaultScale;
+                            }
 
-                            selectedPolice.SetActive(true);                           
+                            SelectedOfficer = hit.collider.gameObject;
+                            SelectedOfficer.transform.localScale = SelectedScale;
+                            SendPopup.SetActive(true);                           
                         }
                     }
                 }
@@ -76,14 +85,15 @@ public class RenderTextureClick : MonoBehaviour
             //buttons on 'popup' to send police to location or not
             if (send == true)
             {
-                hit.transform.gameObject.GetComponent<NPCBehaviour>().MoveToTarget(pizzaLocation);
-                selectedPolice.SetActive(false);
+                SelectedOfficer.GetComponent<NPCBehaviour>().MoveToTarget(pizzaLocation);
+                //Change icon to moving icon
+                SendPopup.SetActive(false);
                 send = null;
             }
             else if (send == false)
             {
-                Debug.Log("Officer unselected");
-                selectedPolice.SetActive(false);
+                SelectedOfficer.transform.localScale = DefaultScale;
+                SendPopup.SetActive(false);
                 send = null;
             }
 
