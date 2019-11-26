@@ -32,7 +32,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
         {
             ChoiceBubbleTextList.Add(child.Find("Text").gameObject);
         }
-        SubjectText.text = "Pizzalanden";
+        SubjectText.text = "Buurtapp Pizzalanden";
     }
 
     // Update is called once per frame
@@ -77,6 +77,10 @@ public class MobileNeigborhoodChat : MonoBehaviour
             }
             else
             {
+                if (DistanceTrigger.StartedSendingMessages)
+                {
+                    StartCoroutine(Vibrations.LongVibration(0.5f, 250));
+                }
                 if (LastMessage.type == Message.Type.Location)
                 {
                     newMessage = Instantiate(ReceivedLocationBubble, ReceivedLocationBubble.transform.parent);

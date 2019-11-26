@@ -356,10 +356,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Links onder bevindt zich het incidentenmenu. Hierin komen berichten van
-    social media binnen. Hierop kan je antwoorden door op de verzendknop te drukken.\r\n\nWhatsapp
-    kan ook geopend worden. Dit doe je door op de open knop (zie hieronder) te klikken.
-    De chat wordt dan rechts geopend."
+  m_text: 'Links onder bevindt zich het incidentenmenu. Hierin komen berichten van
+    social media binnen. Deze kunnen beantwoorden of doorverbinden.
+
+
+    Whatsapp berichten kunnen geopend worden. Dit doe je door op de open knop (zie
+    hieronder) te klikken. De chat wordt dan rechts geopend.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02c563c340bd0d04e8002e66c980aeac, type: 2}
   m_sharedMaterial: {fileID: 60645976946648644, guid: 02c563c340bd0d04e8002e66c980aeac,
@@ -405,7 +407,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 257
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -429,12 +431,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: -7.3455853, z: 24.287851, w: -25.057014}
   m_textInfo:
     textComponent: {fileID: 1713104126889657161}
-    characterCount: 281
+    characterCount: 272
     spriteCount: 0
-    spaceCount: 46
-    wordCount: 46
+    spaceCount: 41
+    wordCount: 41
     linkCount: 0
-    lineCount: 8
+    lineCount: 9
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

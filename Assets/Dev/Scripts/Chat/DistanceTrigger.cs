@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class DistanceTrigger : MonoBehaviour
 {
-    public GameObject CameraRig, Phone, LeftHand, NeighbourhoodApp, PhoneChatAppPanel;
+    public GameObject CameraRig, Phone, LeftHand, NeighbourhoodApp, PhoneChatAppPanel, PhoneMapPanel, PhoneMainMenuPanel, PhoneCameraPanel, FeedbackScreenMK, FeedbackScreenVR;
     public static bool TutorialBurgerIsDone = false;
     public static bool TutorialControlRoomIsDone = false;
     public static bool ConversationIsDone = false;
     public bool VandalismHasHappend = false;
+    private bool FeedbackShown = false;
     private bool phoneIsActive = true;
     public static bool StartedSendingMessages = false;
     private bool NotificationSent = false;
     private NeighbourhoodAppScript NeighbourhoodAppScript;
     private MobileNeigborhoodChat MobileNeigborhoodChat;
     private VandalismController VandalismController;
+    private GameObject Officer;
 
     private void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
         MobileNeigborhoodChat = PhoneChatAppPanel.GetComponent<MobileNeigborhoodChat>();
         VandalismController = gameObject.GetComponent<VandalismController>();
+        Officer = GameObject.FindGameObjectsWithTag("Officer")[0];
     }
 
     // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(CameraRig.transform.position, gameObject.transform.position);
+        float distanceToOfficer = Vector3.Distance(Officer.transform.position, gameObject.transform.position);
         if (distance < 37 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !ConversationIsDone)
         {
             Phone.SetActive(false);
@@ -43,6 +47,13 @@ public class DistanceTrigger : MonoBehaviour
             VandalismController.StartVandalism();
         }
 
+        if (distanceToOfficer < 32 && VandalismHasHappend && !FeedbackShown)
+        {
+            FeedbackShown = true;
+            FeedbackScreenMK.SetActive(true);
+            FeedbackScreenVR.SetActive(true);
+        }
+
         if (distance < 160 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !StartedSendingMessages)
         {
             StartedSendingMessages = true;
@@ -51,6 +62,10 @@ public class DistanceTrigger : MonoBehaviour
         {
             MobileNeigborhoodChat.TriggerNotification();
             NotificationSent = true;
+            PhoneChatAppPanel.SetActive(true);
+            PhoneMainMenuPanel.SetActive(false);
+            PhoneCameraPanel.SetActive(false);
+            PhoneMapPanel.SetActive(false);
         }
     }
 }

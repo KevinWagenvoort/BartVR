@@ -20,6 +20,7 @@ public class ConversationNavigation : MonoBehaviour
     private int PrevSelected = 0;
     private LocalChatScript LocalChatScript;
     private Vector3 defaultScale;
+    private bool CanSend = false;
 
     // SteamVR
     private SteamVR_TrackedObject trackedObject;
@@ -66,10 +67,11 @@ public class ConversationNavigation : MonoBehaviour
                 }
             }
 
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
+            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger) && CanSend)
             {
                 LocalChatScript.SendChoice(Selected.selected);
                 DisableButtons();
+                CanSend = false;
             }
         }
         catch (Exception e)
@@ -90,10 +92,11 @@ public class ConversationNavigation : MonoBehaviour
             Selected.Next();
             ButtonColor();
         }
-        else if (Input.GetKeyUp(KeyCode.Return))
+        else if (Input.GetKeyUp(KeyCode.Return) && CanSend)
         {
             LocalChatScript.SendChoice(Selected.selected);
             DisableButtons();
+            CanSend = false;
         }
     }
 
@@ -128,6 +131,7 @@ public class ConversationNavigation : MonoBehaviour
         Selected = new CurrentlySelected(0, choices.Count - 1);
         Buttons[0].transform.localScale = defaultScale;
         ButtonColor();
+        CanSend = true;
     }
 
     public void SetChoice(string choice)
@@ -138,5 +142,6 @@ public class ConversationNavigation : MonoBehaviour
         Buttons[0].transform.localScale = (defaultScale + new Vector3(1, 1, 1));
         Selected = new CurrentlySelected(0, 0);
         ButtonColor();
+        CanSend = true;
     }
 }

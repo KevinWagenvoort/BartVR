@@ -14,6 +14,7 @@ public class IncidentController : MonoBehaviour
     public GameObject NeighbourhoodApp;
     public GameObject ChatTut;
     public Color ActiveColor;
+    public GameObject PhoneNotifications;
 
     public List<GameObject> ListOfIncidentsTypes = new List<GameObject>();
 
@@ -22,10 +23,13 @@ public class IncidentController : MonoBehaviour
     private List<GameObject> ListOfObjects = new List<GameObject>();
     private NeighbourhoodAppScript NeighbourhoodAppScript;
 
+    private NotificationsController NotificationsController;
+
     // Start is called before the first frame update
     void Start()
     {
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+        NotificationsController = PhoneNotifications.GetComponent<NotificationsController>();
     }
 
     
@@ -46,6 +50,9 @@ public class IncidentController : MonoBehaviour
                 case "OpenButton":
                     btn.onClick.AddListener(() => OpenHandler(btn));
                     break;
+                case "CallButton":
+                    btn.onClick.AddListener(() => SendHandler(btn));
+                    break;
             }
         }
     }
@@ -62,24 +69,43 @@ public class IncidentController : MonoBehaviour
     }
 
     int passCount = 0;
+
     public void TutScenario()
     {
-        switch(passCount)
+        string message, answer;
+        switch (passCount)
         {
-            case 0:
-                AddIncident(ListOfIncidentsTypes[0], "Er zit een kat vast de in boom!", "Kun je de kat uit de boom proberen te lokken met voer?");
+            case 0://Instagram
+                message = "Mijn fiets is gestolen, maar de band ligt er nog.";
+                answer = "Klik <color=#0000FF>hier</color> om aangifte te doen via onze website.";
+                AddIncident(ListOfIncidentsTypes[1], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[1], message);
                 Invoke("TutScenario", 2);
                 break;
-            case 1:
-                AddIncident(ListOfIncidentsTypes[1], "Mijn fiets is gestolen, maar de band ligt er nog.", "Klik <color=#0000FF>hier</color> om aangifte te doen via onze website.");
+            case 1://Facebook
+                message = "Ben vandaag ergens gezakkenrold. Lekker dit!";
+                answer = "Klik <color=#0000FF>hier</color> om aangifte te doen via onze website.";
+                AddIncident(ListOfIncidentsTypes[0], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[0], message);
                 Invoke("TutScenario", 2);
                 break;
-            case 2:
-                AddIncident(ListOfIncidentsTypes[2], "Juwelier overvallen #shocking", "De politie is hiervan op de hoogte #Zwolle ^Nick");
+            case 2://Call
+                message = "Gebeld door:\n088-469-9911";
+                answer = "";
+                AddIncident(ListOfIncidentsTypes[4], message, answer);
                 Invoke("TutScenario", 2);
                 break;
-            case 3:
-                AddIncident(ListOfIncidentsTypes[3], "Inbreker gespot in woonwijk, bewoners zijn op vakantie.", "");
+            case 3://Twitter
+                message = "Juwelier overvallen #shocking";
+                answer = "De politie is hiervan op de hoogte #Zwolle ^Nick";
+                AddIncident(ListOfIncidentsTypes[2], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[2], message);
+                Invoke("TutScenario", 2);
+                break;
+            case 4://Whatsapp
+                message = "Inbreker gespot in woonwijk, bewoners zijn op vakantie.";
+                answer = "";
+                AddIncident(ListOfIncidentsTypes[3], message, answer);
                 Invoke("TutScenario", 2);
                 break;
         }
@@ -89,23 +115,43 @@ public class IncidentController : MonoBehaviour
     int bsCount = 0;
     void BeginScenario()
     {
+        string message, answer;
+        int TimeBetweenIncidents = 3;
         switch (bsCount)
         {
-            case 0:
-                AddIncident(ListOfIncidentsTypes[0], "Er zit een kat vast de in boom!", "Kun je de kat uit de boom proberen te lokken met voer?");
-                Invoke("BeginScenario", 2);
+            case 0://Facebook
+                message = "Iemand rijdt met zijn auto door de binnenstad van Zwolle. Hartstikke verboden!!!";
+                answer = "We sturen er gelijk iemand op af.";
+                AddIncident(ListOfIncidentsTypes[0], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[0], message);
+                Invoke("BeginScenario", TimeBetweenIncidents);
                 break;
-            case 1:
-                AddIncident(ListOfIncidentsTypes[1], "Mijn fiets is gestolen, maar de band ligt er nog.", "Klik <color=#0000FF>hier</color> om aangifte te doen via onze website.");
-                Invoke("BeginScenario", 2);
+            case 1://Instagram
+                message = "Ernstig ongeluk op de hortensiastraat!";
+                answer = "We zijn ervan op de hoogte en de politie en ambulance is al onderweg";
+                AddIncident(ListOfIncidentsTypes[1], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[1], message);
+                Invoke("BeginScenario", TimeBetweenIncidents);
                 break;
-            case 2:
-                AddIncident(ListOfIncidentsTypes[2], "Juwelier overvallen #shocking", "De politie is hiervan op de hoogte #Zwolle ^Nick");
-                Invoke("BeginScenario", 2);
+            case 2://Twitter
+                message = "#Overval door grote groep mannen met messen #Rotterdam. Bende plundert sportwinkel";
+                answer = "Er is al aangifte gedaan. Klik hier om een verklaring af te leggen #Politie #WijLossenHetOp";
+                AddIncident(ListOfIncidentsTypes[2], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[2], message);
+                Invoke("BeginScenario", TimeBetweenIncidents);
                 break;
-            case 3:
-                AddIncident(ListOfIncidentsTypes[3], "Groep jongeren veroorzaken overlast bij bartonio's pizza.", "");
-                Invoke("BeginScenario", 2);
+            case 3://Whatsapp
+                message = "Groep jongeren veroorzaken overlast bij bartonio's pizza.";
+                answer = "";
+                AddIncident(ListOfIncidentsTypes[3], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[3], message);
+                Invoke("BeginScenario", TimeBetweenIncidents);
+                break;
+            case 4://Call
+                message = "Gebeld door:\n088-469-9911";
+                answer = "";
+                AddIncident(ListOfIncidentsTypes[4], message, answer);
+                Invoke("BeginScenario", TimeBetweenIncidents);
                 break;
         }
 
@@ -144,6 +190,7 @@ public class IncidentController : MonoBehaviour
             ChatTut.SetActive(true);
         }
         btn.transform.parent.Find("Background").GetComponent<Image>().color = ActiveColor;
+        btn.enabled = false;
     }
 
     public void ResetMK()

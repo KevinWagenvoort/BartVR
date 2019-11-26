@@ -6,7 +6,7 @@ using UnityEngine;
 public class NeighbourhoodAppScript : MonoBehaviour
 {
     public ChatApp ChatApp;
-    public GameObject MKChat, SendMessageButton, IncidentController;
+    public GameObject MKChat, SendMessageButton, IncidentController, PizzaLocation;
     public TMP_Text GroupChatName;
 
     private Sender Appel, Jij, Beer, Jong, Meldkamer;
@@ -17,6 +17,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
     private string currentScenario = "Tutorial";
     private IncidentController IncidentControllerScript;
     private bool conversationIsDone = false;
+    private int ToneType = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -62,10 +63,10 @@ public class NeighbourhoodAppScript : MonoBehaviour
             case 4:
                 if (chosenAnswer == 0)
                 {
-                    ChatApp.Send("Huissteeg 1", Appel, Message.Type.QuestionTrigger, possibleAnswers, null, "huissteeg 1");
+                    ChatApp.Send("Huissteeg 1", Appel, Message.Type.QuestionTriggerAnswer, possibleAnswers, null, "huissteeg 1");
                 } else
                 {
-                    ChatApp.Send("Ik denk dat ik een inbreker binnen zie.", Appel, Message.Type.QuestionTrigger, possibleAnswers, null, "inbreker");
+                    ChatApp.Send("Ik denk dat ik een inbreker binnen zie.", Appel, Message.Type.QuestionTriggerAnswer, possibleAnswers, null, "inbreker");
                 }
                 break;
             case 5:
@@ -124,7 +125,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
     {
         if (!conversationIsDone)
         {
-            ChatApp.Send(text, Jij, Message.Type.QuestionTrigger, possibleAnswers);
+            ChatApp.Send(text, Jij, Message.Type.QuestionTriggerAnswer, possibleAnswers);
         } else
         {
             ChatApp.Send(text, Jij, Message.Type.Other);
@@ -154,6 +155,10 @@ public class NeighbourhoodAppScript : MonoBehaviour
     }
 
     private int scenarioPassCount = 0;
+    public void Scenario(int ToneType) {
+        this.ToneType = ToneType;
+        Scenario();
+    }
     public void Scenario()
     {
         switch(scenarioPassCount)
@@ -204,89 +209,104 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
             case 12:
                 Debug.Log("Start 2nd part scenario");
-                ChatApp.Send("Gaat het allemaal goed daar?", Beer, Message.Type.Other);
-                Invoke("Scenario", 2);
+                switch (ToneType)
+                {
+                    case 0://Aggressive
+                        SendMessageButtonScript.SetMessage("Ik loop nu weg, ze luisteren voor geen meter!", Jij, Message.Type.Other);
+                        break;
+                    case 1://Friendly
+                        SendMessageButtonScript.SetMessage("Ik loop nu weg, ze gaan de muziek zachter zetten.", Jij, Message.Type.Other);
+                        break;
+                    case 2://Threatening
+                        SendMessageButtonScript.SetMessage("Ik loop nu weg, ze gaan nu naar het park.", Jij, Message.Type.Other);
+                        break;
+                }
                 break;
             case 13:
-                SendMessageButtonScript.SetMessage("Ze hebben een ruit ingegooid", Jij, Message.Type.Other, null, null, "ruit ingegooid");
+                Debug.Log("Start walking away");
                 break;
             case 14:
-                Invoke("Scenario", 2);
+                SendMessageButtonScript.SetMessage("Ze hebben een ruit ingegooid", Jij, Message.Type.Other, null, null, "ruit ingegooid");
                 break;
             case 15:
-                ChatApp.Send("WAT?!?!", Beer, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 16:
-                ChatApp.Send("HOE DURVEN ZE", Appel, Message.Type.Other);
+                ChatApp.Send("WAT?!?!", Beer, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 17:
-                ChatApp.Send("NEE!!!", Jong, Message.Type.Other);
+                ChatApp.Send("HOE DURVEN ZE", Appel, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 18:
-                ChatApp.Send("VAN BARTONIO'S?", Jong, Message.Type.Other, null, null, "bartonio's");
+                ChatApp.Send("NEE!!!", Jong, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 19:
-                SendMessageButtonScript.SetMessage("Ja, met een steen", Jij, Message.Type.Other, null, null, "steen");
-                break;
-            case 20:
+                ChatApp.Send("VAN BARTONIO'S?", Jong, Message.Type.Other, null, null, "bartonio's");
                 Invoke("Scenario", 2);
                 break;
+            case 20:
+                SendMessageButtonScript.SetMessage("Ja, met een steen", Jij, Message.Type.Other, null, null, "steen");
+                break;
             case 21:
-                ChatApp.Send("NIET NORMAAL DIT", Jong, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 22:
-                ChatApp.Send("Ze moeten echt 's normaal doen", Appel, Message.Type.Other);
+                ChatApp.Send("NIET NORMAAL DIT", Jong, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 23:
-                ChatApp.Send("Eerst al overlast met hun muziek en nu dit!!!", Beer, Message.Type.Other, null, null, "overlast muziek");
+                ChatApp.Send("Ze moeten echt 's normaal doen", Appel, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 24:
-                ChatApp.Send("Dit kan echt niet!!!", Beer, Message.Type.Other);
+                ChatApp.Send("Eerst al overlast met hun muziek en nu dit!!!", Beer, Message.Type.Other, null, null, "overlast muziek");
                 Invoke("Scenario", 2);
                 break;
             case 25:
-                SendMessageButtonScript.SetMessage("Ze zijn veel te agressief", Jij, Message.Type.Other, null, null, "agressief");
-                break;
-            case 26:
-                SendMessageButtonScript.SetMessage("De politie moet er nu wel echt bij komen", Jij, Message.Type.Other);
-                break;
-            case 27:
+                ChatApp.Send("Dit kan echt niet!!!", Beer, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
+            case 26:
+                SendMessageButtonScript.SetMessage("Ze zijn veel te agressief", Jij, Message.Type.Other, null, null, "agressief");
+                break;
+            case 27:
+                SendMessageButtonScript.SetMessage("De politie moet er nu wel echt bij komen", Jij, Message.Type.Other);
+                break;
             case 28:
-                ChatApp.Send("Ze moeten echt aangepakt worden", Beer, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 29:
-                ChatApp.Send("Arme Bartonio's", Appel, Message.Type.Other);
+                ChatApp.Send("Ze moeten echt aangepakt worden", Beer, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 30:
+                ChatApp.Send("Arme Bartonio's", Appel, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 31:
                 possibleAnswers = new List<string>();
                 possibleAnswers.Add("Hebben de jongeren naast de ruit nog meer vernield?");
                 possibleAnswers.Add("Om hoeveel jongeren gaat het?");
                 possibleAnswers.Add("Zou u een foto kunnen maken van de huidige situatie?");
                 MKChatScript.SetMessage("We zullen u een aantal vragen stellen zodat de agent genoeg informatie heeft", Meldkamer, Message.Type.QuestionTrigger, possibleAnswers);
                 break;
-            case 31:
-                AskQuestionToCitizen();
-                break;
             case 32:
                 AskQuestionToCitizen();
                 break;
             case 33:
                 AskQuestionToCitizen();
-                conversationIsDone = true;
                 break;
             case 34:
+                AskQuestionToCitizen();
+                conversationIsDone = true;
+                break;
+            case 35:
                 MKChatScript.SetMessage("Bedankt, de agent is onderweg", Meldkamer, Message.Type.Other);
+                GameObject Officer = GameObject.FindGameObjectsWithTag("Officer")[0];
+                Officer.GetComponent<NPCBehaviour>().MoveToTarget(PizzaLocation);
                 break;
         }
         scenarioPassCount++;
