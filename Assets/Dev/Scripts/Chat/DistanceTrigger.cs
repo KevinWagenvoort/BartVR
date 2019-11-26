@@ -8,7 +8,7 @@ public class DistanceTrigger : MonoBehaviour
     public static bool TutorialBurgerIsDone = false;
     public static bool TutorialControlRoomIsDone = false;
     public static bool ConversationIsDone = false;
-    public bool VandalismHasHappend = false;
+    public static bool VandalismHasHappend = false;
     private bool FeedbackShown = false;
     private bool phoneIsActive = true;
     public static bool StartedSendingMessages = false;

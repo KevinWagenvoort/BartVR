@@ -9,7 +9,7 @@ public class RenderTextureClick : MonoBehaviour
     public Camera mapCamera;
     public Camera canvasCamera;
     public Canvas canvas;
-    public GameObject pizzaLocation;
+    public GameObject pizzaLocation, tutLocation;
 
     //Send officer
     public GameObject SendPopup;
@@ -34,7 +34,15 @@ public class RenderTextureClick : MonoBehaviour
     //button yes to send police
     void OnClickHandlerYes()
     {
-        SelectedOfficer.GetComponentInParent<NPCBehaviour>().MoveToTarget(pizzaLocation);
+        if (DistanceTrigger.VandalismHasHappend)
+        {
+            SelectedOfficer.GetComponentInParent<NPCBehaviour>().MoveToTarget(pizzaLocation);
+        } else
+        {
+            SelectedOfficer.GetComponentInParent<NPCBehaviour>().MoveToTarget(tutLocation);
+        }
+
+        SelectedOfficer.transform.localScale = DefaultScale;
         SendPopup.SetActive(false);
     }
 
