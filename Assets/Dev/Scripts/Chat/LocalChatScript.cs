@@ -114,13 +114,13 @@ public class LocalChatScript : MonoBehaviour
                 PlayerTalk("Zet het uit");
                 break;
             case 2:
-                NPCTalk("Nee nergens voor nodig", 2);
+                NPCTalk("Nee nergens voor nodig", 3);
                 break;
             case 3:
-                NPCTalk("We hebben gewoon plezier", 2);
+                NPCTalk("We hebben gewoon plezier", 3);
                 break;
             case 4:
-                NPCTalk("Dat laten we niet door jou verpesten", 2);
+                NPCTalk("Dat laten we niet door jou verpesten", 3);
                 break;
             case 5:
                 PlayerTalk("Het is toch niet zo lastig om dat lawaai te verminderen");
@@ -129,19 +129,19 @@ public class LocalChatScript : MonoBehaviour
                 PlayerTalk("Iedereen heeft er last van");
                 break;
             case 7:
-                NPCTalk("Kan ons weinig schelen", 2);
+                NPCTalk("Kan ons weinig schelen", 3);
                 break;
             case 8:
-                NPCTalk("Jullie bekijken het maar", 2);
+                NPCTalk("Jullie bekijken het maar", 3);
                 break;
             case 9:
                 PlayerTalk("Dan stuur ik de politie op jullie af");
                 break;
             case 10:
-                NPCTalk("Je doet maar", 2);
+                NPCTalk("Je doet maar", 3);
                 break;
             case 11:
-                NPCTalk("Boeit ons toch niet", 2);
+                NPCTalk("Boeit ons toch niet", 3);
                 NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
@@ -163,37 +163,37 @@ public class LocalChatScript : MonoBehaviour
                 PlayerTalk("Jullie zijn namelijk best wel luid en bewoners hebben er last van");
                 break;
             case 1:
-                NPCTalk("Waar heb je het over?", 2);
+                NPCTalk("Waar heb je het over?", 3);
                 break;
             case 2:
                 PlayerTalk("De muziek staat best hard. Zouden jullie het zachter willen zetten?");
                 break;
             case 3:
-                NPCTalk("Valt reuze mee", 2);
+                NPCTalk("Valt reuze mee", 3);
                 break;
             case 4:
-                NPCTalk("Zo luid is het helemaal niet", 2);
+                NPCTalk("Zo luid is het helemaal niet", 3);
                 break;
             case 5:
                 PlayerTalk("Het zorgt in ieder geval wel voor overlast");
                 break;
             case 6:
-                NPCTalk("We zijn hier gewoon gezellig aan het chillen", 2);
+                NPCTalk("We zijn hier gewoon gezellig aan het chillen", 3);
                 break;
             case 7:
-                NPCTalk("Mag toch ook wel eens?", 2);
+                NPCTalk("Mag toch ook wel eens?", 3);
                 break;
             case 8:
                 PlayerTalk("Tuurlijk mag dat maar het moet wel wat zachter");
                 break;
             case 9:
-                NPCTalk("Wat een gezeur weer", 2);
+                NPCTalk("Wat een gezeur weer", 3);
                 break;
             case 10:
-                NPCTalk("Vooruit dan maar", 2);
+                NPCTalk("Vooruit dan maar", 3);
                 break;
             case 11:
-                NPCTalk("We doen de muziek zachter", 2);
+                NPCTalk("We doen de muziek zachter", 3);
                 break;
             case 12:
                 PlayerTalk("Bedankt jongens");
@@ -216,16 +216,16 @@ public class LocalChatScript : MonoBehaviour
         switch(scenarioCount)
         {
             case 0:
-                NPCTalk("Wow oke, chill. is het zo luid dan?", 2);
+                NPCTalk("Wow oke, chill. is het zo luid dan?", 3);
                 break;
             case 1:
                 PlayerTalk("Ja, het is een paar straten verderop nog te horen");
                 break;
             case 2:
-                NPCTalk("oh, dat is niet onze bedoeling", 2);
+                NPCTalk("oh, dat is niet onze bedoeling", 3);
                 break;
             case 3:
-                NPCTalk("We wouden hier gewoon lekker chillen", 2);
+                NPCTalk("We wouden hier gewoon lekker chillen", 3);
                 break;
             case 4:
                 PlayerTalk("Zouden jullie het iets zachter willen zetten?");
@@ -237,19 +237,19 @@ public class LocalChatScript : MonoBehaviour
                 PlayerTalk("Daar hebben mensen er minder last van");
                 break;
             case 7:
-                NPCTalk("Dan gaan we wel naar het park toe. Wel zo handig", 2);
+                NPCTalk("Dan gaan we wel naar het park toe. Wel zo handig", 3);
                 break;
             case 8:
-                NPCTalk("Dan hebben jullie ook nergens last van", 2);
+                NPCTalk("Dan hebben jullie ook nergens last van", 3);
                 break;
             case 9:
                 PlayerTalk("Heel erg bedankt. Leuke avond verder toegewenst");
                 break;
             case 10:
-                NPCTalk("Geen probleem joh", 2);
+                NPCTalk("Geen probleem joh", 3);
                 break;
             case 11:
-                NPCTalk("Fijn dat jullie zo rustig even met ons zijn komen praten", 2);
+                NPCTalk("Fijn dat jullie zo rustig even met ons zijn komen praten", 3);
                 NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
