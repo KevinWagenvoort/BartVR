@@ -24,6 +24,7 @@ public class NPCMaker : MonoBehaviour {
         npcModels = Resources.LoadAll(npcPrefabsPath, typeof(GameObject));
         this.checkpointContainer = checkpointContainer;
         InitializeNodes();
+        civilianModelIndexes = GetModelsIndexesWithDifferentId("");
     }
 
     public void CreateOfficer(string officerModelPath) {
