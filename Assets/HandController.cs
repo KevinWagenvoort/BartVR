@@ -5,11 +5,12 @@ using UnityEngine;
 public class HandController : MonoBehaviour
 {
     public GameObject VirtualPhone;
-    public GameObject ChoiceBubblesPrivate, ChoiceBubblesNeighbourhood, ChoiceBubblesLocal;
+    public GameObject ChoiceBubblesPrivate, ChoiceBubblesNeighbourhood, ChoiceBubblesLocal, VirtualCameraPanel;
 
     private PhoneControls PhoneControls;
     private ChoiceNavigation ChoiceNavigationPrivate, ChoiceNavigationNeighbourhood;
     private ConversationNavigation ConversationNavigation;
+    private PhotoHandler PhotoHandler;
     private bool isTriggerable = true;
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class HandController : MonoBehaviour
         ChoiceNavigationPrivate = ChoiceBubblesPrivate.GetComponent<ChoiceNavigation>();
         ChoiceNavigationNeighbourhood = ChoiceBubblesNeighbourhood.GetComponent<ChoiceNavigation>();
         ConversationNavigation = ChoiceBubblesLocal.GetComponent<ConversationNavigation>();
+        PhotoHandler = VirtualCameraPanel.GetComponent<PhotoHandler>();
     }
 
     //VR touch controls
@@ -69,6 +71,9 @@ public class HandController : MonoBehaviour
                     break;
                 case "ChoiceBubble C Local":
                     ConversationNavigation.TouchButtonChoice(2);
+                    break;
+                case "TakePicture":
+                    PhotoHandler.TakePhotoButton();
                     break;
             }
             isTriggerable = false;

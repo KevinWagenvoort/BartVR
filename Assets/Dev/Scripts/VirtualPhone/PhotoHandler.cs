@@ -42,8 +42,18 @@ public class PhotoHandler : MonoBehaviour {
         //PC
         if (Input.GetKeyUp(KeyCode.P))
         {
-            StartCoroutine(TakeScreenShot(VirtualCamera, Preview));
+            TakePhotoButton();
         }
+    }
+
+    public void TakePhotoButton()
+    {
+        TakePhoto();
+    }
+
+    private void TakePhoto()
+    {
+        StartCoroutine(TakeScreenShot(VirtualCamera, Preview));
     }
 
     public IEnumerator TakeScreenShot(GameObject cam, GameObject preview) { 
