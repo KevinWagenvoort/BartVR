@@ -100,6 +100,16 @@ public class ConversationNavigation : MonoBehaviour
         }
     }
 
+    public void TouchButtonChoice(int buttonNumber)
+    {
+        if (CanSend)
+        {
+            LocalChatScript.SendChoice(buttonNumber);
+            DisableButtons();
+            CanSend = false;
+        }
+    }
+
     void ButtonColor()
     {
         Buttons[PrevSelected].GetComponent<Image>().color = DefaultColor;
