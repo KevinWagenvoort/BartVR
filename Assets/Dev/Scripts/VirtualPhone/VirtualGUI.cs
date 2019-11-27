@@ -1,0 +1,233 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class VirtualGUI : MonoBehaviour {
+    // HandlerReferences
+    private PhotoHandler pHandler;
+    private InputHandler iHandler;
+
+    // SteamVR
+    private SteamVR_TrackedObject trackedObject;
+    private SteamVR_Controller.Device device;
+
+    // ButtonList
+    [Header("Add app panels in order from top to bottom in hierarchy")]
+    [SerializeField]
+    private List<GameObject> apps = new List<GameObject>();
+
+    // MenuButtons
+    [Header("Add app buttons in order from left, top, right, bottom then deselect")]
+    [SerializeField]
+    private List<GameObject> menuApps = new List<GameObject>();
+
+    // CameraButtons
+    [Header("Add app buttons in order of back, takepicture, deselect")]
+    [SerializeField]
+    private List<GameObject> cameraButtons = new List<GameObject>();
+
+    // ConfirmButtons
+    [Header("Add app buttons in order of yes, no, deselect")]
+    [SerializeField]
+    private List<GameObject> confirmButtons = new List<GameObject>();
+
+    // Enums
+    private enum App {
+        test = 0,
+        camera = 1,
+        chat = 2,
+        map = 3,
+        menu = 4,
+        none = 5
+    }
+
+    // References to other gameobjects
+    [SerializeField]
+    private GameObject confirmPanel;
+    [SerializeField]
+    private GameObject virtualCamera;
+    [SerializeField]
+    private GameObject preview;
+    [SerializeField]
+    private GameObject largeMap;
+    [SerializeField]
+    private ScrollRect scrollRect;
+    [SerializeField]
+    private RectTransform contentPanel;
+    [SerializeField]
+    private RectTransform icon;
+    [SerializeField]
+    private RectTransform cursor;
+
+    // Logic variables
+    [SerializeField]
+    private float offsetX;
+    [SerializeField]
+    private float offsetY;
+    private float cursorSpeed = 35f;
+    private float cursorMargin = 0.15f;
+    private bool ShouldLoop = true;
+
+    [SerializeField]
+    private GameObject MessageIcon, PhoneSpeakers;
+    public GameObject MenuTutorial;
+
+    // Use this for initialization
+    void Start() {
+        pHandler = new PhotoHandler();
+        iHandler = new InputHandler();
+        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
+        //SpeakerLoop();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        try
+        {
+            device = SteamVR_Controller.Input((int)trackedObject.index);
+
+            if (device.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+                if (confirmPanel.activeInHierarchy)
+                    confirmPanel.SetActive(false);
+                else
+                    ReturnToMenu(CurrentApp());
+        } catch
+        {
+
+        }
+
+        PCNavigation();
+
+        switch (CurrentApp()) {
+            case App.camera:
+                RunCamera();
+                break;
+            case App.map:
+                RunMap();
+                break;
+            case App.menu:
+                RunMenu();
+                break;
+            case App.test:
+                //TODO third panel;
+                ReturnToMenu(App.test);
+                break;
+            case App.chat:
+                RunChat();
+                break;
+            case App.none:
+                ReturnToMenu(App.menu);
+                break;
+        }
+
+
+
+        RunCameraPopUp(confirmPanel.activeInHierarchy);
+    }
+
+    // MAIN MENU ----
+
+    void PCNavigation()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            LaunchApp(1);
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            LaunchApp(2);
+            RunChat();
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            LaunchApp(3);
+        }
+        else if (Input.GetKeyUp(KeyCode.Backspace))
+        {
+            Debug.Log("Backspace");
+            ReturnToMenu(CurrentApp());
+        }
+    }
+
+    private App CurrentApp() {
+        for (int i = 0; i <= apps.Count; i++) {
+            if (apps[i].gameObject.activeInHierarchy == true) {
+                return (App)i;
+            }
+        }
+        return App.none;
+    }
+
+    private void ReturnToMenu(App app) {
+        if (app != App.menu) {
+            apps[(int)app].SetActive(false);
+            apps[(int)App.menu].SetActive(true);
+        }
+    }
+
+    private void RunMenu() {
+        //HighlightSelectedApp();
+        iHandler.Highlight(new List<Direction> { Direction.left, Direction.up, Direction.right, Direction.down, Direction.standby }, menuApps, device);
+        //App was selected
+        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && iHandler.TouchpadDirection(device) != Direction.standby) {
+            LaunchApp((int)iHandler.TouchpadDirection(device));
+        }
+    }
+
+    private void RunChat()
+    {
+        ShouldLoop = false;
+        MessageIcon.SetActive(false);
+        PhoneSpeakers.SetActive(false);
+    }
+
+    private void SpeakerLoop()
+    {
+        if (ShouldLoop)
+        {
+            PhoneSpeakers.GetComponent<AudioSource>().Play();
+            Invoke("SpeakerLoop", 2);
+        }
+    }
+
+    private void LaunchApp(int app) {
+        // hide current app
+        apps[(int)CurrentApp()].SetActive(false);
+        // show new app
+        apps[app].SetActive(true);
+        MenuTutorial.SetActive(false);
+    }
+
+    // MAP APP ----
+
+
+    private void RunMap() {
+        
+    }
+
+    private bool IsBetween(float val, float low, float high) {
+        return val > low && val < high;
+    }
+
+    // CAMERA APP ----
+
+
+    private void RunCamera() {
+        if (confirmPanel.activeInHierarchy == false) {
+            iHandler.Highlight(new List<Direction> { Direction.down, Direction.standby }, cameraButtons, device);
+        }
+    }
+
+    private void RunCameraPopUp(bool run) {
+        iHandler.Highlight(new List<Direction> { Direction.up, Direction.down, Direction.standby }, confirmButtons, device);
+
+        if (iHandler.GetPress(device) == Direction.up) {
+            pHandler.SendPictureToOC();
+            confirmPanel.SetActive(false);
+        } else if (iHandler.GetPress(device) == Direction.down) {
+            confirmPanel.SetActive(false);
+        }
+    }
+}

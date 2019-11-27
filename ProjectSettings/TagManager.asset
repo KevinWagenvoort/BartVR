@@ -6,6 +6,21 @@ TagManager:
   tags:
   - CameraRig
   - Hands
+  - POI
+  - Suspect
+  - DefaultNotification
+  - Civilian
+  - AnimBones
+  - SkinBones
+  - projectile
+  - FxTemporaire
+  - NPC
+  - Officer
+  - VRUIButton
+  - Node
+  - Marker
+  - Cursor
+  - ScenarioTrigger
   layers:
   - Default
   - TransparentFX
@@ -16,13 +31,13 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Officer
+  - Minimap
+  - Terrain
+  - Minimap - Phone
+  - Minimap - Control Room
+  - ReflectionIgnore
+  - IgnorePhoneCamera
   - 
   - 
   - 
@@ -40,6 +55,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: AlwaysOnTop
+    uniqueID: 2055988083
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: PhoneBackground
+    uniqueID: 1860607
+    locked: 0
+  - name: PhoneGUI
+    uniqueID: 1612605807
     locked: 0
