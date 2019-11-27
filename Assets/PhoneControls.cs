@@ -11,6 +11,7 @@ public class PhoneControls : MonoBehaviour
     [Header("2 = Camera, 3 = Map")]
     [Header("0 = MainMenu, 1 = Chat")]
     public List<GameObject> Apps = new List<GameObject>();
+    public GameObject MenuTutorial;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,7 @@ public class PhoneControls : MonoBehaviour
         {
             app.SetActive(false);
         }
+        MenuTutorial.SetActive(false);
     }
 
     void OpenMainMenu()
