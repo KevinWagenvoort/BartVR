@@ -46,29 +46,6 @@ public class PhoneControls : MonoBehaviour
         }
     }
 
-    //VR touch controls
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.tag == "VRUIButton")
-        {
-            switch(collider.gameObject.name)
-            {
-                case "ButtonChat":
-                    OpenChat();
-                    break;
-                case "ButtonCamera":
-                    OpenCamera();
-                    break;
-                case "ButtonMap":
-                    OpenMap();
-                    break;
-                default:
-                    Debug.Log(collider.gameObject.name);
-                    break;
-            }
-        }
-    }
-
     void DeactivateApps()
     {
         foreach (GameObject app in Apps)
@@ -84,21 +61,21 @@ public class PhoneControls : MonoBehaviour
         currentApp = Apps[0];
     }
 
-    void OpenChat()
+    public void OpenChat()
     {
         DeactivateApps();
         Apps[1].SetActive(true);
         currentApp = Apps[1];
     }
 
-    void OpenCamera()
+    public void OpenCamera()
     {
         DeactivateApps();
         Apps[2].SetActive(true);
         currentApp = Apps[2];
     }
 
-    void OpenMap()
+    public void OpenMap()
     {
         DeactivateApps();
         Apps[3].SetActive(true);
