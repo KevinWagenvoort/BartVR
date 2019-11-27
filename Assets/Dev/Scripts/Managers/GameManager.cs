@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         //Spawn npc
-        amountOfNpcsToSpawn = 40;
+        amountOfNpcsToSpawn = 10;
         //Load scene
         SceneManager.LoadScene(currentScenario);
         //Start time

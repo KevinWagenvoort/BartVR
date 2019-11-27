@@ -12,6 +12,7 @@ public class PhoneControls : MonoBehaviour
     [Header("0 = MainMenu, 1 = Chat")]
     public List<GameObject> Apps = new List<GameObject>();
     public GameObject MenuTutorial;
+    public GameObject NewMessageIcon;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +65,7 @@ public class PhoneControls : MonoBehaviour
 
     public void OpenChat()
     {
+        NewMessageIcon.SetActive(false);
         DeactivateApps();
         Apps[1].SetActive(true);
         currentApp = Apps[1];
