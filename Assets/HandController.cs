@@ -9,6 +9,7 @@ public class HandController : MonoBehaviour
 
     private PhoneControls PhoneControls;
     private ChoiceNavigation ChoiceNavigationPrivate, ChoiceNavigationNeighbourhood;
+    private bool isTriggerable = true;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class HandController : MonoBehaviour
     //VR touch controls
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "VRUIButton")
+        if (collider.gameObject.tag == "VRUIButton" && isTriggerable)
         {
             switch (collider.gameObject.name)
             {
@@ -59,7 +60,14 @@ public class HandController : MonoBehaviour
                     collider.gameObject.GetComponent<CameraOpenScript>().OpenCamera();
                     break;
             }
+            isTriggerable = false;
+            Invoke("MakeTriggerable", 1);
         }
         Debug.Log(collider.gameObject.name);
+    }
+
+    private void MakeTriggerable()
+    {
+        isTriggerable = true;
     }
 }
