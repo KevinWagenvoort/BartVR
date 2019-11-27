@@ -30,10 +30,8 @@ public class HandController : MonoBehaviour
                 case "ButtonMap":
                     PhoneControls.OpenMap();
                     break;
-                default:
-                    Debug.Log(collider.gameObject.name);
-                    break;
             }
         }
+        Debug.Log(collider.gameObject.name);
     }
 }
