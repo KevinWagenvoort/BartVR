@@ -31,6 +31,7 @@ RectTransform:
   - {fileID: 568699139185086907}
   - {fileID: 3287854057733357837}
   - {fileID: 3287854058717978049}
+  - {fileID: 7762723222799673314}
   - {fileID: 2728463185652565160}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -95,7 +96,7 @@ PrefabInstance:
     - target: {fileID: 3823390706860273591, guid: df309db2d7e8c2e46b15904e056568a8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3823390706860273591, guid: df309db2d7e8c2e46b15904e056568a8,
         type: 3}
@@ -174,6 +175,242 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3823390706860273591, guid: df309db2d7e8c2e46b15904e056568a8,
     type: 3}
   m_PrefabInstance: {fileID: 1212061316708231967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2678939013340066249
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3105402021656302161}
+    m_Modifications:
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 23.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 907.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 609.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2399002364891286105, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Name
+      value: PoliceUitlegpopup
+      objectReference: {fileID: 0}
+    - target: {fileID: 2399002364891286105, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131605373055713788, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.9372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131605373055713788, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.7752079
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131605373055713788, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.55268776
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131605373055713788, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131605373055713788, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131605373055713788, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 3945843259761850386, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Name
+      value: PoliceUitlegPopupButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755474740203578795, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755474740203578795, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 57
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755474740203578795, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 57
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755474740203578795, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755474740203578795, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755474740203578795, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_text
+      value: 'Hierboven bevindt zich een menu waar je de politieagenten naar het plaatsdelict
+        kan sturen. Met de agenten wordt het incident opgelost en is alles weer veilig.
+
+
+        Eerst hoor je een agent te selecteren in de kaart, daarna kan je de agent
+        versturen of een andere kiezen. Dit kan pas wanneer de agent in de situatie
+        nodig is.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755474740203578795, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 296
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473582059972091910, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195726166502732167, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195726166502732167, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195726166502732167, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195726166502732167, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195726166502732167, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b4b6c22c0e8c96e429c9ade2490493d8, type: 3}
+--- !u!224 &7762723222799673314 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5663060420235597355, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2678939013340066249}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3278954560324856685
 PrefabInstance:
@@ -401,6 +638,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kernwoordenpopup
       objectReference: {fileID: 0}
+    - target: {fileID: 2399002364891286105, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4131605373055713788, guid: b4b6c22c0e8c96e429c9ade2490493d8,
         type: 3}
       propertyPath: m_Color.r
@@ -430,6 +672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473582059972091910, guid: b4b6c22c0e8c96e429c9ade2490493d8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4b6c22c0e8c96e429c9ade2490493d8, type: 3}

@@ -10,11 +10,16 @@ public class PopupController : MonoBehaviour
     public GameObject popupIncident;
     public GameObject popupKernwoorden;
     public GameObject popupEnd;
+    public GameObject popupSendPoliceUitleg;
+
+    public GameObject policeSend; // popup to send police for explanation 
+
     public Button closePopup;
     public Button closePopupMap;
     public Button closePopupIncident;
     public Button closePopupKernwoorden;
     public Button closePopupEnd;
+    public Button closePopupPoliceUitleg;
 
     public IncidentController incidentController;
 
@@ -22,6 +27,7 @@ public class PopupController : MonoBehaviour
     void Start()
     {
         closePopupMap.onClick.AddListener(OnClickHandlerMap);
+        closePopupPoliceUitleg.onClick.AddListener(OnClickHandlerPoliceUitleg);
         closePopup.onClick.AddListener(OnClickHandlerPopup);
         closePopupIncident.onClick.AddListener(OnClickHandlerIncident);
         closePopupKernwoorden.onClick.AddListener(OnClickHandlerPopupKernwoorden);
@@ -39,18 +45,32 @@ public class PopupController : MonoBehaviour
         if (popupMap.activeInHierarchy)
         {
             popupMap.SetActive(false);
+            popupSendPoliceUitleg.SetActive(true);
+            policeSend.SetActive(true);
+            
+        }
+    }
+    
+    void OnClickHandlerPoliceUitleg()
+    {
+        if (popupSendPoliceUitleg.activeInHierarchy)
+        {
+            popupSendPoliceUitleg.SetActive(false);
+            policeSend.SetActive(false);
             popupIncident.SetActive(true);
             incidentController.TutScenario();
+
         }
     }
 
     void OnClickHandlerIncident()
     {
         if (popupIncident.activeInHierarchy)
-        {
+        {            
             popupIncident.SetActive(false);
         }
     }
+
 
     void OnClickHandlerPopup()
     {
