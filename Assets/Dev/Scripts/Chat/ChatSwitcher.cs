@@ -9,25 +9,6 @@ public class ChatSwitcher : MonoBehaviour
     public GameObject NeighbourhoodApp;
     public GameObject PrivateApp;
 
-    // Update is called once per frame
-    void Update()
-    {
-        Navigation();
-    }
-
-    void Navigation()
-    {
-        //PC
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            SwitchApps();
-        }
-        else if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            SwitchApps();
-        }
-    }
-
     void SwitchApps()
     {
         NeighbourhoodApp.SetActive(!NeighbourhoodApp.activeInHierarchy);

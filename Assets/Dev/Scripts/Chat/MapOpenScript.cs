@@ -49,7 +49,7 @@ public class MapOpenScript : MonoBehaviour
         }
     }
 
-    void OpenMap()
+    public void OpenMap()
     {
         ChatAppPanel.SetActive(false);
         MinimapPanel.SetActive(true);

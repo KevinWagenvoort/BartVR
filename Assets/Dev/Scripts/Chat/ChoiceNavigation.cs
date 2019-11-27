@@ -37,7 +37,6 @@ public class ChoiceNavigation : MonoBehaviour
     void Update()
     {
         Navigation();
-        ButtonOutline();
     }
 
     void Navigation()
@@ -48,14 +47,16 @@ public class ChoiceNavigation : MonoBehaviour
             controller = SteamVR_Controller.Input((int)trackedObject.index);
             if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y > 0.1f)
+                if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x > 0.1f)
                 {
                     PrevSelected = Selected.selected;
                     Selected.Previous();
-                } else if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y < -0.1f)
+                    ButtonOutline();
+                } else if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x < -0.1f)
                 {
                     PrevSelected = Selected.selected;
                     Selected.Next();
+                    ButtonOutline();
                 }
             }
 
@@ -76,15 +77,17 @@ public class ChoiceNavigation : MonoBehaviour
         }
 
         //PC
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             PrevSelected = Selected.selected;
             Selected.Previous();
+            ButtonOutline();
         }
-        else if (Input.GetKeyUp(KeyCode.DownArrow))
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
         {
             PrevSelected = Selected.selected;
             Selected.Next();
+            ButtonOutline();
         } else if (Input.GetKeyUp(KeyCode.Return))
         {
             if (IsPrivate)
@@ -109,6 +112,18 @@ public class ChoiceNavigation : MonoBehaviour
             }
         }
         return ac;
+    }
+
+    public void TouchButtonChoice(int buttonNumber)
+    {
+        if (IsPrivate)
+        {
+            PrivateAppScript.SendChoice(buttonNumber);
+        }
+        else
+        {
+            NeighbourhoodAppScript.SendChoiceCitizen(Buttons[buttonNumber].GetText());
+        }
     }
 
     void ButtonOutline()
