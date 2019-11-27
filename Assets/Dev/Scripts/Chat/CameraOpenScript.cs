@@ -47,7 +47,7 @@ public class CameraOpenScript : MonoBehaviour
         }
     }
 
-    void OpenCamera()
+    public void OpenCamera()
     {
         ChatAppPanel.SetActive(false);
         VirtualCameraPanel.SetActive(true);

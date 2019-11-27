@@ -68,7 +68,7 @@ public class SendMessage : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    private void SendCurrentMessage()
+    public void SendCurrentMessage()
     {
         gameObject.SetActive(false);
         if (isNeighbourhood)
