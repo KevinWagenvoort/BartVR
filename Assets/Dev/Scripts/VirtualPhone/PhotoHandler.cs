@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PhotoHandler : MonoBehaviour {
 
     public GameObject VirtualCamera, Preview, FeedbackPanel, NeighbourhoodApp, ChatAppPanel;
+    public Text FeedbackText;
     private string pictureRoot;
     private string tempPath;
 
@@ -88,7 +89,14 @@ public class PhotoHandler : MonoBehaviour {
         // Write to path (previous screenshots are overwritten)
         File.WriteAllBytes(path, bytes);
         Sprite photo = MakeSprite();
-        NeighbourhoodAppScript.SendPhoto(photo);
+        if (DistanceTrigger.ConversationIsDone)
+        {
+            NeighbourhoodAppScript.SendPhoto(photo);
+            FeedbackText.text = "Foto verstuurd";
+        } else
+        {
+            FeedbackText.text = "Foto opgeslagen";
+        }
         FeedbackPanel.SetActive(true);
         Invoke("TurnOffFeedbackPanel", 2);
     }
@@ -136,7 +144,10 @@ public class PhotoHandler : MonoBehaviour {
     private void TurnOffFeedbackPanel()
     {
         FeedbackPanel.SetActive(false);
-        gameObject.SetActive(false);
-        ChatAppPanel.SetActive(true);
+        if (DistanceTrigger.ConversationIsDone)
+        {
+            gameObject.SetActive(false);
+            ChatAppPanel.SetActive(true);
+        }
     }
 }
