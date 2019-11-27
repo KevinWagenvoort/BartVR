@@ -111,6 +111,18 @@ public class ChoiceNavigation : MonoBehaviour
         return ac;
     }
 
+    public void TouchButtonChoice(int buttonNumber)
+    {
+        if (IsPrivate)
+        {
+            PrivateAppScript.SendChoice(buttonNumber);
+        }
+        else
+        {
+            NeighbourhoodAppScript.SendChoiceCitizen(Buttons[buttonNumber].GetText());
+        }
+    }
+
     void ButtonOutline()
     {
         Buttons[PrevSelected].ButtonObject.transform.GetComponent<Outline>().enabled = false;
