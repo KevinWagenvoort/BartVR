@@ -9,12 +9,48 @@ public class RenderTextureClick : MonoBehaviour
     public Camera mapCamera;
     public Camera canvasCamera;
     public Canvas canvas;
-    public GameObject pizzaLocation;
+    public GameObject pizzaLocation, tutLocation;
+
+    //Send officer
+    public GameObject SendPopup;
+    public bool? send;
+    public Button yes;
+    public Button no;
+
+    //Private
+    private Vector2 localpoint;
+    private RaycastHit hit;
+    private GameObject SelectedOfficer;
+    private Vector3 DefaultScale = new Vector3(1, 1, 1);
+    private Vector3 SelectedScale = new Vector3(2, 2, 2);
 
     // Start is called before the first frame update
     void Start()
     {
+        yes.onClick.AddListener(OnClickHandlerYes);
+        no.onClick.AddListener(OnClickHandlerNo);
+    }
 
+    //button yes to send police
+    void OnClickHandlerYes()
+    {
+        if (DistanceTrigger.VandalismHasHappend)
+        {
+            SelectedOfficer.GetComponentInParent<NPCBehaviour>().MoveToTarget(pizzaLocation);
+        } else
+        {
+            SelectedOfficer.GetComponentInParent<NPCBehaviour>().MoveToTarget(tutLocation);
+        }
+
+        SelectedOfficer.transform.localScale = DefaultScale;
+        SendPopup.SetActive(false);
+    }
+
+    //button no to not send police
+    void OnClickHandlerNo()
+    {
+        SelectedOfficer.transform.localScale = DefaultScale;
+        SendPopup.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,21 +68,25 @@ public class RenderTextureClick : MonoBehaviour
             {
                 if (result.gameObject.name == "2DMap")
                 {
-                    Vector2 localpoint;
                     RectTransform rt = result.gameObject.GetComponent<RectTransform>();
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(rt, Input.mousePosition, canvasCamera, out localpoint);
 
                     Vector2 normalizedPoint = Rect.PointToNormalized(rt.rect, localpoint);
 
-                    RaycastHit hit;
                     Ray ray = mapCamera.ViewportPointToRay(normalizedPoint);
 
                     if (Physics.Raycast(ray, out hit))
                     {
                         if (hit.collider.gameObject.name == "OfficerIcon")
                         {
-                            Debug.Log("Officer selected");
-                            hit.transform.gameObject.GetComponent<NPCBehaviour>().MoveToTarget(pizzaLocation);
+                            if (SelectedOfficer != null)//Check if there was an old officer
+                            {
+                                SelectedOfficer.transform.localScale = DefaultScale;
+                            }
+
+                            SelectedOfficer = hit.collider.gameObject;
+                            SelectedOfficer.transform.localScale = SelectedScale;
+                            SendPopup.SetActive(true);                           
                         }
                     }
                 }
