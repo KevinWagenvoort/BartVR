@@ -45,6 +45,11 @@ public class ChatApp
         }
         return LastMessage;
     }
+
+    public void ClearMessages()
+    {
+        MessageList = new List<Message>();
+    }
 }
 
 public class Message

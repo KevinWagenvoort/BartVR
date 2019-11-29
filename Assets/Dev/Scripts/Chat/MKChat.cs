@@ -142,8 +142,8 @@ public class MKChat : MonoBehaviour
                     Dropdown.AddOptions(LastMessage.possibleAnswers);
                     //Enable dropdown + button
                     Dropdown.interactable = true;
-                    SendButton.interactable = true;
                     Arrow.SetActive(true);
+                    Invoke("ActivateSendButton", 1);
                 } else if (LastMessage.type == Message.Type.QuestionTriggerAnswer || LastMessage.type == Message.Type.PhotoQuestionTrigger)//Old question
                 {
                     Dropdown.interactable = true;
@@ -171,6 +171,11 @@ public class MKChat : MonoBehaviour
         Dropdown.AddOptions(new List<string>() { message });
         CurrentMessage = new Message(message, sender, type, possibleAnswers, photo);
         Dropdown.interactable = false;
+        Invoke("ActivateSendButton", 1);
+    }
+
+    private void ActivateSendButton()
+    {
         SendButton.interactable = true;
     }
 

@@ -55,7 +55,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
     {
         Message LastMessage = NeighbourhoodAppScript.ChatApp.GetLastMessage();
 
-        if (!RenderedMessages.Contains(LastMessage) && LastMessage != null)
+        if (!RenderedMessages.Contains(LastMessage) && LastMessage != null && DistanceTrigger.TutorialControlRoomIsDone)
         {
             MoveAllMessages();
             RenderedMessages.Add(LastMessage);
