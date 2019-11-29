@@ -34,7 +34,7 @@ public class RenderTextureClick : MonoBehaviour
     //button yes to send police
     void OnClickHandlerYes()
     {
-        if (!DistanceTrigger.VandalismHasHappend)
+        if (DistanceTrigger.VandalismHasHappend)
         {
             SelectedOfficer.GetComponentInParent<NPCBehaviour>().MoveToTarget(pizzaLocation);
         } else
