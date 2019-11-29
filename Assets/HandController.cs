@@ -39,6 +39,9 @@ public class HandController : MonoBehaviour
                 case "ButtonMap":
                     PhoneControls.OpenMap();
                     break;
+                case "GoBackButton":
+                    PhoneControls.OpenMainMenu();
+                        break;
                 case "ChoiceBubble A":
                     ChoiceNavigationPrivate.TouchButtonChoice(0);
                     break;
