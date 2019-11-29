@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PhoneControls : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PhoneControls : MonoBehaviour
     [Header("0 = MainMenu, 1 = Chat")]
     public List<GameObject> Apps = new List<GameObject>();
     public GameObject MenuTutorial;
+    public GameObject GoBackButton;
 
     // Start is called before the first frame update
     void Start()
@@ -55,8 +57,9 @@ public class PhoneControls : MonoBehaviour
         MenuTutorial.SetActive(false);
     }
 
-    void OpenMainMenu()
+    public void OpenMainMenu()
     {
+        GoBackButton.SetActive(false);
         DeactivateApps();
         Apps[0].SetActive(true);
         currentApp = Apps[0];
@@ -64,6 +67,7 @@ public class PhoneControls : MonoBehaviour
 
     public void OpenChat()
     {
+        GoBackButton.SetActive(true);
         DeactivateApps();
         Apps[1].SetActive(true);
         currentApp = Apps[1];
@@ -71,6 +75,7 @@ public class PhoneControls : MonoBehaviour
 
     public void OpenCamera()
     {
+        GoBackButton.SetActive(true);
         DeactivateApps();
         Apps[2].SetActive(true);
         currentApp = Apps[2];
@@ -78,6 +83,7 @@ public class PhoneControls : MonoBehaviour
 
     public void OpenMap()
     {
+        GoBackButton.SetActive(true);
         DeactivateApps();
         Apps[3].SetActive(true);
         currentApp = Apps[3];
