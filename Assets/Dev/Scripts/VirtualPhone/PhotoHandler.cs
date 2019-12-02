@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PhotoHandler : MonoBehaviour {
 
-    public GameObject VirtualCamera, Preview, FeedbackPanel, NeighbourhoodApp, ChatAppPanel;
+    public GameObject VirtualCamera, Preview, FeedbackPanel, NeighbourhoodApp, ChatAppPanel, PrivacyImage1, PrivacyImage2;
     public Text FeedbackText;
     private string pictureRoot;
     private string tempPath;
@@ -99,6 +99,8 @@ public class PhotoHandler : MonoBehaviour {
         }
         FeedbackPanel.SetActive(true);
         Invoke("TurnOffFeedbackPanel", 2);
+        PrivacyImage1.SetActive(false);
+        PrivacyImage2.SetActive(false);
     }
 
     private void SetPreview(GameObject preview, GameObject confirmPanel) {
