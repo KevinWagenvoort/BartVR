@@ -24,6 +24,12 @@ public class EscapeMenu : MonoBehaviour
 
     void ReturnToMenu()
     {
+        DistanceTrigger.TutorialBurgerIsDone = false;
+        DistanceTrigger.TutorialControlRoomIsDone = false;
+        DistanceTrigger.ConversationIsDone = false;
+        DistanceTrigger.VandalismHasHappend = false;
+        DistanceTrigger.StartedSendingMessages = false;
+        DistanceTrigger.ScenarioIsDone = false;
         SceneManager.LoadScene("MainMenu");
     }
 

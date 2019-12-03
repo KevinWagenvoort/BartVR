@@ -108,6 +108,20 @@ public class IncidentController : MonoBehaviour
                 AddIncident(ListOfIncidentsTypes[3], message, answer);
                 Invoke("TutScenario", 2);
                 break;
+            case 5://Twitter
+                message = "Gebroken glas op straat #Amundsenstraat";
+                answer = "De gemeente zal het rond 15:30 komen opruimen";
+                AddIncident(ListOfIncidentsTypes[2], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[2], message);
+                Invoke("TutScenario", 2);
+                break;
+            case 6://Facebook
+                message = "Bushokje Yoghurtstraat is gevandaliseerd. Wat een zooi weer.";
+                answer = "Bedankt voor de melding. De gemeente komt vanmiddag kijken.";
+                AddIncident(ListOfIncidentsTypes[0], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[0], message);
+                Invoke("TutScenario", 2);
+                break;
         }
 
         passCount++;
@@ -151,6 +165,13 @@ public class IncidentController : MonoBehaviour
                 message = "Gebeld door:\n088-469-9911";
                 answer = "";
                 AddIncident(ListOfIncidentsTypes[4], message, answer);
+                Invoke("BeginScenario", TimeBetweenIncidents);
+                break;
+            case 5://Instagram
+                message = "Berg afval op Bacadistraat. Wat een stank!";
+                answer = "Bedankt voor de melding. De gemeente is op de hoogte gesteld.";
+                AddIncident(ListOfIncidentsTypes[1], message, answer);
+                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[1], message);
                 Invoke("BeginScenario", TimeBetweenIncidents);
                 break;
         }

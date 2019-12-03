@@ -7,6 +7,7 @@ public class PhoneControls : MonoBehaviour
 {
     //private
     private GameObject currentApp;
+    private bool PrivaceImage1HasShown = false, PrivacyImage2HasShown = false;
 
     //public
     [Header("2 = Camera, 3 = Map")]
@@ -15,6 +16,8 @@ public class PhoneControls : MonoBehaviour
     public GameObject MenuTutorial;
     public GameObject NewMessageIcon;
     public GameObject GoBackButton;
+    public GameObject PrivacyImage1;
+    public GameObject PrivacyImage2;
 
     // Start is called before the first frame update
     void Start()
@@ -81,6 +84,15 @@ public class PhoneControls : MonoBehaviour
         DeactivateApps();
         Apps[2].SetActive(true);
         currentApp = Apps[2];
+        if (DistanceTrigger.VandalismHasHappend && !PrivacyImage2HasShown)
+        {
+            PrivacyImage2.SetActive(true);
+            PrivacyImage2HasShown = true;
+        } else if (!PrivaceImage1HasShown)
+        {
+            PrivacyImage1.SetActive(true);
+            PrivaceImage1HasShown = true;
+        }
     }
 
     public void OpenMap()
