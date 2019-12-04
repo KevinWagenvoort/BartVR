@@ -37,7 +37,7 @@ public class NotificationsController : MonoBehaviour
         ActiveNotification.GetComponentInChildren<TMP_Text>().text = message;
         ShowNotification();//Show new
         HideAfterSeconds(2.5f);
-        StartCoroutine(Vibrations.LongVibration(0.5f, 250));
+        Vibrations.Pulse(0.5f);
         Speakers.Play();
     }
 
