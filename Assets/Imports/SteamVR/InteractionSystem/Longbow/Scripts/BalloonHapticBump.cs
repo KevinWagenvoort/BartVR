@@ -5,6 +5,7 @@
 //=============================================================================
 
 using UnityEngine;
+using System.Collections;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -22,7 +23,7 @@ namespace Valve.VR.InteractionSystem
 				Hand hand = physParent.GetComponentInParent<Hand>();
 				if ( hand != null )
 				{
-					hand.controller.TriggerHapticPulse( 500 );
+					hand.TriggerHapticPulse( 500 );
 				}
 			}
 		}

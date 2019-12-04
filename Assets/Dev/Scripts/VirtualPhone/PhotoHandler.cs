@@ -14,32 +14,13 @@ public class PhotoHandler : MonoBehaviour {
     private int pictureID;
     private NeighbourhoodAppScript NeighbourhoodAppScript;
 
-    // SteamVR
-    private SteamVR_TrackedObject trackedObject;
-    private SteamVR_Controller.Device controller;
-
     private void Start()
     {
-        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
     }
 
     private void Update()
     {
-        //VR
-        try
-        {
-            controller = SteamVR_Controller.Input((int)trackedObject.index);
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
-            {
-                StartCoroutine(TakeScreenShot(VirtualCamera, Preview));
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e);
-        }
-
         //PC
         if (Input.GetKeyUp(KeyCode.P))
         {

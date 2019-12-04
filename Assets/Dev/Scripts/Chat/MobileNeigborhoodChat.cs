@@ -79,7 +79,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
             {
                 if (DistanceTrigger.StartedSendingMessages)
                 {
-                    StartCoroutine(Vibrations.LongVibration(0.5f, 250));
+                    Vibrations.Pulse(0.5f);
                 }
                 if (LastMessage.type == Message.Type.Location)
                 {

@@ -2,40 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class TeleportTutorial : MonoBehaviour
 {
-
+    public SteamVR_Action_Boolean teleportAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("Teleport");
     private int teleportCount = 0;
-
-    // SteamVR
-    private SteamVR_TrackedObject trackedObject;
-    private SteamVR_Controller.Device controller;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
-    }
 
     // Update is called once per frame
     void Update()
     {
-        try
+        if (teleportAction.GetStateUp(SteamVR_Input_Sources.RightHand) || teleportAction.GetStateUp(SteamVR_Input_Sources.LeftHand))
         {
-            controller = SteamVR_Controller.Input((int)trackedObject.index);
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
-            {
-                teleportCount++;
-                if (teleportCount == 3)
-                {
-                    gameObject.SetActive(false);
-                }
-            }
+            teleportCount++;
         }
-        catch (Exception e)
+        if (teleportCount > 2)
         {
-            Debug.LogError(e);
+            gameObject.SetActive(false);
         }
     }
 }

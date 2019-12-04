@@ -7,7 +7,6 @@ public class PhoneControls : MonoBehaviour
 {
     //private
     private GameObject currentApp;
-    private bool PrivaceImage1HasShown = false, PrivacyImage2HasShown = false;
 
     //public
     [Header("2 = Camera, 3 = Map")]
@@ -84,14 +83,14 @@ public class PhoneControls : MonoBehaviour
         DeactivateApps();
         Apps[2].SetActive(true);
         currentApp = Apps[2];
-        if (DistanceTrigger.VandalismHasHappend && !PrivacyImage2HasShown)
+        if (DistanceTrigger.VandalismHasHappend)
         {
+            PrivacyImage1.SetActive(false);
             PrivacyImage2.SetActive(true);
-            PrivacyImage2HasShown = true;
-        } else if (!PrivaceImage1HasShown)
+        } else
         {
             PrivacyImage1.SetActive(true);
-            PrivaceImage1HasShown = true;
+            PrivacyImage2.SetActive(false);
         }
     }
 

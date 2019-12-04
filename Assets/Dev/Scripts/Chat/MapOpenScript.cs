@@ -10,14 +10,9 @@ public class MapOpenScript : MonoBehaviour
     public GameObject TeleportTutorial;
     public GameObject MapPath;
 
-    // SteamVR
-    private SteamVR_TrackedObject trackedObject;
-    private SteamVR_Controller.Device controller;
-
     // Start is called before the first frame update
     void Start()
     {
-        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
     }
 
     // Update is called once per frame
@@ -28,20 +23,6 @@ public class MapOpenScript : MonoBehaviour
 
     void Navigation()
     {
-        //VR
-        try
-        {
-            controller = SteamVR_Controller.Input((int)trackedObject.index);
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
-            {
-                OpenMap();
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e);
-        }
-
         //PC
         if (Input.GetKeyUp(KeyCode.Return))
         {

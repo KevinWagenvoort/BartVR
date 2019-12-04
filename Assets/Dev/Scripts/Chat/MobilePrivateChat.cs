@@ -63,7 +63,7 @@ public class MobilePrivateChat : MonoBehaviour
                 MapOpenBubble.SetActive(false);
             } else
             {
-                StartCoroutine(Vibrations.LongVibration(0.5f, 250));
+                Vibrations.Pulse(0.5f);
                 if (LastMessage.type == Message.Type.Location)
                 {
                     newMessage = Instantiate(ReceivedLocationBubble, ReceivedLocationBubble.transform.parent);

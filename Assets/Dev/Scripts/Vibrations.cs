@@ -1,31 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class Vibrations : MonoBehaviour
 {
-    public static SteamVR_TrackedObject trackedObject;
-    public static SteamVR_Controller.Device controller;
+    public SteamVR_Action_Vibration hapticAction;
+    private static SteamVR_Action_Vibration staticHapticAction;
 
     private void Start()
     {
-        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
-        controller = SteamVR_Controller.Input((int)trackedObject.index);
+        staticHapticAction = hapticAction;
     }
 
-    public static IEnumerator LongVibration(float seconds, ushort strength)
+    public static void Pulse(float duration, float frequency = 50, float amplitude = 0.2f, SteamVR_Input_Sources source = SteamVR_Input_Sources.LeftHand)
     {
-        for (float i = 0; i < seconds; i += Time.deltaTime)
-        {
-            try
-            {
-                controller.TriggerHapticPulse(strength);
-            }
-            catch
-            {
-
-            }
-            yield return null; //every single frame for the duration of "length" you will vibrate at "strength" amount
-        }
+        staticHapticAction.Execute(0, duration, frequency, amplitude, source);
     }
 }
