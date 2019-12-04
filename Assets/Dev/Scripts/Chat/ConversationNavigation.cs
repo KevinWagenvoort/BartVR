@@ -22,14 +22,9 @@ public class ConversationNavigation : MonoBehaviour
     private Vector3 defaultScale;
     private bool CanSend = false;
 
-    // SteamVR
-    private SteamVR_TrackedObject trackedObject;
-    private SteamVR_Controller.Device controller;
-
     // Start is called before the first frame update
     void Start()
     {
-        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
         LocalChatScript = LocalChat.GetComponent<LocalChatScript>();
         LocalChatScript.PizzaSuspects();
     }
@@ -47,38 +42,6 @@ public class ConversationNavigation : MonoBehaviour
 
     void Navigation()
     {
-        //VR
-        try
-        {
-            controller = SteamVR_Controller.Input((int)trackedObject.index);
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
-            {
-                if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y > 0.1f)
-                {
-                    PrevSelected = Selected.selected;
-                    Selected.Previous();
-                    ButtonColor();
-                }
-                else if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y < -0.1f)
-                {
-                    PrevSelected = Selected.selected;
-                    Selected.Next();
-                    ButtonColor();
-                }
-            }
-
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger) && CanSend)
-            {
-                LocalChatScript.SendChoice(Selected.selected);
-                DisableButtons();
-                CanSend = false;
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e);
-        }
-
         //PC
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {

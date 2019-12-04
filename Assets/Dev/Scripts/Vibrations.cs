@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class Vibrations : MonoBehaviour
 {
-    public static SteamVR_TrackedObject trackedObject;
-    public static SteamVR_Controller.Device controller;
 
     private void Start()
     {
-        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
-        controller = SteamVR_Controller.Input((int)trackedObject.index);
     }
 
     public static IEnumerator LongVibration(float seconds, ushort strength)
@@ -19,7 +15,6 @@ public class Vibrations : MonoBehaviour
         {
             try
             {
-                controller.TriggerHapticPulse(strength);
             }
             catch
             {

@@ -35,10 +35,10 @@ public class EventHandler : MonoBehaviour {
     }
 
     public void End() {
-        ArrestHandler.EndGame();
+       // ArrestHandler.EndGame();
     }
 
     public void ArrestedSuspect() {
-        ArrestHandler.ActivateGameOverScreen();
+       // ArrestHandler.ActivateGameOverScreen();
     }
 }

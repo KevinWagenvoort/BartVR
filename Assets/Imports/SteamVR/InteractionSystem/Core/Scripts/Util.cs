@@ -28,7 +28,7 @@ namespace Valve.VR.InteractionSystem
 		public const float MilesToKilometers = 1.60934f;
 
 		//-------------------------------------------------
-		// Map num from range 1 to range 2
+		// Remap num from range 1 to range 2
 		//-------------------------------------------------
 		public static float RemapNumber( float num, float low1, float high1, float low2, float high2 )
 		{
@@ -715,7 +715,7 @@ namespace Valve.VR.InteractionSystem
 			Destroy( this );
 		}
 
-		
+
 		//-------------------------------------------------
 		void OnDestroy()
 		{

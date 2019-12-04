@@ -278,7 +278,7 @@ public class Officer : MonoBehaviour {
         
         // if more than 1 value is set, activate the arrestBubble
         if (isSet != Check.Gender && isSet != Check.TopPiece && isSet != Check.BottomPiece && isSet != Check.None) {
-            FindObjectOfType<ArrestHandler>().gameObject.GetComponent<SphereCollider>().enabled = true;
+            //FindObjectOfType<ArrestHandler>().gameObject.GetComponent<SphereCollider>().enabled = true;
         }
 
         startSearching = true;
