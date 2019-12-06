@@ -4212,6 +4212,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1711967388300215, guid: 162f381f0f7e4d84ebbc00ab50c57414, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114203210830560869, guid: 162f381f0f7e4d84ebbc00ab50c57414,
         type: 3}
       propertyPath: NeighbourhoodApp

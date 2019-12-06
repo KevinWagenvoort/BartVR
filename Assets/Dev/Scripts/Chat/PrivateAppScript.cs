@@ -14,7 +14,7 @@ public class PrivateAppScript : MonoBehaviour
     private SendMessage SendMessageButtonScript;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ChatApp = new ChatApp();
         Robin = new Sender("Vriend", Sender.Role.Npc);

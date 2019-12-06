@@ -61,10 +61,12 @@ public class HandController : MonoBehaviour
                     collider.gameObject.GetComponent<SendMessage>().SendCurrentMessage();
                     break;
                 case "MapOpenBubble":
-                    collider.gameObject.GetComponent<MapOpenScript>().OpenMap();
+                    PhoneControls.OpenMap();
+                    collider.gameObject.SetActive(false);
                     break;
                 case "CameraOpenBubble":
                     PhoneControls.OpenCamera();
+                    collider.gameObject.SetActive(false);
                     break;
                 case "ChoiceBubble A Local":
                     ConversationNavigation.TouchButtonChoice(0);
