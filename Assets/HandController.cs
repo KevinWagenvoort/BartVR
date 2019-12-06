@@ -5,7 +5,7 @@ using UnityEngine;
 public class HandController : MonoBehaviour
 {
     public GameObject VirtualPhone;
-    public GameObject ChoiceBubblesPrivate, ChoiceBubblesNeighbourhood, ChoiceBubblesLocal, VirtualCameraPanel;
+    public GameObject ChoiceBubblesPrivate, ChoiceBubblesNeighbourhood, ChoiceBubblesLocal, VirtualCameraPanel, Teleporting;
 
     private PhoneControls PhoneControls;
     private ChoiceNavigation ChoiceNavigationPrivate, ChoiceNavigationNeighbourhood;
@@ -83,8 +83,16 @@ public class HandController : MonoBehaviour
             }
             isTriggerable = false;
             Invoke("MakeTriggerable", 1);
+        } else
+        {
+            Teleporting.SetActive(false);
         }
         Debug.Log(collider.gameObject.name);
+    }
+
+    void OnTriggerExit(Collider collision)
+    {
+        Teleporting.SetActive(true);
     }
 
     private void MakeTriggerable()
