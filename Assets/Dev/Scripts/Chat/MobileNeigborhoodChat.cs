@@ -15,6 +15,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
     public GameObject SendPhotoBubble;
     public GameObject CameraOpenBubble;
     public Text SubjectText;
+    public AudioSource Speakers;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
     private ChatSwitcher ChatSwitcher;
@@ -55,7 +56,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
     {
         Message LastMessage = NeighbourhoodAppScript.ChatApp.GetLastMessage();
 
-        if (!RenderedMessages.Contains(LastMessage) && LastMessage != null)
+        if (!RenderedMessages.Contains(LastMessage) && LastMessage != null && DistanceTrigger.TutorialControlRoomIsDone)
         {
             MoveAllMessages();
             RenderedMessages.Add(LastMessage);
@@ -79,7 +80,8 @@ public class MobileNeigborhoodChat : MonoBehaviour
             {
                 if (DistanceTrigger.StartedSendingMessages)
                 {
-                    StartCoroutine(Vibrations.LongVibration(0.5f, 250));
+                    Vibrations.Pulse(0.5f);
+                    Speakers.Play();
                 }
                 if (LastMessage.type == Message.Type.Location)
                 {

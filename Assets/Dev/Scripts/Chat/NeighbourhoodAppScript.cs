@@ -97,7 +97,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Tutorial", 2);
                 break;
             case 11:
-                ChatApp.Send("Gelukkig waren we er op tijd bij.", Jong, Message.Type.Other);
+                ChatApp.ClearMessages();
                 DistanceTrigger.TutorialControlRoomIsDone = true;
                 IncidentControllerScript.ResetMK();
                 MKChatScript.ResetMK();
@@ -205,6 +205,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 SendMessageButtonScript.SetMessage("Ik ben er nu in de buurt en kan ze zien", Jij, Message.Type.Other);
                 break;
             case 11:
+                DistanceTrigger.StartScenarioDone = true;
                 Debug.Log("End intro");
                 break;
             case 12:

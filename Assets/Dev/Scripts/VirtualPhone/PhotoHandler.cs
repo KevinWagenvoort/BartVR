@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PhotoHandler : MonoBehaviour {
 
-    public GameObject VirtualCamera, Preview, FeedbackPanel, NeighbourhoodApp, ChatAppPanel;
+    public GameObject VirtualCamera, Preview, FeedbackPanel, NeighbourhoodApp, ChatAppPanel, PrivacyImage1, PrivacyImage2;
     public Text FeedbackText;
     private string pictureRoot;
     private string tempPath;
@@ -14,32 +14,13 @@ public class PhotoHandler : MonoBehaviour {
     private int pictureID;
     private NeighbourhoodAppScript NeighbourhoodAppScript;
 
-    // SteamVR
-    private SteamVR_TrackedObject trackedObject;
-    private SteamVR_Controller.Device controller;
-
     private void Start()
     {
-        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
     }
 
     private void Update()
     {
-        //VR
-        try
-        {
-            controller = SteamVR_Controller.Input((int)trackedObject.index);
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
-            {
-                StartCoroutine(TakeScreenShot(VirtualCamera, Preview));
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e);
-        }
-
         //PC
         if (Input.GetKeyUp(KeyCode.P))
         {
@@ -99,6 +80,8 @@ public class PhotoHandler : MonoBehaviour {
         }
         FeedbackPanel.SetActive(true);
         Invoke("TurnOffFeedbackPanel", 2);
+        PrivacyImage1.SetActive(false);
+        PrivacyImage2.SetActive(false);
     }
 
     private void SetPreview(GameObject preview, GameObject confirmPanel) {

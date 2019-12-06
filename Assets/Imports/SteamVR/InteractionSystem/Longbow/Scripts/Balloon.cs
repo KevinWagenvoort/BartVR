@@ -1,10 +1,11 @@
-﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
 // Purpose: BALLOONS!!
 //
 //=============================================================================
 
- using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -163,7 +164,7 @@ namespace Valve.VR.InteractionSystem
 			{
 				ushort collisionStrength = (ushort)Mathf.Clamp( Util.RemapNumber( collision.relativeVelocity.magnitude, 0f, 3f, 500f, 800f ), 500f, 800f );
 
-				hand.controller.TriggerHapticPulse( collisionStrength );
+				hand.TriggerHapticPulse( collisionStrength );
 			}
 		}
 

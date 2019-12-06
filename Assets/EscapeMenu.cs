@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Valve.VR;
 
 public class EscapeMenu : MonoBehaviour
 {
@@ -24,7 +25,13 @@ public class EscapeMenu : MonoBehaviour
 
     void ReturnToMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        DistanceTrigger.TutorialBurgerIsDone = false;
+        DistanceTrigger.TutorialControlRoomIsDone = false;
+        DistanceTrigger.ConversationIsDone = false;
+        DistanceTrigger.VandalismHasHappend = false;
+        DistanceTrigger.StartedSendingMessages = false;
+        DistanceTrigger.ScenarioIsDone = false;
+        SteamVR_LoadLevel.Begin("MainMenu");
     }
 
     void ExitGame()

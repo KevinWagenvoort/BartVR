@@ -39,6 +39,9 @@ public class HandController : MonoBehaviour
                 case "ButtonMap":
                     PhoneControls.OpenMap();
                     break;
+                case "GoBackButton":
+                    PhoneControls.OpenMainMenu();
+                        break;
                 case "ChoiceBubble A":
                     ChoiceNavigationPrivate.TouchButtonChoice(0);
                     break;
@@ -61,7 +64,7 @@ public class HandController : MonoBehaviour
                     collider.gameObject.GetComponent<MapOpenScript>().OpenMap();
                     break;
                 case "CameraOpenBubble":
-                    collider.gameObject.GetComponent<CameraOpenScript>().OpenCamera();
+                    PhoneControls.OpenCamera();
                     break;
                 case "ChoiceBubble A Local":
                     ConversationNavigation.TouchButtonChoice(0);

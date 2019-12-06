@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PhoneControls : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class PhoneControls : MonoBehaviour
     public List<GameObject> Apps = new List<GameObject>();
     public GameObject MenuTutorial;
     public GameObject NewMessageIcon;
+    public GameObject GoBackButton;
+    public GameObject PrivacyImage1;
+    public GameObject PrivacyImage2;
 
     // Start is called before the first frame update
     void Start()
@@ -56,8 +60,9 @@ public class PhoneControls : MonoBehaviour
         MenuTutorial.SetActive(false);
     }
 
-    void OpenMainMenu()
+    public void OpenMainMenu()
     {
+        GoBackButton.SetActive(false);
         DeactivateApps();
         Apps[0].SetActive(true);
         currentApp = Apps[0];
@@ -66,6 +71,7 @@ public class PhoneControls : MonoBehaviour
     public void OpenChat()
     {
         NewMessageIcon.SetActive(false);
+        GoBackButton.SetActive(true);
         DeactivateApps();
         Apps[1].SetActive(true);
         currentApp = Apps[1];
@@ -73,13 +79,24 @@ public class PhoneControls : MonoBehaviour
 
     public void OpenCamera()
     {
+        GoBackButton.SetActive(true);
         DeactivateApps();
         Apps[2].SetActive(true);
         currentApp = Apps[2];
+        if (DistanceTrigger.VandalismHasHappend)
+        {
+            PrivacyImage1.SetActive(false);
+            PrivacyImage2.SetActive(true);
+        } else
+        {
+            PrivacyImage1.SetActive(true);
+            PrivacyImage2.SetActive(false);
+        }
     }
 
     public void OpenMap()
     {
+        GoBackButton.SetActive(true);
         DeactivateApps();
         Apps[3].SetActive(true);
         currentApp = Apps[3];

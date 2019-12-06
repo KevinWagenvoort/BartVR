@@ -7,7 +7,6 @@ public class NotificationsController : MonoBehaviour
 {
     //public
     public List<GameObject> NotificationType = new List<GameObject>();
-    public AudioSource Speakers;
 
     //private
     private GameObject ActiveNotification = null;
@@ -37,8 +36,7 @@ public class NotificationsController : MonoBehaviour
         ActiveNotification.GetComponentInChildren<TMP_Text>().text = message;
         ShowNotification();//Show new
         HideAfterSeconds(2.5f);
-        StartCoroutine(Vibrations.LongVibration(0.5f, 250));
-        Speakers.Play();
+        Vibrations.Pulse(0.5f);
     }
 
     GameObject NotificatioToHide;

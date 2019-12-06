@@ -19,14 +19,9 @@ public class ChoiceNavigation : MonoBehaviour
     private NeighbourhoodAppScript NeighbourhoodAppScript;
     private PrivateAppScript PrivateAppScript;
 
-    // SteamVR
-    private SteamVR_TrackedObject trackedObject;
-    private SteamVR_Controller.Device controller;
-
     // Start is called before the first frame update
     void Start()
     {
-        trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
         Selected = new CurrentlySelected(0, ButtonActiveCount() - 1);
         DisableButtons();
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
@@ -41,41 +36,6 @@ public class ChoiceNavigation : MonoBehaviour
 
     void Navigation()
     {
-        //VR
-        try
-        {
-            controller = SteamVR_Controller.Input((int)trackedObject.index);
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
-            {
-                if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x > 0.1f)
-                {
-                    PrevSelected = Selected.selected;
-                    Selected.Previous();
-                    ButtonOutline();
-                } else if (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x < -0.1f)
-                {
-                    PrevSelected = Selected.selected;
-                    Selected.Next();
-                    ButtonOutline();
-                }
-            }
-
-            if (controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
-            {
-                if (IsPrivate)
-                {
-                    PrivateAppScript.SendChoice(Selected.selected);
-                }
-                else
-                {
-                    NeighbourhoodAppScript.SendChoiceCitizen(Buttons[Selected.selected].GetText());
-                }
-            }
-        } catch (Exception e)
-        {
-            Debug.LogError(e);
-        }
-
         //PC
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
