@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR;
+using Valve.VR;
 
 enum InputSetting
 {
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
         //Spawn npc
         amountOfNpcsToSpawn = 10;
         //Load scene
-        SceneManager.LoadScene(currentScenario);
+        SteamVR_LoadLevel.Begin("Burger en meldkamer");
         //Start time
         Time.timeScale = 1;
     }
