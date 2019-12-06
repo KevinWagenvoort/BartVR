@@ -12,10 +12,8 @@ public class EventHandler : MonoBehaviour {
         // Check if menu needs to be opened
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (escapeMenu.activeInHierarchy) {
-                ReturnToGame();
                 escapeMenu.SetActive(false);
             } else {
-                Time.timeScale = 0;
                 escapeMenu.SetActive(true);
             }
         }
