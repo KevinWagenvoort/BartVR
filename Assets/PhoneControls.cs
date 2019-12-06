@@ -71,7 +71,7 @@ public class PhoneControls : MonoBehaviour
     public void OpenChat()
     {
         NewMessageIcon.SetActive(false);
-        GoBackButton.SetActive(true);
+        // GoBackButton.SetActive(true);
         DeactivateApps();
         Apps[1].SetActive(true);
         currentApp = Apps[1];
@@ -79,7 +79,7 @@ public class PhoneControls : MonoBehaviour
 
     public void OpenCamera()
     {
-        GoBackButton.SetActive(true);
+        // GoBackButton.SetActive(true);
         DeactivateApps();
         Apps[2].SetActive(true);
         currentApp = Apps[2];
@@ -96,7 +96,7 @@ public class PhoneControls : MonoBehaviour
 
     public void OpenMap()
     {
-        GoBackButton.SetActive(true);
+        // GoBackButton.SetActive(true);
         DeactivateApps();
         Apps[3].SetActive(true);
         currentApp = Apps[3];

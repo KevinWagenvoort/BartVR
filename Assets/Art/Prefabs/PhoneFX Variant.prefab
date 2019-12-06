@@ -2246,7 +2246,6 @@ MonoBehaviour:
   - {fileID: 364397584464553553}
   - {fileID: 1098046793635763657}
   - {fileID: 361896367898651833}
-  Speakers: {fileID: 2551047820257771856}
 --- !u!1 &5974547255320387305
 GameObject:
   m_ObjectHideFlags: 0
@@ -2816,7 +2815,7 @@ PrefabInstance:
     - target: {fileID: 1374760301274578846, guid: f2fe08dc35ddb9644accb467e0df3bcc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1560008790162290448, guid: f2fe08dc35ddb9644accb467e0df3bcc,
         type: 3}
@@ -4164,7 +4163,7 @@ PrefabInstance:
     - target: {fileID: 5928911763731469450, guid: 6fa1f79e16ecd8e4f8c818d6bd031be0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6735604191188845067, guid: 6fa1f79e16ecd8e4f8c818d6bd031be0,
         type: 3}

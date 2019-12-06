@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4300995185057064}
   - component: {fileID: 33110114365573252}
   - component: {fileID: 23634253938187868}
-  - component: {fileID: 64956872293701162}
+  - component: {fileID: 5184184230200202894}
   m_Layer: 0
   m_Name: Brug_Slagboom
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64956872293701162
-MeshCollider:
+--- !u!65 &5184184230200202894
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,10 +92,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 902b736a110d7d549885e837504bd227, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.007901549, y: 0.032210797, z: 0.07359171}
+  m_Center: {x: -0.0011932568, y: 0.007871921, z: -0.032966774}
 --- !u!1 &1785644142051826
 GameObject:
   m_ObjectHideFlags: 0
