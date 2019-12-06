@@ -23,6 +23,7 @@ public class PrivateAppScript : MonoBehaviour
         possibleAnswers.Add("Is goed. Ik haal wel pizza. Zie je dan.");
         possibleAnswers.Add("Is goed. Ik haal wel patat. Zie je dan.");
         SendMessageButtonScript = SendMessageButton.GetComponent<SendMessage>();
+        Invoke("Tutorial", 2);
     }
 
     private int passCount = 0;

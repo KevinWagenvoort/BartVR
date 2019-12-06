@@ -30,7 +30,6 @@ public class MobilePrivateChat : MonoBehaviour
             ChoiceBubbleTextList.Add(child.Find("Text").gameObject);
         }
         SubjectText.text = "Robin";
-        PrivateAppScript.Tutorial();
     }
 
     // Update is called once per frame
