@@ -7,7 +7,6 @@ public class NotificationsController : MonoBehaviour
 {
     //public
     public List<GameObject> NotificationType = new List<GameObject>();
-    public AudioSource Speakers;
 
     //private
     private GameObject ActiveNotification = null;
@@ -38,7 +37,6 @@ public class NotificationsController : MonoBehaviour
         ShowNotification();//Show new
         HideAfterSeconds(2.5f);
         Vibrations.Pulse(0.5f);
-        Speakers.Play();
     }
 
     GameObject NotificatioToHide;
