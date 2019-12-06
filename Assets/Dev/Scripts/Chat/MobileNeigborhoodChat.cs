@@ -15,6 +15,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
     public GameObject SendPhotoBubble;
     public GameObject CameraOpenBubble;
     public Text SubjectText;
+    public AudioSource Speakers;
 
     private NeighbourhoodAppScript NeighbourhoodAppScript;
     private ChatSwitcher ChatSwitcher;
@@ -80,6 +81,7 @@ public class MobileNeigborhoodChat : MonoBehaviour
                 if (DistanceTrigger.StartedSendingMessages)
                 {
                     Vibrations.Pulse(0.5f);
+                    Speakers.Play();
                 }
                 if (LastMessage.type == Message.Type.Location)
                 {
