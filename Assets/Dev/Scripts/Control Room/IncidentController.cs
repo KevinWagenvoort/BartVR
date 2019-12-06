@@ -15,6 +15,7 @@ public class IncidentController : MonoBehaviour
     public GameObject ChatTut;
     public Color ActiveColor;
     public GameObject PhoneNotifications;
+    public GameObject incidentPopup;
 
     public List<GameObject> ListOfIncidentsTypes = new List<GameObject>();
 
@@ -209,6 +210,8 @@ public class IncidentController : MonoBehaviour
         } else
         {
             ChatTut.SetActive(true);
+            // GameObject incidentpopup close
+            incidentPopup.SetActive(false);
         }
         btn.transform.parent.Find("Background").GetComponent<Image>().color = ActiveColor;
         btn.enabled = false;
