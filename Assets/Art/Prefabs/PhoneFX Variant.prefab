@@ -2893,6 +2893,11 @@ PrefabInstance:
       propertyPath: m_FontData.m_Alignment
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2982278561555836032, guid: f2fe08dc35ddb9644accb467e0df3bcc,
+        type: 3}
+      propertyPath: Speakers
+      value: 
+      objectReference: {fileID: 2551047820257771856}
     - target: {fileID: 3434994090410441006, guid: f2fe08dc35ddb9644accb467e0df3bcc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3088,6 +3093,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: VRUIButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8057451180672913579, guid: f2fe08dc35ddb9644accb467e0df3bcc,
+        type: 3}
+      propertyPath: Speakers
+      value: 
+      objectReference: {fileID: 2551047820257771856}
     - target: {fileID: 8182693041812619564, guid: f2fe08dc35ddb9644accb467e0df3bcc,
         type: 3}
       propertyPath: m_TagString

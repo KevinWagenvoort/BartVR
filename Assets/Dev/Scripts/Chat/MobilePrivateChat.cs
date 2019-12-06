@@ -15,6 +15,7 @@ public class MobilePrivateChat : MonoBehaviour
     public GameObject MapOpenBubble;
     private PrivateAppScript PrivateAppScript;
     public Text SubjectText;
+    public AudioSource Speakers;
 
     private List<Message> RenderedMessages = new List<Message>();
     private List<GameObject> CloneMessages = new List<GameObject>();
@@ -64,6 +65,7 @@ public class MobilePrivateChat : MonoBehaviour
             } else
             {
                 Vibrations.Pulse(0.5f);
+                Speakers.Play();
                 if (LastMessage.type == Message.Type.Location)
                 {
                     newMessage = Instantiate(ReceivedLocationBubble, ReceivedLocationBubble.transform.parent);
