@@ -205,6 +205,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 SendMessageButtonScript.SetMessage("Ik ben er nu in de buurt en kan ze zien", Jij, Message.Type.Other);
                 break;
             case 11:
+                DistanceTrigger.StartScenarioDone = true;
                 Debug.Log("End intro");
                 break;
             case 12:

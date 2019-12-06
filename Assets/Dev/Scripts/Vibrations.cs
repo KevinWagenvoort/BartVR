@@ -15,6 +15,12 @@ public class Vibrations : MonoBehaviour
 
     public static void Pulse(float duration, float frequency = 50, float amplitude = 0.2f, SteamVR_Input_Sources source = SteamVR_Input_Sources.LeftHand)
     {
-        staticHapticAction.Execute(0, duration, frequency, amplitude, source);
+        try
+        {
+            staticHapticAction.Execute(0, duration, frequency, amplitude, source);
+        } catch
+        {
+            Debug.LogError("No VR headset");
+        }
     }
 }

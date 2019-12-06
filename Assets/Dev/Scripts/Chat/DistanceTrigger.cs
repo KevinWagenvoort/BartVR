@@ -9,6 +9,7 @@ public class DistanceTrigger : MonoBehaviour
     public static bool TutorialControlRoomIsDone = false;
     public static bool ConversationIsDone = false;
     public static bool VandalismHasHappend = false;
+    public static bool StartScenarioDone = false;
     private bool FeedbackShown = false;
     private bool phoneIsActive = true;
     public static bool StartedSendingMessages = false;
@@ -31,12 +32,12 @@ public class DistanceTrigger : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(CameraRig.transform.position, gameObject.transform.position);
-        if (distance < 37 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !ConversationIsDone)
+        if (distance < 37 && phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !ConversationIsDone && StartScenarioDone)
         {
             Phone.SetActive(false);
             LeftHand.SetActive(true);
             phoneIsActive = false;
-        } else if (distance >= 37 && !phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !ConversationIsDone)
+        } else if (distance >= 37 && !phoneIsActive && TutorialBurgerIsDone && TutorialControlRoomIsDone && !ConversationIsDone && StartScenarioDone)
         {
             Phone.SetActive(true);
             LeftHand.SetActive(false);
