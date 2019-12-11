@@ -17,11 +17,11 @@ public class PrivateAppScript : MonoBehaviour
     void Awake()
     {
         ChatApp = new ChatApp();
-        Robin = new Sender("Vriend", Sender.Role.Npc);
+        Robin = new Sender("Robin", Sender.Role.Npc);
         Jij = new Sender("Jij", Sender.Role.Burger);
         possibleAnswers = new List<string>();
-        possibleAnswers.Add("Is goed. Ik haal wel pizza. Zie je dan.");
-        possibleAnswers.Add("Is goed. Ik haal wel patat. Zie je dan.");
+        possibleAnswers.Add("Patatje met doen?");
+        possibleAnswers.Add("Pizza time!");
         SendMessageButtonScript = SendMessageButton.GetComponent<SendMessage>();
         Invoke("Tutorial", 2);
     }
@@ -32,28 +32,41 @@ public class PrivateAppScript : MonoBehaviour
         switch (passCount)
         {
             case 0:
-                ChatApp.Send("Yo zin om vanavond samen te eten?", Robin, Message.Type.Question, possibleAnswers);
+                ChatApp.Send("Zullen we vanavond eten halen?", Robin, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
             case 1:
-                ChatApp.Send("Vanaf 7 uur ben ik thuis. Dan kan je wel komen.", Robin, Message.Type.QuestionFollowup);
+                SendMessageButtonScript.SetMessage("Is goed", Jij, Message.Type.Other);
                 break;
             case 2:
+                Invoke("Tutorial", 2);
+                break;
+            case 3:
+                ChatApp.Send("Ga jij halen?", Robin, Message.Type.Question, possibleAnswers);
+                break;
+            case 4:
                 if (chosenAnswer == 0)
                 {
-                    ChatApp.Send("Top, zin in.", Robin, Message.Type.Other);
+                    ChatApp.Send("Snackbar is dicht. Doe maar pizza.", Robin, Message.Type.Other);
+                    SendMessageButtonScript.SetMessage("Welke pizzeria?", Jij, Message.Type.Other);
                 }
                 else
                 {
-                    ChatApp.Send("Ik heb liever pizza.", Robin, Message.Type.Other);
+                    ChatApp.Send("Lekker", Robin, Message.Type.Other);
+                    SendMessageButtonScript.SetMessage("Waar is die pizzeria?", Jij, Message.Type.Other);
                 }
-                SendMessageButtonScript.SetMessage("Ik ga het nu halen maar ik weet niet waar het is.", Jij, Message.Type.Other);
                 break;
-            case 3:
+            case 5:
                 Invoke("Tutorial", 2);
                 break;
-            case 4:
-                ChatApp.Send("Hier is het.", Robin, Message.Type.Location);
+            case 6:
+                if (chosenAnswer == 0)
+                {
+                    ChatApp.Send("Bartonio's", Robin, Message.Type.Location);
+                } else
+                {
+                    ChatApp.Send("", Robin, Message.Type.Location);
+                }
                 DistanceTrigger.TutorialBurgerIsDone = true;
                 break;
         }
