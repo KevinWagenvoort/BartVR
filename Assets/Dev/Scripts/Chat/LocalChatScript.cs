@@ -55,7 +55,7 @@ public class LocalChatScript : MonoBehaviour
         switch (passCount)
         {
             case 0:
-                ConversationNavigationScript.SetChoices(new List<string>() { "Zet die pokke herrie uit anders haal ik de politie!", "Zouden jullie de muziek zachter willen zetten?", "Ik heb graag dat jullie weggaan anders bel ik de politie!" });
+                ConversationNavigationScript.SetChoices(new List<string>() { "Zet die $*#@*&^#@* muziek uit!", "Zouden jullie alsjeblieft de muziek zachter kunnen zetten?", "Muziek uit of ik de bel de politie" });
                 break;
             case 1:
                 Debug.Log("Case 1");
@@ -108,46 +108,19 @@ public class LocalChatScript : MonoBehaviour
         switch(scenarioCount)
         {
             case 0:
-                PlayerTalk("Jullie hebben de herrie veel te hard");
+                NPCTalk("Ah joh, flikker op", 3);
                 break;
             case 1:
-                PlayerTalk("Zet het uit");
+                PlayerTalk("Flikker zelf op. Iedereen stoort zich aan jullie");
                 break;
             case 2:
-                NPCTalk("Nee nergens voor nodig", 3);
-                break;
-            case 3:
-                NPCTalk("We hebben gewoon plezier", 3);
-                break;
-            case 4:
-                NPCTalk("Dat laten we niet door jou verpesten", 3);
-                break;
-            case 5:
-                PlayerTalk("Het is toch niet zo lastig om dat lawaai te verminderen");
-                break;
-            case 6:
-                PlayerTalk("Iedereen heeft er last van");
-                break;
-            case 7:
-                NPCTalk("Kan ons weinig schelen", 3);
-                break;
-            case 8:
-                NPCTalk("Jullie bekijken het maar", 3);
-                break;
-            case 9:
-                PlayerTalk("Dan stuur ik de politie op jullie af");
-                break;
-            case 10:
-                NPCTalk("Je doet maar", 3);
-                break;
-            case 11:
-                NPCTalk("Boeit ons toch niet", 3);
+                NPCTalk("Bemoei je er niet mee, klootzak", 3);
                 NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
                 break;
-            case 12:
+            case 3:
                 TextBalloon.SetActive(false);
                 break;
         }
@@ -160,52 +133,21 @@ public class LocalChatScript : MonoBehaviour
         switch (scenarioCount)
         {
             case 0:
-                PlayerTalk("Jullie zijn namelijk best wel luid en bewoners hebben er last van");
+                NPCTalk("Ah joh, flikker op", 3);
                 break;
             case 1:
-                NPCTalk("Waar heb je het over?", 3);
+                PlayerTalk("Doe 's rustig");
                 break;
             case 2:
-                PlayerTalk("De muziek staat best hard. Zouden jullie het zachter willen zetten?");
-                break;
-            case 3:
-                NPCTalk("Valt reuze mee", 3);
-                break;
-            case 4:
-                NPCTalk("Zo luid is het helemaal niet", 3);
-                break;
-            case 5:
-                PlayerTalk("Het zorgt in ieder geval wel voor overlast");
-                break;
-            case 6:
-                NPCTalk("We zijn hier gewoon gezellig aan het chillen", 3);
-                break;
-            case 7:
-                NPCTalk("Mag toch ook wel eens?", 3);
-                break;
-            case 8:
-                PlayerTalk("Tuurlijk mag dat maar het moet wel wat zachter");
-                break;
-            case 9:
-                NPCTalk("Wat een gezeur weer", 3);
-                break;
-            case 10:
-                NPCTalk("Vooruit dan maar", 3);
-                break;
-            case 11:
-                NPCTalk("We doen de muziek zachter", 3);
-                break;
-            case 12:
-                PlayerTalk("Bedankt jongens");
+                NPCTalk("Bemoei je er niet mee", 3);
                 NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
                 break;
-            case 13:
+            case 3:
                 TextBalloon.SetActive(false);
                 break;
-
         }
         scenarioCount++;
     }
@@ -216,49 +158,21 @@ public class LocalChatScript : MonoBehaviour
         switch(scenarioCount)
         {
             case 0:
-                NPCTalk("Wow oke, chill. is het zo luid dan?", 3);
+                NPCTalk("Ah joh, flikker op", 3);
                 break;
             case 1:
-                PlayerTalk("Ja, het is een paar straten verderop nog te horen");
+                PlayerTalk("Doe 's rustig");
                 break;
             case 2:
-                NPCTalk("oh, dat is niet onze bedoeling", 3);
-                break;
-            case 3:
-                NPCTalk("We wouden hier gewoon lekker chillen", 3);
-                break;
-            case 4:
-                PlayerTalk("Zouden jullie het iets zachter willen zetten?");
-                break;
-            case 5:
-                PlayerTalk("Misschien is het handig als jullie in het park gaan zitten.");
-                break;
-            case 6:
-                PlayerTalk("Daar hebben mensen er minder last van");
-                break;
-            case 7:
-                NPCTalk("Dan gaan we wel naar het park toe. Wel zo handig", 3);
-                break;
-            case 8:
-                NPCTalk("Dan hebben jullie ook nergens last van", 3);
-                break;
-            case 9:
-                PlayerTalk("Heel erg bedankt. Leuke avond verder toegewenst");
-                break;
-            case 10:
-                NPCTalk("Geen probleem joh", 3);
-                break;
-            case 11:
-                NPCTalk("Fijn dat jullie zo rustig even met ons zijn komen praten", 3);
+                NPCTalk("Jij dreigt. Bemoei je met je eigen zaken", 3);
                 NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
                 break;
-            case 12:
+            case 3:
                 TextBalloon.SetActive(false);
                 break;
-
         }
         scenarioCount++;
     }

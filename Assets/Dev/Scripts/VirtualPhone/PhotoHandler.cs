@@ -70,14 +70,8 @@ public class PhotoHandler : MonoBehaviour {
         // Write to path (previous screenshots are overwritten)
         File.WriteAllBytes(path, bytes);
         Sprite photo = MakeSprite();
-        if (DistanceTrigger.ConversationIsDone)
-        {
-            NeighbourhoodAppScript.SendPhoto(photo);
-            FeedbackText.text = "Foto verstuurd";
-        } else
-        {
-            FeedbackText.text = "Foto opgeslagen";
-        }
+        NeighbourhoodAppScript.SendPhoto(photo);
+        FeedbackText.text = "Foto verstuurd";
         FeedbackPanel.SetActive(true);
         Invoke("TurnOffFeedbackPanel", 2);
         PrivacyImage1.SetActive(false);
@@ -127,10 +121,7 @@ public class PhotoHandler : MonoBehaviour {
     private void TurnOffFeedbackPanel()
     {
         FeedbackPanel.SetActive(false);
-        if (DistanceTrigger.ConversationIsDone)
-        {
-            gameObject.SetActive(false);
-            ChatAppPanel.SetActive(true);
-        }
+        gameObject.SetActive(false);
+        ChatAppPanel.SetActive(true);
     }
 }

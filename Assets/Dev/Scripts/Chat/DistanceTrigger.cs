@@ -42,7 +42,7 @@ public class DistanceTrigger : MonoBehaviour
             Phone.SetActive(true);
             LeftHand.SetActive(false);
             phoneIsActive = true;
-        } else if (distance >= 37 && ConversationIsDone && !VandalismHasHappend)//Conversation is over and player walked away
+        } else if (ConversationIsDone && !VandalismHasHappend)//Conversation is over and player walked away
         {
             VandalismHasHappend = true;
             VandalismController.StartVandalism();
@@ -72,6 +72,7 @@ public class DistanceTrigger : MonoBehaviour
                     FeedbackShown = true;
                     FeedbackScreenMK.SetActive(true);
                     FeedbackScreenVR.SetActive(true);
+                    NeighbourhoodAppScript.Scenario();
                 }
             }
         }
