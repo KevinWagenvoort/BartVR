@@ -37,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.603, y: 23.003}
-  m_SizeDelta: {x: 907.9, y: 609.1}
+  m_AnchoredPosition: {x: -10.603, y: 157.7}
+  m_SizeDelta: {x: 907.9, y: 339.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8349549249490722284
 CanvasRenderer:
@@ -112,7 +112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 227.00293, y: -226.00299}
+  m_AnchoredPosition: {x: 227.00293, y: -99}
   m_SizeDelta: {x: 370.4, y: 91.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8956351348377215851
@@ -456,7 +456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 67.12537, y: 83.99707}
+  m_AnchoredPosition: {x: 67.12537, y: -23}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7334456780467930831
@@ -599,7 +599,7 @@ PrefabInstance:
     - target: {fileID: 3475459858827814006, guid: b4cae5e869381a44ca607e4865ecfeaf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 108
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 3475459858827814006, guid: b4cae5e869381a44ca607e4865ecfeaf,
         type: 3}
