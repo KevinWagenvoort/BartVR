@@ -6069,9 +6069,10 @@ GameObject:
   - component: {fileID: 1447827078}
   - component: {fileID: 2954999588318095513}
   - component: {fileID: 471947841976005314}
+  - component: {fileID: 5358887202570084358}
   m_Layer: 0
   m_Name: PizzaSuspects
-  m_TagString: Untagged
+  m_TagString: Suspect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6132,7 +6133,11 @@ MonoBehaviour:
   LeftHand: {fileID: 0}
   NeighbourhoodApp: {fileID: 0}
   PhoneChatAppPanel: {fileID: 0}
-  VandalismHasHappend: 0
+  PhoneMapPanel: {fileID: 0}
+  PhoneMainMenuPanel: {fileID: 0}
+  PhoneCameraPanel: {fileID: 0}
+  FeedbackScreenMK: {fileID: 0}
+  FeedbackScreenVR: {fileID: 0}
 --- !u!114 &471947841976005314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6150,7 +6155,21 @@ MonoBehaviour:
   ThrowingObject: {fileID: 0}
   FlyingObject: {fileID: 0}
   LandedObject: {fileID: 0}
+  NeighbourhoodApp: {fileID: 0}
   BrokenWindowMesh: {fileID: 0}
+--- !u!65 &5358887202570084358
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977723621866926670}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.818401, y: 14.692469, z: 12.549878}
+  m_Center: {x: -17.64524, y: 6.846235, z: -3.1695607}
 --- !u!1 &4053052153707777507
 GameObject:
   m_ObjectHideFlags: 0
@@ -13365,16 +13384,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9059679968752003485}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: edb6cc8c0789f0d469fe97e2bb04c75e,
-        type: 3}
-      propertyPath: m_Name
-      value: ThrowingBrick
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: edb6cc8c0789f0d469fe97e2bb04c75e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: edb6cc8c0789f0d469fe97e2bb04c75e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13445,6 +13454,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.0960443
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: edb6cc8c0789f0d469fe97e2bb04c75e,
+        type: 3}
+      propertyPath: m_Name
+      value: ThrowingBrick
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: edb6cc8c0789f0d469fe97e2bb04c75e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edb6cc8c0789f0d469fe97e2bb04c75e, type: 3}
 --- !u!4 &5066624954895444787 stripped
@@ -13460,6 +13479,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1660172075843752578}
     m_Modifications:
+    - target: {fileID: 1151053781417333195, guid: 2c09e73213ce9df41b648f958615e659,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1740176549101101004, guid: 2c09e73213ce9df41b648f958615e659,
         type: 3}
       propertyPath: m_Name
@@ -13471,6 +13495,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1740176549101101004, guid: 2c09e73213ce9df41b648f958615e659,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2980434240639207405, guid: 2c09e73213ce9df41b648f958615e659,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613039053637836494, guid: 2c09e73213ce9df41b648f958615e659,
         type: 3}
       propertyPath: m_Layer
       value: 15
@@ -13544,21 +13578,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.35046774
-      objectReference: {fileID: 0}
-    - target: {fileID: 3613039053637836494, guid: 2c09e73213ce9df41b648f958615e659,
-        type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1151053781417333195, guid: 2c09e73213ce9df41b648f958615e659,
-        type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2980434240639207405, guid: 2c09e73213ce9df41b648f958615e659,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7577523565334195921, guid: 2c09e73213ce9df41b648f958615e659,
         type: 3}

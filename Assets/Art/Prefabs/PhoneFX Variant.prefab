@@ -1000,6 +1000,7 @@ MonoBehaviour:
   GoBackButton: {fileID: 4772271009214330896}
   PrivacyImage1: {fileID: 1941641644}
   PrivacyImage2: {fileID: 966501217}
+  TeleportTutorial: {fileID: 0}
 --- !u!1 &1604913370725769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3387,6 +3388,11 @@ PrefabInstance:
       propertyPath: PrivacyImage2
       value: 
       objectReference: {fileID: 966501217}
+    - target: {fileID: 1681001795710227808, guid: 90ba68ae1372f2c41bacb1bb7ba8648d,
+        type: 3}
+      propertyPath: TakePictureButton
+      value: 
+      objectReference: {fileID: 1792642165813389}
     - target: {fileID: 3258226805531552742, guid: 90ba68ae1372f2c41bacb1bb7ba8648d,
         type: 3}
       propertyPath: m_FontData.m_Alignment

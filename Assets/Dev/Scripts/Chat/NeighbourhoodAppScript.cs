@@ -35,8 +35,8 @@ public class NeighbourhoodAppScript : MonoBehaviour
         Meldkamer = new Sender("Meldkamer", Sender.Role.Meldkamer);
 
         possibleAnswers = new List<string>();
-        possibleAnswers.Add("Wat is het adres?");
-        possibleAnswers.Add("Kunt u omschrijven wat u precies ziet?");
+        possibleAnswers.Add("Wat is het adres van de familie Benjamins?");
+        possibleAnswers.Add("Kunt u omschrijven wat u precies heeft gezien?");
     }
 
     private int passCount = 0;
@@ -58,45 +58,63 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 Invoke("Tutorial", 2);
                 break;
             case 3:
-                ChatApp.Send("Er is iets niet pluis.", Jong, Message.Type.QuestionTrigger, possibleAnswers);
+                ChatApp.Send("Ja, ze zijn eergister weg gegaan", Jong, Message.Type.Other);
+                Invoke("Tutorial", 2);
                 break;
             case 4:
+                ChatApp.Send("Zou het een inbreker zijn?", Appel, Message.Type.Other);
+                Invoke("Tutorial", 2);
+                break;
+            case 5:
+                ChatApp.Send("Moeten we de politie bellen?", Jong, Message.Type.Other);
+                Invoke("Tutorial", 2);
+                break;
+            case 6:
+                MKChatScript.SetMessage("De meldkamer is op de hoogte van het incident.", Meldkamer, Message.Type.Other);
+                break;
+            case 7:
+                MKChatScript.SetMessage("We zouden u graag een aantal vragen willen stellen.", Meldkamer, Message.Type.Other);
+                break;
+            case 8:
+                ChatApp.Send("Is goed", Appel, Message.Type.QuestionTrigger, possibleAnswers);
+                break;
+            case 9:
                 if (chosenAnswer == 0)
                 {
                     ChatApp.Send("Huissteeg 1", Appel, Message.Type.QuestionTriggerAnswer, possibleAnswers, null, "huissteeg 1");
                 } else
                 {
-                    ChatApp.Send("Ik denk dat ik een inbreker binnen zie.", Appel, Message.Type.QuestionTriggerAnswer, possibleAnswers, null, "inbreker");
+                    ChatApp.Send("Een schaduw van een persoon in de woonkamer", Appel, Message.Type.QuestionTriggerAnswer, possibleAnswers, null, "schaduw van persoon in woonkamer");
                 }
                 break;
-            case 5:
+            case 10:
                 if (chosenAnswer == 0)
                 {
                     ChatApp.Send("Huissteeg 1", Appel, Message.Type.Other, null, null, "huissteeg 1");
                 }
                 else
                 {
-                    ChatApp.Send("Ik denk dat ik een inbreker binnen zie.", Appel, Message.Type.Other, null, null, "inbreker");
+                    ChatApp.Send("Een schaduw van een persoon in de woonkamer", Appel, Message.Type.Other, null, null, "schaduw van persoon in woonkamer");
                 }
                 Invoke("Tutorial", 2);
                 break;
-            case 6:
-                MKChatScript.SetMessage("We sturen er direct een agent naartoe.", Meldkamer, Message.Type.Other);
+            case 11:
+                MKChatScript.SetMessage("Bedankt voor de informatie. Dit geven we door aan de dichtsbijzijnde eenheid.", Meldkamer, Message.Type.Other);
                 break;
-            case 7:
-                MKChatScript.SetMessage("Er was inderdaad sprake van een inbraak.", Meldkamer, Message.Type.Other);
+            case 12:
+                MKChatScript.SetMessage("De politie is nu onderweg.", Meldkamer, Message.Type.Other);
                 break;
-            case 8:
-                MKChatScript.SetMessage("De Inbreker is opgepakt.", Meldkamer, Message.Type.Other);
+            case 13:
+                MKChatScript.SetMessage("Er was inderdaad sprake van een inbraak. Er is een verdachte aangehouden.", Meldkamer, Message.Type.Other);
                 break;
-            case 9:
-                MKChatScript.SetMessage("Bedankt voor jullie medewerking.", Meldkamer, Message.Type.Other);
-                break;
-            case 10:
-                ChatApp.Send("Jullie bedankt voor het oppakken van de inbreker.", Appel, Message.Type.Other);
+            case 14:
+                ChatApp.Send("Gelukkig waren jullie er op tijd bij", Appel, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
-            case 11:
+            case 15:
+                MKChatScript.SetMessage("We bedanken iedereen voor hun medewerking.", Meldkamer, Message.Type.Other);
+                break;
+            case 16:
                 ChatApp.ClearMessages();
                 DistanceTrigger.TutorialControlRoomIsDone = true;
                 IncidentControllerScript.ResetMK();
@@ -123,7 +141,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
 
     public void SendChoiceCitizen(string text)
     {
-        if (!conversationIsDone)
+        if (!conversationIsDone && scenarioPassCount > 20)
         {
             ChatApp.Send(text, Jij, Message.Type.QuestionTriggerAnswer, possibleAnswers);
         } else
@@ -135,7 +153,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
 
     public void SendPhoto(Sprite photo)
     {
-        if (!conversationIsDone)
+        if (!conversationIsDone && scenarioPassCount > 20)
         {
             ChatApp.Send("", Jij, Message.Type.PhotoQuestionTrigger, possibleAnswers, photo);
         } else
@@ -165,150 +183,159 @@ public class NeighbourhoodAppScript : MonoBehaviour
         {
             case 0:
                 GroupChatName.text = "Buurtapp Pizzalanden";
-                ChatApp.Send("Horen jullie dat lawaai ook?", Appel, Message.Type.Other, null, null, "lawaai");
+                ChatApp.Send("Horen jullie dat ook?", Appel, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 1:
-                ChatApp.Send("Ja, ik hoor het ook", Jong, Message.Type.Other);
+                ChatApp.Send("Ja man, wat een lawaai!", Jong, Message.Type.Other, null, null, "lawaai");
                 Invoke("Scenario", 2);
                 break;
             case 2:
-                ChatApp.Send("Ja, het komt van een paar straten verderop", Beer, Message.Type.Other, null, null, "van paar straten verderop");
+                ChatApp.Send("Echt he, dit slaat echt nergens op", Beer, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 3:
-                ChatApp.Send("Onze honden worden er helemaal gek van", Appel, Message.Type.Other);
-                Invoke("Scenario", 2);
+                SendMessageButtonScript.SetMessage("Ben onderweg naar Bartonio's. Hoor het ook", Jij, Message.Type.Other, null, null, "bartonio's");
                 break;
             case 4:
-                ChatApp.Send("Moeten we de politie bellen?", Jong, Message.Type.Other);
-                Invoke("Scenario", 2);
+                SendMessageButtonScript.SetMessage("Staat een groep jongeren met harde muziek", Jij, Message.Type.Other, null, null, "jongeren harde muziek");
                 break;
             case 5:
-                ChatApp.Send("Ja, misschien kunnen zij het oplossen", Appel, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 6:
-                MKChatScript.SetMessage("Wij zullen kijken of we kunnen helpen", Meldkamer, Message.Type.Other);
-                break;
-            case 7:
-                MKChatScript.SetMessage("Is er iemand in de buurt die even kan kijken?", Meldkamer, Message.Type.Other);
-                break;
-            case 8:
-                ChatApp.Send("Nee, ik moet zo weg", Beer, Message.Type.Other);
+                ChatApp.Send("Zal ik de wijkagent bellen?", Appel, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
+            case 7:
+                ChatApp.Send("Doe maar", Jong, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 8:
+                MKChatScript.SetMessage("De meldkamer leest mee.", Meldkamer, Message.Type.Other);
+                break;
             case 9:
-                SendMessageButtonScript.SetMessage("Ik kan wel even kijken", Jij, Message.Type.Other);
+                MKChatScript.SetMessage("Zou iemand de jongeren aan kunnen spreken?", Meldkamer, Message.Type.Other);
                 break;
             case 10:
-                SendMessageButtonScript.SetMessage("Ik ben er nu in de buurt en kan ze zien", Jij, Message.Type.Other);
+                SendMessageButtonScript.SetMessage("Ik kan wel helpen", Jij, Message.Type.Other);
                 break;
             case 11:
+                Invoke("Scenario", 2);
+                break;
+            case 12:
+                MKChatScript.SetMessage("Bedankt voor de medewerking.", Meldkamer, Message.Type.Other);
+                break;
+            case 13:
+                MKChatScript.SetMessage("Zou u een foto van de situatie kunnen maken?", Meldkamer, Message.Type.PhotoRequest);
+                break;
+            case 14:
+                //Keep empty
+                break;
+            case 15:
+                MKChatScript.SetMessage("Bedankt, kunt u met de jongeren in gesprek gaan?", Meldkamer, Message.Type.Other);
+                break;
+            case 16:
+                SendMessageButtonScript.SetMessage("Ja hoor, ik loop nu op ze af", Jij, Message.Type.Other);
+                break;
+            case 17:
                 DistanceTrigger.StartScenarioDone = true;
                 Debug.Log("End intro");
                 break;
-            case 12:
-                Debug.Log("Start 2nd part scenario");
-                switch (ToneType)
-                {
-                    case 0://Aggressive
-                        SendMessageButtonScript.SetMessage("Ik loop nu weg, ze luisteren voor geen meter!", Jij, Message.Type.Other);
-                        break;
-                    case 1://Friendly
-                        SendMessageButtonScript.SetMessage("Ik loop nu weg, ze gaan de muziek zachter zetten.", Jij, Message.Type.Other);
-                        break;
-                    case 2://Threatening
-                        SendMessageButtonScript.SetMessage("Ik loop nu weg, ze gaan nu naar het park.", Jij, Message.Type.Other);
-                        break;
-                }
-                break;
-            case 13:
-                Debug.Log("Start walking away");
-                break;
-            case 14:
-                SendMessageButtonScript.SetMessage("Ze hebben een ruit ingegooid", Jij, Message.Type.Other, null, null, "ruit ingegooid");
-                break;
-            case 15:
-                Invoke("Scenario", 2);
-                break;
-            case 16:
-                ChatApp.Send("WAT?!?!", Beer, Message.Type.Other);
-                Invoke("Scenario", 2);
-                break;
-            case 17:
-                ChatApp.Send("HOE DURVEN ZE", Appel, Message.Type.Other);
-                Invoke("Scenario", 2);
-                break;
             case 18:
-                ChatApp.Send("NEE!!!", Jong, Message.Type.Other);
-                Invoke("Scenario", 2);
+                Debug.Log("Start 2nd part scenario");
+                ChatApp.Send("Gaat alles goed daar?", Jong, Message.Type.Other);
                 break;
             case 19:
-                ChatApp.Send("VAN BARTONIO'S?", Jong, Message.Type.Other, null, null, "bartonio's");
-                Invoke("Scenario", 2);
+                SendMessageButtonScript.SetMessage("Ze hebben een raam ingegooid!", Jij, Message.Type.Other, null, null, "raam ingegooid");
                 break;
             case 20:
-                SendMessageButtonScript.SetMessage("Ja, met een steen", Jij, Message.Type.Other, null, null, "steen");
+                Invoke("Scenario", 2);
                 break;
             case 21:
+                ChatApp.Send("Wat een klootzakken!", Beer, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 22:
-                ChatApp.Send("NIET NORMAAL DIT", Jong, Message.Type.Other);
+                ChatApp.Send("Er moet ingegrepen worden", Appel, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
             case 23:
-                ChatApp.Send("Ze moeten echt 's normaal doen", Appel, Message.Type.Other);
-                Invoke("Scenario", 2);
+                MKChatScript.SetMessage("We lezen nog steeds mee.", Meldkamer, Message.Type.Other);
                 break;
             case 24:
-                ChatApp.Send("Eerst al overlast met hun muziek en nu dit!!!", Beer, Message.Type.Other, null, null, "overlast muziek");
-                Invoke("Scenario", 2);
+                MKChatScript.SetMessage("Houd alstublieft afstand.", Meldkamer, Message.Type.Other);
                 break;
             case 25:
-                ChatApp.Send("Dit kan echt niet!!!", Beer, Message.Type.Other);
-                Invoke("Scenario", 2);
+                SendMessageButtonScript.SetMessage("Ik ga er weg", Jij, Message.Type.Other);
                 break;
             case 26:
-                SendMessageButtonScript.SetMessage("Ze zijn veel te agressief", Jij, Message.Type.Other, null, null, "agressief");
+                MKChatScript.SetMessage("We zullen u een aantal vragen stellen.", Meldkamer, Message.Type.Other);
                 break;
             case 27:
-                SendMessageButtonScript.SetMessage("De politie moet er nu wel echt bij komen", Jij, Message.Type.Other);
+                possibleAnswers = new List<string>();
+                possibleAnswers.Add("Hebben de jongeren nog meer vernield?");
+                possibleAnswers.Add("Om hoeveel jongeren gaat het?");
+                possibleAnswers.Add("Zou u een foto kunnen maken?");
+                possibleAnswers.Add("Wie heeft de steen gegooid?");
+                possibleAnswers.Add("Waar bevindt de kapotte ruit zich?");
+                SendMessageButtonScript.SetMessage("Is goed", Jij, Message.Type.QuestionTrigger, possibleAnswers);
                 break;
             case 28:
-                Invoke("Scenario", 2);
+                //Keep empty
                 break;
             case 29:
-                ChatApp.Send("Ze moeten echt aangepakt worden", Beer, Message.Type.Other);
-                Invoke("Scenario", 2);
+                AskQuestionToCitizen();
                 break;
             case 30:
-                ChatApp.Send("Arme Bartonio's", Appel, Message.Type.Other);
-                Invoke("Scenario", 2);
+                AskQuestionToCitizen();
                 break;
             case 31:
-                possibleAnswers = new List<string>();
-                possibleAnswers.Add("Hebben de jongeren naast de ruit nog meer vernield?");
-                possibleAnswers.Add("Om hoeveel jongeren gaat het?");
-                possibleAnswers.Add("Zou u een foto kunnen maken van de huidige situatie?");
-                MKChatScript.SetMessage("We zullen u een aantal vragen stellen zodat de agent genoeg informatie heeft", Meldkamer, Message.Type.QuestionTrigger, possibleAnswers);
+                AskQuestionToCitizen();
                 break;
             case 32:
                 AskQuestionToCitizen();
                 break;
             case 33:
                 AskQuestionToCitizen();
-                break;
-            case 34:
-                AskQuestionToCitizen();
                 conversationIsDone = true;
                 break;
+            case 34:
+                MKChatScript.SetMessage("Bedankt voor de informatie.", Meldkamer, Message.Type.Other);
+                break;
             case 35:
-                MKChatScript.SetMessage("Bedankt, de agent is onderweg", Meldkamer, Message.Type.Other);
+                MKChatScript.SetMessage("De politie is onderweg naar uw locatie.", Meldkamer, Message.Type.Other);
+                break;
+            case 36:
+                SendMessageButtonScript.SetMessage("Moet ik verder nog wat doen?", Jij, Message.Type.Other);
+                break;
+            case 37:
+                MKChatScript.SetMessage("Blijf op een veilige afstand staan.", Meldkamer, Message.Type.Other);
+                break;
+            case 38:
+                MKChatScript.SetMessage("De politie zal ter plaatse onderzoek verrichten.", Meldkamer, Message.Type.Other);
+                break;
+            case 39:
                 DistanceTrigger.ScenarioIsDone = true;
-                //GameObject Officer = GameObject.FindGameObjectsWithTag("Officer")[0];
-                //Officer.GetComponent<NPCBehaviour>().MoveToTarget(PizzaLocation);
+                break;
+            case 40:
+                ChatApp.Send("Bedankt voor uw medewerking.", Meldkamer, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 41:
+                ChatApp.Send("De politie heeft het incident afgehandeld.", Meldkamer, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 42:
+                ChatApp.Send("Bedankt voor het snel oplossen", Appel, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 43:
+                ChatApp.Send("BART! werkt echt goed", Jong, Message.Type.Other);
+                Invoke("Scenario", 2);
+                break;
+            case 44:
+                ChatApp.Send("Bedankt Bart", Beer, Message.Type.Other);
                 break;
         }
         scenarioPassCount++;
@@ -327,13 +354,25 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
             case 1:
                 citizenAnswers = new List<string>();
-                citizenAnswers.Add("Drie");
-                citizenAnswers.Add("Vijf");
+                citizenAnswers.Add("3");
+                citizenAnswers.Add("5");
                 ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Question, citizenAnswers);
                 break;
             case 2:
                 // Open camera button
                 ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.PhotoRequest);
+                break;
+            case 3:
+                citizenAnswers = new List<string>();
+                citizenAnswers.Add("Man met blond haar en blauwe blouse");
+                citizenAnswers.Add("Vrouw, zwart haar en sport shirt");
+                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Question, citizenAnswers);
+                break;
+            case 4:
+                citizenAnswers = new List<string>();
+                citizenAnswers.Add("Voorkant van het gebouw");
+                citizenAnswers.Add("Achterkant van het gebouw");
+                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Question, citizenAnswers);
                 break;
         }
     }

@@ -17,6 +17,7 @@ public class PhoneControls : MonoBehaviour
     public GameObject GoBackButton;
     public GameObject PrivacyImage1;
     public GameObject PrivacyImage2;
+    public GameObject TeleportTutorial;
 
     // Start is called before the first frame update
     void Start()
@@ -100,5 +101,6 @@ public class PhoneControls : MonoBehaviour
         DeactivateApps();
         Apps[3].SetActive(true);
         currentApp = Apps[3];
+        TeleportTutorial.SetActive(true);
     }
 }

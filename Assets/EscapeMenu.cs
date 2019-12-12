@@ -31,6 +31,7 @@ public class EscapeMenu : MonoBehaviour
         DistanceTrigger.VandalismHasHappend = false;
         DistanceTrigger.StartedSendingMessages = false;
         DistanceTrigger.ScenarioIsDone = false;
+        DistanceTrigger.StartScenarioDone = false;
         SteamVR_LoadLevel.Begin("MainMenu");
     }
 
