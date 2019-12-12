@@ -277,7 +277,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 possibleAnswers.Add("Hebben de jongeren nog meer vernield?");
                 possibleAnswers.Add("Om hoeveel jongeren gaat het?");
                 possibleAnswers.Add("Zou u een foto kunnen maken?");
-                possibleAnswers.Add("Hoe ziet de gooier eruit?");
+                possibleAnswers.Add("Wie heeft de steen gegooid?");
                 possibleAnswers.Add("Waar bevindt de kapotte ruit zich?");
                 SendMessageButtonScript.SetMessage("Is goed", Jij, Message.Type.QuestionTrigger, possibleAnswers);
                 break;
@@ -354,8 +354,8 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
             case 1:
                 citizenAnswers = new List<string>();
-                citizenAnswers.Add("Drie");
-                citizenAnswers.Add("Vijf");
+                citizenAnswers.Add("3");
+                citizenAnswers.Add("5");
                 ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Question, citizenAnswers);
                 break;
             case 2:
