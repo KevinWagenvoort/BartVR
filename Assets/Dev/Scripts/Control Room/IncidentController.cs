@@ -42,9 +42,6 @@ public class IncidentController : MonoBehaviour
         {
             switch (btn.name)
             {
-                case "LocationButton":
-                    btn.onClick.AddListener(() => LocationHandler(btn));
-                    break;
                 case "SendButton":
                     btn.onClick.AddListener(() => SendHandler(btn));
                     break;
@@ -188,11 +185,6 @@ public class IncidentController : MonoBehaviour
         TMP_Text[] text = CopyOf.GetComponentsInChildren<TMP_Text>();
         text[0].text = message;
         text[1].text = answer;
-    }
-
-    void LocationHandler(Button btn)
-    {
-        Debug.Log("Location");
     }
 
     void SendHandler(Button btn)

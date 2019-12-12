@@ -87,7 +87,6 @@ public class HandController : MonoBehaviour
         {
             Teleporting.SetActive(false);
         }
-        Debug.Log(collider.gameObject.name);
     }
 
     void OnTriggerExit(Collider collision)
