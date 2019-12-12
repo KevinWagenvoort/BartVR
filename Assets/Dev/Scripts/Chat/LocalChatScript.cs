@@ -58,7 +58,6 @@ public class LocalChatScript : MonoBehaviour
                 ConversationNavigationScript.SetChoices(new List<string>() { "Zet die $*#@*&^#@* muziek uit!", "Zouden jullie alsjeblieft de muziek zachter kunnen zetten?", "Muziek uit of ik de bel de politie" });
                 break;
             case 1:
-                Debug.Log("Case 1");
                 ToneType = (Tone)chosenAnswer;
                 if (isAlone)
                 {
@@ -72,20 +71,6 @@ public class LocalChatScript : MonoBehaviour
                             break;
                         case Tone.Threatening:
                             path = AloneThreatening;
-                            break;
-                    }
-                } else
-                {
-                    switch (ToneType)
-                    {
-                        case Tone.Friendly:
-                            path = TogetherFriendly;
-                            break;
-                        case Tone.Aggressive:
-                            path = TogetherAgressive;
-                            break;
-                        case Tone.Threatening:
-                            path = TogetherThreatening;
                             break;
                     }
                 }
@@ -104,7 +89,6 @@ public class LocalChatScript : MonoBehaviour
 
     private void AloneAgressive()
     {
-        Debug.Log("AloneAgressive");
         switch(scenarioCount)
         {
             case 0:
@@ -129,7 +113,6 @@ public class LocalChatScript : MonoBehaviour
 
     private void AloneFriendly()
     {
-        Debug.Log("AloneFriendly");
         switch (scenarioCount)
         {
             case 0:
@@ -154,7 +137,6 @@ public class LocalChatScript : MonoBehaviour
 
     private void AloneThreatening()
     {
-        Debug.Log("AloneThreatening");
         switch(scenarioCount)
         {
             case 0:
@@ -175,21 +157,6 @@ public class LocalChatScript : MonoBehaviour
                 break;
         }
         scenarioCount++;
-    }
-
-    private void TogetherAgressive()
-    {
-        Debug.Log("TogetherAgressive");
-    }
-
-    private void TogetherFriendly()
-    {
-        Debug.Log("TogetherFriendly");
-    }
-
-    private void TogetherThreatening()
-    {
-        Debug.Log("TogetherThreatening");
     }
 
     private void DefaultPath ()

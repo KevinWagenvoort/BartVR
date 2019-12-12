@@ -130,9 +130,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
         chosenAnswer = message;
         if (currentScenario != "Scenario")
         {
-            Debug.Log(possibleAnswers.Count);
             possibleAnswers.Remove(message);
-            Debug.Log(possibleAnswers.Count);
             ChatApp.Send(message, Meldkamer, Message.Type.Other);
             Invoke(currentScenario, 2);
         }
@@ -244,10 +242,8 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 break;
             case 17:
                 DistanceTrigger.StartScenarioDone = true;
-                Debug.Log("End intro");
                 break;
             case 18:
-                Debug.Log("Start 2nd part scenario");
                 ChatApp.Send("Gaat alles goed daar?", Jong, Message.Type.Other);
                 break;
             case 19:

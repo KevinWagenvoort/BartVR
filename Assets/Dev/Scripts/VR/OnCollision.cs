@@ -11,7 +11,6 @@ public class OnCollision : MonoBehaviour {
 			SteamVR_Fade.Start(Color.black, 0f);
             Teleporting.SetActive(false);
 		}
-        Debug.Log(collision.name);
     }
 
 	void OnTriggerExit(Collider collision) {
