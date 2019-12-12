@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class NPCManager : MonoBehaviour {
 
-    public GameObject OfficerDefaultLocation;
+    public GameObject OfficerDefaultLocationScenario, OfficerDefaultLocationTut;
 
     [SerializeField]
     private GameObject CheckpointContainer;
     [SerializeField]
     private string NpcPrefabsPath;
 
-    private GameObject Officer;
+    private GameObject Officer0, Officer1;
     private bool OfficerIsDirected = false;
     string officerModelsPath = "Officers";
 
@@ -26,7 +26,8 @@ public class NPCManager : MonoBehaviour {
             npcMaker.CreateOfficer(officerModelsPath);
         }
 
-        Officer = GameObject.FindGameObjectsWithTag("Officer")[0];
+        Officer0 = GameObject.FindGameObjectsWithTag("Officer")[0];
+        Officer1 = GameObject.FindGameObjectsWithTag("Officer")[1];
 
         // Create all civilians
         for (int i = 0; i < GameManager.amountOfNpcsToSpawn; i++)
@@ -35,10 +36,16 @@ public class NPCManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (!OfficerIsDirected && Officer.GetComponent<NPCBehaviour>().agent != null)
+        if (!OfficerIsDirected && Officer0.GetComponent<NPCBehaviour>().agent != null)
         {
-            Officer.GetComponent<NPCBehaviour>().agent.Warp(OfficerDefaultLocation.transform.position);
-            Officer.GetComponent<NPCBehaviour>().MoveToTarget(OfficerDefaultLocation);
+            //Scenario
+            Officer0.GetComponent<NPCBehaviour>().agent.Warp(OfficerDefaultLocationScenario.transform.position);
+            Officer0.GetComponent<NPCBehaviour>().MoveToTarget(OfficerDefaultLocationScenario);
+
+            //Tut
+            Officer1.GetComponent<NPCBehaviour>().agent.Warp(OfficerDefaultLocationTut.transform.position);
+            Officer1.GetComponent<NPCBehaviour>().MoveToTarget(OfficerDefaultLocationTut);
+
             OfficerIsDirected = true;
         }
     }
