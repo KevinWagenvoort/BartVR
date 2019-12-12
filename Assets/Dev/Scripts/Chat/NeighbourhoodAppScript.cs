@@ -6,7 +6,7 @@ using UnityEngine;
 public class NeighbourhoodAppScript : MonoBehaviour
 {
     public ChatApp ChatApp;
-    public GameObject MKChat, SendMessageButton, IncidentController, PizzaLocation;
+    public GameObject MKChat, SendMessageButton, IncidentController, PizzaLocation, TwoDMap;
     public TMP_Text GroupChatName;
 
     private Sender Appel, Jij, Beer, Jong, Meldkamer;
@@ -18,6 +18,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
     private IncidentController IncidentControllerScript;
     private bool conversationIsDone = false;
     private int ToneType = 0;
+    private RenderTextureClick RenderTextureClick;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
         MKChatScript = MKChat.GetComponent<MKChat>();
         SendMessageButtonScript = SendMessageButton.GetComponent<SendMessage>();
         IncidentControllerScript = IncidentController.GetComponent<IncidentController>();
+        RenderTextureClick = TwoDMap.GetComponent<RenderTextureClick>();
 
         //Senders
         Appel = new Sender("Daphne Appeltje", Sender.Role.Npc);
@@ -102,19 +104,23 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 MKChatScript.SetMessage("Bedankt voor de informatie. Dit geven we door aan de dichtsbijzijnde eenheid.", Meldkamer, Message.Type.Other);
                 break;
             case 12:
-                MKChatScript.SetMessage("De politie is nu onderweg.", Meldkamer, Message.Type.Other);
+                RenderTextureClick.ShouldInvoke = true;
+                RenderTextureClick.SelectOfficer(GameObject.FindGameObjectsWithTag("Officer")[1]);
                 break;
             case 13:
-                MKChatScript.SetMessage("Er was inderdaad sprake van een inbraak. Er is een verdachte aangehouden.", Meldkamer, Message.Type.Other);
+                MKChatScript.SetMessage("De politie is nu onderweg.", Meldkamer, Message.Type.Other);
                 break;
             case 14:
+                MKChatScript.SetMessage("Er was inderdaad sprake van een inbraak. Er is een verdachte aangehouden.", Meldkamer, Message.Type.Other);
+                break;
+            case 15:
                 ChatApp.Send("Gelukkig waren jullie er op tijd bij", Appel, Message.Type.Other);
                 Invoke("Tutorial", 2);
                 break;
-            case 15:
+            case 16:
                 MKChatScript.SetMessage("We bedanken iedereen voor hun medewerking.", Meldkamer, Message.Type.Other);
                 break;
-            case 16:
+            case 17:
                 ChatApp.ClearMessages();
                 DistanceTrigger.TutorialControlRoomIsDone = true;
                 IncidentControllerScript.ResetMK();
@@ -304,37 +310,41 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 MKChatScript.SetMessage("Bedankt voor de informatie.", Meldkamer, Message.Type.Other);
                 break;
             case 35:
-                MKChatScript.SetMessage("De politie is onderweg naar uw locatie.", Meldkamer, Message.Type.Other);
+                RenderTextureClick.ShouldInvoke = true;
+                RenderTextureClick.SelectOfficer(GameObject.FindGameObjectsWithTag("Officer")[0]);
                 break;
             case 36:
-                SendMessageButtonScript.SetMessage("Moet ik verder nog wat doen?", Jij, Message.Type.Other);
+                MKChatScript.SetMessage("De politie is onderweg naar uw locatie.", Meldkamer, Message.Type.Other);
                 break;
             case 37:
-                MKChatScript.SetMessage("Blijf op een veilige afstand staan.", Meldkamer, Message.Type.Other);
+                SendMessageButtonScript.SetMessage("Moet ik verder nog wat doen?", Jij, Message.Type.Other);
                 break;
             case 38:
-                MKChatScript.SetMessage("De politie zal ter plaatse onderzoek verrichten.", Meldkamer, Message.Type.Other);
+                MKChatScript.SetMessage("Blijf op een veilige afstand staan.", Meldkamer, Message.Type.Other);
                 break;
             case 39:
-                DistanceTrigger.ScenarioIsDone = true;
+                MKChatScript.SetMessage("De politie zal ter plaatse onderzoek verrichten.", Meldkamer, Message.Type.Other);
                 break;
             case 40:
+                DistanceTrigger.ScenarioIsDone = true;
+                break;
+            case 41:
                 ChatApp.Send("Bedankt voor uw medewerking.", Meldkamer, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
-            case 41:
+            case 42:
                 ChatApp.Send("De politie heeft het incident afgehandeld.", Meldkamer, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
-            case 42:
+            case 43:
                 ChatApp.Send("Bedankt voor het snel oplossen", Appel, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
-            case 43:
+            case 44:
                 ChatApp.Send("BART! werkt echt goed", Jong, Message.Type.Other);
                 Invoke("Scenario", 2);
                 break;
-            case 44:
+            case 45:
                 ChatApp.Send("Bedankt Bart", Beer, Message.Type.Other);
                 break;
         }

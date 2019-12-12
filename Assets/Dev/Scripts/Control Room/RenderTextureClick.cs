@@ -9,7 +9,7 @@ public class RenderTextureClick : MonoBehaviour
     public Camera mapCamera;
     public Camera canvasCamera;
     public Canvas canvas;
-    public GameObject pizzaLocation, tutLocation;
+    public GameObject pizzaLocation, tutLocation, NeighbourhoodApp;
 
     //Send officer
     public GameObject SendPopup;
@@ -17,16 +17,22 @@ public class RenderTextureClick : MonoBehaviour
     public Button yes;
     public Button no;
 
+    [System.NonSerialized]
+    public bool ShouldInvoke = false;
+
     //Private
     private Vector2 localpoint;
     private RaycastHit hit;
     private GameObject SelectedOfficer;
     private Vector3 DefaultScale = new Vector3(1, 1, 1);
     private Vector3 SelectedScale = new Vector3(2, 2, 2);
+    private NeighbourhoodAppScript NeighbourhoodAppScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
+
         yes.onClick.AddListener(OnClickHandlerYes);
         no.onClick.AddListener(OnClickHandlerNo);
     }
@@ -36,14 +42,23 @@ public class RenderTextureClick : MonoBehaviour
     {
         if (DistanceTrigger.VandalismHasHappend)
         {
+            if (ShouldInvoke)
+            {
+                NeighbourhoodAppScript.Scenario();
+            }
             SelectedOfficer.GetComponentInParent<NPCBehaviour>().MoveToTarget(pizzaLocation);
         } else
         {
+            if (ShouldInvoke)
+            {
+                NeighbourhoodAppScript.Tutorial();
+            }
             SelectedOfficer.GetComponentInParent<NPCBehaviour>().MoveToTarget(tutLocation);
         }
 
         SelectedOfficer.transform.localScale = DefaultScale;
         SendPopup.SetActive(false);
+        ShouldInvoke = false;
     }
 
     //button no to not send police
@@ -51,6 +66,20 @@ public class RenderTextureClick : MonoBehaviour
     {
         SelectedOfficer.transform.localScale = DefaultScale;
         SendPopup.SetActive(false);
+    }
+    /// <summary>
+    /// </summary>
+    /// <param name="newSelectedOfficer">Has to be OfficerIcon</param>
+    public void SelectOfficer(GameObject newSelectedOfficer)
+    {
+        if (SelectedOfficer != null)//Check if there was an old officer
+        {
+            SelectedOfficer.transform.localScale = DefaultScale;
+        }
+
+        SelectedOfficer = newSelectedOfficer;
+        SelectedOfficer.transform.localScale = SelectedScale;
+        SendPopup.SetActive(true);
     }
 
     // Update is called once per frame
@@ -79,14 +108,7 @@ public class RenderTextureClick : MonoBehaviour
                     {
                         if (hit.collider.gameObject.name == "OfficerIcon")
                         {
-                            if (SelectedOfficer != null)//Check if there was an old officer
-                            {
-                                SelectedOfficer.transform.localScale = DefaultScale;
-                            }
-
-                            SelectedOfficer = hit.collider.gameObject;
-                            SelectedOfficer.transform.localScale = SelectedScale;
-                            SendPopup.SetActive(true);                           
+                            SelectOfficer(hit.collider.gameObject);
                         }
                     }
                 }
