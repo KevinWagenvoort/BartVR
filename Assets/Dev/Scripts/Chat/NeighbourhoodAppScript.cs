@@ -11,7 +11,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
 
     private Sender Appel, Jij, Beer, Jong, Meldkamer;
     private List<string> possibleAnswers = new List<string>();
-    private int chosenAnswer = 0;
+    private string chosenAnswer;
     private MKChat MKChatScript;
     private SendMessage SendMessageButtonScript;
     private string currentScenario = "Tutorial";
@@ -79,7 +79,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 ChatApp.Send("Is goed", Appel, Message.Type.QuestionTrigger, possibleAnswers);
                 break;
             case 9:
-                if (chosenAnswer == 0)
+                if (chosenAnswer == "Wat is het adres van de familie Benjamins?")
                 {
                     ChatApp.Send("Huissteeg 1", Appel, Message.Type.QuestionTriggerAnswer, possibleAnswers, null, "huissteeg 1");
                 } else
@@ -88,7 +88,7 @@ public class NeighbourhoodAppScript : MonoBehaviour
                 }
                 break;
             case 10:
-                if (chosenAnswer == 0)
+                if (chosenAnswer == "Wat is het adres van de familie Benjamins?")
                 {
                     ChatApp.Send("Huissteeg 1", Appel, Message.Type.Other, null, null, "huissteeg 1");
                 }
@@ -125,16 +125,20 @@ public class NeighbourhoodAppScript : MonoBehaviour
         passCount++;
     }
 
-    public void SendChoice(int messageNumber)
+    public void SendChoice(string message)
     {
-        chosenAnswer = messageNumber;
+        chosenAnswer = message;
         if (currentScenario != "Scenario")
         {
-            ChatApp.Send(possibleAnswers[messageNumber], Meldkamer, Message.Type.Other);
+            Debug.Log(possibleAnswers.Count);
+            possibleAnswers.Remove(message);
+            Debug.Log(possibleAnswers.Count);
+            ChatApp.Send(message, Meldkamer, Message.Type.Other);
             Invoke(currentScenario, 2);
         }
         else
         {
+            possibleAnswers.Remove(message);
             Scenario();
         }
     }
@@ -346,33 +350,33 @@ public class NeighbourhoodAppScript : MonoBehaviour
         List<string> citizenAnswers;
         switch (chosenAnswer)
         {
-            case 0:
+            case "Hebben de jongeren nog meer vernield?":
                 citizenAnswers = new List<string>();
                 citizenAnswers.Add("Ja, ik zie ook een kapotte prullenbak");
                 citizenAnswers.Add("Nee, alleen de ruit");
-                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Question, citizenAnswers);
+                ChatApp.Send(chosenAnswer, Meldkamer, Message.Type.Question, citizenAnswers);
                 break;
-            case 1:
+            case "Om hoeveel jongeren gaat het?":
                 citizenAnswers = new List<string>();
                 citizenAnswers.Add("3");
                 citizenAnswers.Add("5");
-                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Question, citizenAnswers);
+                ChatApp.Send(chosenAnswer, Meldkamer, Message.Type.Question, citizenAnswers);
                 break;
-            case 2:
+            case "Zou u een foto kunnen maken?":
                 // Open camera button
-                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.PhotoRequest);
+                ChatApp.Send(chosenAnswer, Meldkamer, Message.Type.PhotoRequest);
                 break;
-            case 3:
+            case "Wie heeft de steen gegooid?":
                 citizenAnswers = new List<string>();
                 citizenAnswers.Add("Man met blond haar en blauwe blouse");
                 citizenAnswers.Add("Vrouw, zwart haar en sport shirt");
-                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Question, citizenAnswers);
+                ChatApp.Send(chosenAnswer, Meldkamer, Message.Type.Question, citizenAnswers);
                 break;
-            case 4:
+            case "Waar bevindt de kapotte ruit zich?":
                 citizenAnswers = new List<string>();
                 citizenAnswers.Add("Voorkant van het gebouw");
                 citizenAnswers.Add("Achterkant van het gebouw");
-                ChatApp.Send(possibleAnswers[chosenAnswer], Meldkamer, Message.Type.Question, citizenAnswers);
+                ChatApp.Send(chosenAnswer, Meldkamer, Message.Type.Question, citizenAnswers);
                 break;
         }
     }

@@ -32,7 +32,6 @@ public class MKChat : MonoBehaviour
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
         
         SendButton.onClick.AddListener(OnClickHandler);
-        Dropdown.onValueChanged.AddListener(OnChangeHandler);
         Dropdown.ClearOptions();
         NeighbourhoodAppScript.Tutorial();
     }
@@ -61,11 +60,6 @@ public class MKChat : MonoBehaviour
     //    }
     //}
 
-    void OnChangeHandler(int value)
-    {
-        SendButton.interactable = !SendChoices.Contains(value);//Enable button if SendChoices does not contain value
-    }
-
     void OnClickHandler()
     {
         if (CurrentMessage != null)
@@ -74,7 +68,7 @@ public class MKChat : MonoBehaviour
         }
         else
         {
-            NeighbourhoodAppScript.SendChoice(Dropdown.value);
+            NeighbourhoodAppScript.SendChoice(Dropdown.options[Dropdown.value].text);
             SendChoices.Add(Dropdown.value);
         }
     }
@@ -146,8 +140,10 @@ public class MKChat : MonoBehaviour
                     Invoke("ActivateSendButton", 1);
                 } else if (LastMessage.type == Message.Type.QuestionTriggerAnswer || LastMessage.type == Message.Type.PhotoQuestionTrigger)//Old question
                 {
+                    Dropdown.ClearOptions();
+                    Dropdown.AddOptions(LastMessage.possibleAnswers);
                     Dropdown.interactable = true;
-                    SendButton.interactable = !SendChoices.Contains(Dropdown.value);
+                    Invoke("ActivateSendButton", 1);
                     Arrow.SetActive(true);
                 }
             } else
