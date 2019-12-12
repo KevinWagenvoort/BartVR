@@ -108,10 +108,10 @@ public class LocalChatScript : MonoBehaviour
         switch(scenarioCount)
         {
             case 0:
-                NPCTalk("Ah joh, flikker op", 3);
+                NPCTalk("Ah joh, rot op", 3);
                 break;
             case 1:
-                PlayerTalk("Flikker zelf op. Iedereen stoort zich aan jullie");
+                PlayerTalk("Rot zelf op. Iedereen stoort zich aan jullie");
                 break;
             case 2:
                 NPCTalk("Bemoei je er niet mee, klootzak", 3);
@@ -133,7 +133,7 @@ public class LocalChatScript : MonoBehaviour
         switch (scenarioCount)
         {
             case 0:
-                NPCTalk("Ah joh, flikker op", 3);
+                NPCTalk("Ah joh, rot op", 3);
                 break;
             case 1:
                 PlayerTalk("Doe 's rustig");
@@ -158,7 +158,7 @@ public class LocalChatScript : MonoBehaviour
         switch(scenarioCount)
         {
             case 0:
-                NPCTalk("Ah joh, flikker op", 3);
+                NPCTalk("Ah joh, rot op", 3);
                 break;
             case 1:
                 PlayerTalk("Doe 's rustig");
