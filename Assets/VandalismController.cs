@@ -5,7 +5,7 @@ using UnityEngine;
 public class VandalismController : MonoBehaviour
 {
     public GameObject Thrower, Window, ThrowingObject, FlyingObject, LandedObject, NeighbourhoodApp;
-
+    public AudioSource YellingPerson;
     public Mesh BrokenWindowMesh;
 
     private Animator animator;
@@ -30,7 +30,13 @@ public class VandalismController : MonoBehaviour
 
     public void StartVandalism()
     {
-        Invoke("DoingVandalism", 5);
+        Invoke("BeforeVandalism", 5);
+    }
+
+    void BeforeVandalism()
+    {
+        YellingPerson.Play();
+        Invoke("DoingVandalism", YellingPerson.clip.length);
     }
 
     void DoingVandalism()
