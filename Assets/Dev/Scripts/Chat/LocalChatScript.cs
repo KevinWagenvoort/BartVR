@@ -13,6 +13,15 @@ public class LocalChatScript : MonoBehaviour
     public TMP_Text BalloonText;
     public GameObject NeighbourhoodApp;
 
+    [Header("Audio objects")]
+    public AudioSource PlayerSpeaker;
+    public AudioSource SuspectSpeaker;
+    public AudioSource Music;
+
+    public List<AudioClip> FriendlyAudioClips;
+    public List<AudioClip> ThreateningAudioClips;
+    public List<AudioClip> AgressiveAudioClips;
+
     private Sender Jongeren, Jij;
     private List<string> possibleAnswers = new List<string>();
     private int chosenAnswer = 0;
@@ -30,16 +39,7 @@ public class LocalChatScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ChatApp = new ChatApp();
         NeighbourhoodAppScript = NeighbourhoodApp.GetComponent<NeighbourhoodAppScript>();
-
-        //Senders
-        Jongeren = new Sender("Jongeren", Sender.Role.Npc);
-        Jij = new Sender("Bart van Rijn", Sender.Role.Burger);
-
-        possibleAnswers = new List<string>();
-        possibleAnswers.Add("Wat is het adres?");
-        possibleAnswers.Add("Kunt u omschrijven wat u precies ziet?");
     }
 
     private void Awake()
@@ -58,6 +58,7 @@ public class LocalChatScript : MonoBehaviour
                 ConversationNavigationScript.SetChoices(new List<string>() { "Zet die $*#@*&^#@* muziek uit!", "Zouden jullie alsjeblieft de muziek zachter kunnen zetten?", "Muziek uit of ik de bel de politie" });
                 break;
             case 1:
+                Music.volume = 0.1f;
                 ToneType = (Tone)chosenAnswer;
                 if (isAlone)
                 {
@@ -92,19 +93,25 @@ public class LocalChatScript : MonoBehaviour
         switch(scenarioCount)
         {
             case 0:
-                NPCTalk("Ah joh, rot op", 3);
+                AudioClip audioClip = AgressiveAudioClips[0];
+                PlayerSpeaker.clip = audioClip;
+                PlayerSpeaker.Play();
+                Invoke("DefaultPath", audioClip.length);
                 break;
             case 1:
-                PlayerTalk("Rot zelf op. Iedereen stoort zich aan jullie");
+                NPCTalk("Ah joh, rot op", AgressiveAudioClips[1]);
                 break;
             case 2:
-                NPCTalk("Bemoei je er niet mee, klootzak", 3);
+                PlayerTalk("Rot zelf op. Iedereen stoort zich aan jullie", AgressiveAudioClips[2]);
+                break;
+            case 3:
+                NPCTalk("Bemoei je er niet mee, klootzak", AgressiveAudioClips[3]);
                 NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
                 break;
-            case 3:
+            case 4:
                 TextBalloon.SetActive(false);
                 break;
         }
@@ -116,19 +123,25 @@ public class LocalChatScript : MonoBehaviour
         switch (scenarioCount)
         {
             case 0:
-                NPCTalk("Ah joh, rot op", 3);
+                AudioClip audioClip = FriendlyAudioClips[0];
+                PlayerSpeaker.clip = audioClip;
+                PlayerSpeaker.Play();
+                Invoke("DefaultPath", audioClip.length);
                 break;
             case 1:
-                PlayerTalk("Doe 's rustig");
+                NPCTalk("Ah joh, rot op", FriendlyAudioClips[1]);
                 break;
             case 2:
-                NPCTalk("Bemoei je er niet mee", 3);
+                PlayerTalk("Doe 's rustig", FriendlyAudioClips[2]);
+                break;
+            case 3:
+                NPCTalk("Bemoei je er niet mee", FriendlyAudioClips[3]);
                 NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
                 break;
-            case 3:
+            case 4:
                 TextBalloon.SetActive(false);
                 break;
         }
@@ -140,19 +153,25 @@ public class LocalChatScript : MonoBehaviour
         switch(scenarioCount)
         {
             case 0:
-                NPCTalk("Ah joh, rot op", 3);
+                AudioClip audioClip = ThreateningAudioClips[0];
+                PlayerSpeaker.clip = audioClip;
+                PlayerSpeaker.Play();
+                Invoke("DefaultPath", audioClip.length);
                 break;
             case 1:
-                PlayerTalk("Doe 's rustig");
+                NPCTalk("Ah joh, rot op", ThreateningAudioClips[1]);
                 break;
             case 2:
-                NPCTalk("Jij dreigt. Bemoei je met je eigen zaken", 3);
+                PlayerTalk("Doe 's rustig", ThreateningAudioClips[2]);
+                break;
+            case 3:
+                NPCTalk("Jij dreigt. Bemoei je met je eigen zaken", ThreateningAudioClips[3]);
                 NeighbourhoodAppScript.Scenario((int)ToneType);
                 Phone.SetActive(true);
                 LeftHand.SetActive(false);
                 DistanceTrigger.ConversationIsDone = true;
                 break;
-            case 3:
+            case 4:
                 TextBalloon.SetActive(false);
                 break;
         }
@@ -164,16 +183,21 @@ public class LocalChatScript : MonoBehaviour
         path();
     }
 
-    private void NPCTalk(string message, int seconds = 1)
+    private void NPCTalk(string message, AudioClip audioClip)
     {
         TextBalloon.SetActive(true);
         BalloonText.text = message;
-        Invoke("DefaultPath", seconds);
+        SuspectSpeaker.clip = audioClip;
+        SuspectSpeaker.Play();
+        PlayerSpeaker.Stop();
+        Invoke("DefaultPath", audioClip.length);
     }
 
-    private void PlayerTalk(string message)
+    private void PlayerTalk(string message, AudioClip audioClip)
     {
         TextBalloon.SetActive(false);
+        PlayerSpeaker.clip = audioClip;
+        PlayerSpeaker.Play();
         ConversationNavigationScript.SetChoice(message);
     }
 }
