@@ -66,11 +66,6 @@ public class Officer : MonoBehaviour {
                 behaviour.agent.isStopped = false;
         } else
             target = null;
-
-        // TEST
-        if (Input.GetKeyDown(KeyCode.N))
-            behaviour.RelocateToTarget(new Vector3(-30, 0, -4));
-        // END OF TEST -------------------------------------------------------------
     }
 
     /// <summary>

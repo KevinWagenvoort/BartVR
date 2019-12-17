@@ -31,7 +31,10 @@ public class ChoiceNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Navigation();
+        if (Application.isEditor)
+        {
+            Navigation();
+        }
     }
 
     void Navigation()

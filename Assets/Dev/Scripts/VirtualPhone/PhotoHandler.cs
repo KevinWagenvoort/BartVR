@@ -21,10 +21,13 @@ public class PhotoHandler : MonoBehaviour {
 
     private void Update()
     {
-        //PC
-        if (Input.GetKeyUp(KeyCode.P))
+        if (Application.isEditor)
         {
-            TakePhotoButton();
+            //PC
+            if (Input.GetKeyUp(KeyCode.P))
+            {
+                TakePhotoButton();
+            }
         }
     }
 

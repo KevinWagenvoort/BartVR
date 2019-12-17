@@ -28,7 +28,10 @@ public class PhoneControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PCNavigation();
+        if (Application.isEditor)
+        {
+            PCNavigation();
+        }
     }
 
     //PC controls
