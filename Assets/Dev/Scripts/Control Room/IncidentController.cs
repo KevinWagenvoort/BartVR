@@ -156,7 +156,6 @@ public class IncidentController : MonoBehaviour
                 message = "Groep jongeren veroorzaken overlast bij bartonio's pizza.";
                 answer = "";
                 AddIncident(ListOfIncidentsTypes[3], message, answer);
-                NotificationsController.SetActiveNotification(NotificationsController.NotificationType[3], message);
                 Invoke("BeginScenario", TimeBetweenIncidents);
                 break;
             case 4://Call
