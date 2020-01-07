@@ -82,6 +82,7 @@ public class HandController : MonoBehaviour
                     break;
             }
             isTriggerable = false;
+            Invoke("MakeTriggerable", 0.5f);
         } else
         {
             Teleporting.SetActive(false);
@@ -92,7 +93,7 @@ public class HandController : MonoBehaviour
     void OnTriggerExit(Collider collision)
     {
         Teleporting.SetActive(true);
-        Invoke("MakeTriggerable", 1);
+        Invoke("MakeTriggerable", 0.5f);
     }
 
     private void MakeTriggerable()
