@@ -44,7 +44,7 @@ public class Officer : MonoBehaviour {
         rb = this.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         rb.detectCollisions = true;
-        this.GetComponent<SphereCollider>().isTrigger = true;
+        this.GetComponent<BoxCollider>().isTrigger = true;
 
         id = GameObject.Find("EventSystem").GetComponent<Identification>();
     }

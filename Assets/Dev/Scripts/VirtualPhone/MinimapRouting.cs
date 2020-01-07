@@ -2,28 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Valve.VR;
 
 public class MinimapRouting : MonoBehaviour
 {
     public Transform target;
+    public SteamVR_Action_Boolean teleportAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("Teleport");
     public LineRenderer lineRenderer;
     private NavMeshPath path;
-    private float elapsed = 0.0f;
+
     void Start()
     {
         path = new NavMeshPath();
-        elapsed = 0.0f;
+        UpdatePath();
     }
 
     void Update()
     {
         // Update the way to the goal every second.
-        elapsed += Time.deltaTime;
-        if (elapsed > 1.0f)
+        if (teleportAction.GetStateUp(SteamVR_Input_Sources.RightHand) || teleportAction.GetStateUp(SteamVR_Input_Sources.LeftHand))
         {
-            elapsed -= 1.0f;
-            NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, path);
+            Invoke("UpdatePath", 0.2f);
         }
+    }
+
+    void UpdatePath()
+    {
+        NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, path);
         lineRenderer.positionCount = path.corners.Length;
         lineRenderer.SetPositions(path.corners);
     }
